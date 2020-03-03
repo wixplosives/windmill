@@ -1,7 +1,10 @@
-# sample-monorepo
+<img src="https://img.icons8.com/cotton/160/000000/windmill--v2.png">
+
+# Windmill
 [![Build Status](https://github.com/wixplosives/sample-monorepo/workflows/tests/badge.svg)](https://github.com/wixplosives/sample-monorepo/actions)
 
-Sample monorepo setup with yarn workspaces, typescript, and lerna.
+
+**Windmill** is a set of tools to automate and improve testing components.
 
 ## Setup explained
 
@@ -110,3 +113,8 @@ Lerna asks for new version numbers for packages that changed since last release 
 `yarn lerna publish --force-publish` will force a release of *all* packages, regardless of which ones actually changed. 
 
 Deployment of app/server assets to any actual production servers is not shown.
+
+
+---------------------------------------
+
+<a href="https://icons8.com/icon/122728/windmill">*Windmill icon by Icons8*</a>
