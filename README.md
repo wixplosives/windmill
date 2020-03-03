@@ -1,6 +1,5 @@
-<img src="https://img.icons8.com/cotton/160/000000/windmill--v2.png">
+<img src="assets/logo.png">
 
-# Windmill
 [![Build Status](https://github.com/wixplosives/sample-monorepo/workflows/tests/badge.svg)](https://github.com/wixplosives/sample-monorepo/actions)
 
 
