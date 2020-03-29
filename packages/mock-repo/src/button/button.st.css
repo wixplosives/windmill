@@ -1,0 +1,27 @@
+:import {
+    -st-from: "../../themes/fonts.st.css";
+    -st-named: bold-font-weight;
+}
+
+.root {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    white-space: nowrap;
+    padding: 5px 21px;
+    border-radius: 4px;
+    font-weight: value(bold-font-weight);
+}
+
+.root:disabled {
+    cursor: default;
+    pointer-events: none;
+}

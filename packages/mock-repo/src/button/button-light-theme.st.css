@@ -1,0 +1,83 @@
+:import {
+    -st-from: "../../themes/colors.st.css";
+    -st-named: purple, gray-purple, red, gray, white;
+}
+
+:import {
+    -st-from: './button.st.css';
+    -st-default: Button;
+}
+
+:import {
+    -st-from: './button-variants.st.css';
+    -st-named: primaryButton, alertButton, linkButton;
+}
+
+:import {
+    -st-from: '../../themes/light-theme.st.css';
+    -st-default: LightTheme;
+}
+
+@st-scope LightTheme {
+    Button {
+        border: 1px solid value(purple, 2);
+        color: value(gray-purple, 17);
+        background-color: value(white);
+    }
+
+    Button:hover {
+        background-color: value(purple, 1);
+    }
+
+    Button:disabled {
+        color: value(gray, 4);
+        border-color: value(gray, 3);
+        background-color: transparent;
+    }
+
+    .primaryButton {
+        color: value(white);
+        background-color: value(purple, 9);
+        border-color: value(purple, 9);
+    }
+
+    .primaryButton:hover {
+        color: value(white);
+        background-color: value(purple, 11);
+        border-color: value(purple, 11);
+    }
+
+    .primaryButton:disabled {
+        color: value(white);
+        background-color: value(gray, 3);
+        border-color: value(gray, 3);
+    }
+
+    .alertButton {
+        color: value(white);
+        background-color: value(red, 3);
+        border-color: value(red, 3);
+    }
+
+    .alertButton:hover {
+        color: value(white);
+        background-color: value(red, 4);
+        border-color: value(red, 4);
+    }
+
+    .alertButton:disabled {
+        color: value(white);
+        background-color: value(gray, 3);
+        border-color: value(gray, 3);
+    }
+
+    .linkButton {
+        background-color: transparent;
+        border-color: transparent;
+        color: value(purple, 9);
+    }
+
+    .linkButton:hover {
+        background-color: value(purple, 1);
+    }
+}
