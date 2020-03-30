@@ -1,12 +1,10 @@
 import { createSimulation } from '@wixc3/wcs-core';
 import { Button } from '../../../src/button/button';
-import { classes as buttonVariants } from '../../../src/components/button/button-variants.st.css';
 
 export default createSimulation({
     name: 'Link Button',
     componentType: Button,
     props: {
-        className: buttonVariants.linkButton,
         children: 'Link Button'
     },
     environmentProps: {
@@ -18,6 +16,5 @@ export default createSimulation({
             right: 20,
             bottom: 20
         }
-    },
-    setup
+    }
 });

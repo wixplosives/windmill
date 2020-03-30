@@ -1,8 +1,3 @@
-:import {
-    -st-from: "../../themes/fonts.st.css";
-    -st-named: bold-font-weight;
-}
-
 .root {
     font: inherit;
     color: inherit;
@@ -18,7 +13,6 @@
     white-space: nowrap;
     padding: 5px 21px;
     border-radius: 4px;
-    font-weight: value(bold-font-weight);
 }
 
 .root:disabled {
