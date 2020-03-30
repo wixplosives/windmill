@@ -22,7 +22,7 @@
     "src"
   ],
   "license": "MIT",
-  "repository": "git@github.com:wixplosives/sample.git",
+  "repository": "git@github.com:wixplosives/windmill.git",
   "sideEffects": false,
   "private": true,
   "publishConfig": {

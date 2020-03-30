@@ -1,6 +1,5 @@
 import { createSimulation } from '@wixc3/wcs-core';
 import { Button } from '../../../src/button/button';
-import { setup } from '../setup';
 
 export default createSimulation({
     name: 'Regular Button',
@@ -17,6 +16,5 @@ export default createSimulation({
             right: 20,
             bottom: 20
         }
-    },
-    setup
+    }
 });
