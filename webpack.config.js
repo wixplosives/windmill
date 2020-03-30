@@ -21,7 +21,7 @@ module.exports = {
                 exclude: /\.d\.ts$/,
                 loader: '@ts-tools/webpack-loader',
                 options: {
-                    configFilePath: require.resolve('./tsconfig.build.json')
+                    configFilePath: require.resolve('./tsconfig.json')
                 }
             },
             {
