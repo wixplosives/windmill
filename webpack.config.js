@@ -3,7 +3,7 @@ const { join, dirname } = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 require('@ts-tools/node/r');
 
-const rootTsconfigPath = require.resolve('../../tsconfig.json');
+const rootTsconfigPath = require.resolve('./tsconfig.json');
 const monorepoRoot = dirname(rootTsconfigPath);
 
 const plugins = [new StylableWebpackPlugin()];
@@ -26,7 +26,7 @@ module.exports = {
                 exclude: /\.d\.ts$/,
                 loader: '@ts-tools/webpack-loader',
                 options: {
-                    configFilePath: require.resolve('./tsconfig.build.json')
+                    configFilePath: require.resolve('./tsconfig.json')
                 }
             },
             {
