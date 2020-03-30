@@ -1,7 +1,6 @@
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
 const { join, dirname } = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-require('@ts-tools/node/r');
 
 const rootTsconfigPath = require.resolve('./tsconfig.json');
 const monorepoRoot = dirname(rootTsconfigPath);
