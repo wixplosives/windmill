@@ -5,7 +5,7 @@ import { render } from '@windmill/utils';
 
 describe('Image', () => {
     it('renders an image with src', () => {
-        const src = 'some-src.url';
+        const src = 'http://localhost:3000/some-src.jpg';
 
         const { container } = render(<Image src={src} />);
         const image = container.children[0] as HTMLImageElement;

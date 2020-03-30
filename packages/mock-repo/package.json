@@ -28,9 +28,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@wixc3/wcs-core": "^1.5.0"
-  },
   "devDependencies": {
     "@windmill/utils": "^1.0.0"
   }
