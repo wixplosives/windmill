@@ -1,0 +1,16 @@
+:import {
+    -st-from: './button.st.css';
+    -st-default: Button;
+}
+
+.primaryButton {
+    -st-extends: Button;
+}
+
+.alertButton {
+    -st-extends: Button;
+}
+
+.linkButton {
+    -st-extends: Button;
+}
