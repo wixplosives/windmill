@@ -16,6 +16,9 @@
   "peerDependencies": {
     "react": ">=16"
   },
+  "dependencies": {
+    "@windmill/utils": "^1.0.0"
+  },
   "files": [
     "cjs",
     "esm",

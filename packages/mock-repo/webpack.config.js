@@ -1,17 +1,22 @@
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
+const { join, dirname } = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 require('@ts-tools/node/r');
+
+const rootTsconfigPath = require.resolve('../../tsconfig.json');
+const monorepoRoot = dirname(rootTsconfigPath);
 
 const plugins = [new StylableWebpackPlugin()];
 
 module.exports = {
     // root of the monorepo, so that paths in output will be clickable
-    context: __dirname,
+    context: monorepoRoot,
 
     // works great. with the default 'eval', imports are not mapped.
     devtool: 'source-map',
 
-    resolve: {
-        extensions: ['.ts', '.tsx', '.mjs', '.js', '.json']
+    output: {
+        path: join(__dirname, 'umd')
     },
 
     module: {
@@ -38,6 +43,10 @@ module.exports = {
             }
         ],
         noParse: [require.resolve('typescript/lib/typescript.js')]
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.mjs', '.js', '.json'],
+        plugins: [new TsconfigPathsPlugin({ configFile: rootTsconfigPath })]
     },
     plugins
 };
