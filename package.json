@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
     "pretest": "yarn typecheck && yarn lint",
     "test": "yarn test:unit",
-    "test:unit": "mocha \"packages/**/test/**/*.spec.ts?(x)\"",
+    "test:unit": "mocha-pup \"packages/**/test/**/*.spec.ts?(x)\"",
     "start": "yarn workspace @windmill/app start",
     "typecheck": "tsc --noEmit",
     "prettify": "npx prettier \"packages/**/*.{js,ts,tsx}\" --write"
