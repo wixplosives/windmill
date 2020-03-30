@@ -2,7 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "paths": {
-            "@sample/*": ["node_modules/@sample/*/src"]
+            "@windmill/*": ["node_modules/@windmill/*/src"]
         }
     },
     "include": ["src"]

@@ -1,5 +1,5 @@
 {
-  "name": "@sample/app",
+  "name": "@windmill/app",
   "version": "1.0.0",
   "main": "cjs/index.js",
   "types": "cjs/index.d.ts",
