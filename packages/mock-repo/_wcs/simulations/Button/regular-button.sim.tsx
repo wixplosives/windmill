@@ -1,5 +1,5 @@
 import { createSimulation } from '@wixc3/wcs-core';
-import { Button } from '../../../src/components/button/button';
+import { Button } from '../../../src/button/button';
 import { setup } from '../setup';
 
 export default createSimulation({

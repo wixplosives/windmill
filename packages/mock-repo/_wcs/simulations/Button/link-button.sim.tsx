@@ -1,6 +1,5 @@
 import { createSimulation } from '@wixc3/wcs-core';
-import { Button } from '../../../src/components/button/button';
-import { setup } from '../setup';
+import { Button } from '../../../src/button/button';
 import { classes as buttonVariants } from '../../../src/components/button/button-variants.st.css';
 
 export default createSimulation({
