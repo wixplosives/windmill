@@ -1,5 +1,5 @@
 {
-  "name": "@windmill/mock-repo",
+  "name": "@windmill/utils",
   "version": "1.0.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -10,11 +10,12 @@
     "build": "yarn build:cjs && yarn build:esm",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
-    "test": "mocha-pup \"test/**/*.spec.ts?(x)\"",
+    "test": "mocha \"test/**/*.spec.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "files": [
     "cjs",
@@ -27,11 +28,5 @@
   "private": true,
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@wixc3/wcs-core": "^1.5.0"
-  },
-  "devDependencies": {
-    "@windmill/utils": "^1.0.0"
   }
 }
