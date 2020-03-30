@@ -1,0 +1,13 @@
+.root {
+    font: inherit;
+    color: red;
+    -webkit-font-smoothing: antialiased;
+    white-space: nowrap;
+    padding: 5px 21px;
+    border-radius: 4px;
+}
+
+.root:disabled {
+    cursor: default;
+    pointer-events: none;
+}

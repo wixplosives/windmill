@@ -1,5 +1,5 @@
 import React from 'react';
-import { Main } from '@sample/components';
+import { Main } from '@windmill/mock-repo/src';
 
 export interface AppProps {
     text: string;
