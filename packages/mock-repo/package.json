@@ -27,8 +27,5 @@
   "private": true,
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@windmill/utils": "^1.0.0"
   }
 }
