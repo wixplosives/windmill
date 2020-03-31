@@ -11,6 +11,10 @@ class MyReporter extends Mocha.reporters.Base {
     }
 }
 
+// We need to have mocha as a parameter since at this current version (7.11.0) the method referenced
+// here (https://mochajs.org/api/Mocha.html#unloadFiles)
+// does not exist in the types. So without the ability to unload files,
+// we end up re-running tests and providing flaky results
 const runTest = (mocha: Mocha, getPassFlag: (flag: number) => void) => {
     let passFlag = 1; // Default is passing
     mocha
