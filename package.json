@@ -8,8 +8,9 @@
     "build": "lerna run build --stream --parallel",
     "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
     "pretest": "yarn typecheck && yarn lint",
-    "test": "yarn test:unit",
-    "test:unit": "mocha-pup \"packages/**/test/**/*.spec.ts?(x)\"",
+    "test": "yarn test:browser yarn test:node",
+    "test:browser": "mocha-pup \"packages/**/test/**/*.spec.ts?(x)\"",
+    "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
     "typecheck": "tsc --noEmit",
     "prettify": "npx prettier \"packages/**/*.{js,ts,tsx}\" --write"
   },
