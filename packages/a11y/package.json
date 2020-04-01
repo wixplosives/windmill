@@ -1,5 +1,5 @@
 {
-  "name": "@windmill/mock-repo",
+  "name": "@windmill/a11y",
   "version": "1.0.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -16,9 +16,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "dependencies": {
-    "@windmill/utils": "^1.0.0"
-  },
   "files": [
     "cjs",
     "esm",
@@ -30,5 +27,8 @@
   "private": true,
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "axe-core": "^3.5.2"
   }
 }

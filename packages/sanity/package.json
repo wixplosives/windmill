@@ -1,5 +1,5 @@
 {
-  "name": "@windmill/mock-repo",
+  "name": "@windmill/sanity",
   "version": "1.0.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -10,14 +10,11 @@
     "build": "yarn build:cjs && yarn build:esm",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
-    "test": "mocha-pup \"test/**/*.spec.ts?(x)\"",
+    "test": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
     "react": ">=16"
-  },
-  "dependencies": {
-    "@windmill/utils": "^1.0.0"
   },
   "files": [
     "cjs",
