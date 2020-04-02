@@ -5,7 +5,7 @@ import { consoleError } from '@windmill/utils';
 import { findSimulations } from '@windmill/scripts';
 
 const projectPath = process.cwd();
-cliInit(projectPath);
+cliInit();
 const program = new Command();
 const webpackConfigPath = getWebpackConfigPath(projectPath);
 
@@ -22,7 +22,7 @@ program
             throw new Error(`Invalid impact level ${impact}`);
         }
 
-        a11yTest(simulations, impact, webpackConfigPath).catch(err => consoleError(err));
+        a11yTest(simulations, impact, projectPath, webpackConfigPath).catch(err => consoleError(err));
     });
 
 program.parse(process.argv);

@@ -110,6 +110,11 @@ export async function serve(options: IServeOptions): Promise<IServer> {
     const webpackConfig = options.webpackConfig;
     const host = options.host || '127.0.0.1';
     const port = options.port || 0x420;
+
+    if (webpackConfig.output) {
+        webpackConfig.output.publicPath = `http://${host}:${port}/`;
+    }
+
     const watch = options.watch || false;
 
     const log = new Log(watch);

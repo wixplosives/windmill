@@ -1,53 +1,45 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
 import { checkIfSimulationIsAccessible } from '@windmill/a11y';
-// import axe from 'axe-core';
-
-interface ITest {
-    title: string;
-    render: (container: HTMLElement) => void;
-    cleanup: () => void;
-    impact?: axe.ImpactValue;
-}
+import axe from 'axe-core';
+import { ISimulation } from '@wixc3/wcs-core';
 
 export interface IResult {
-    comp: string;
+    simulation: string;
     result?: axe.AxeResults;
     error?: Error;
-    impact?: axe.ImpactValue | undefined;
 }
 
-function createTestsFromSimulations(reactRoot: HTMLElement) {
-    const tests: ITest[] = [];
-    for (const [Comp, meta] of Registry.metadata.components.entries()) {
-        if (!meta.nonA11yCompliant) {
-            for (const sim of meta.simulations) {
-                tests.push({
-                    title: getCompName(Comp) + ' ' + sim.title,
-                    render: (container: HTMLElement) => ReactDOM.render(<Comp {...sim.props} />, container),
-                    cleanup: () => ReactDOM.unmountComponentAtNode(reactRoot),
-                    impact: meta.impact
-                });
-            }
-        }
+const simulationsJSON = window.localStorage.getItem('simulations');
+const simulationFileArray = simulationsJSON && JSON.parse(simulationsJSON);
+
+async function createTestsFromSimulations() {
+    const simulations: ISimulation<Record<string, unknown>>[] = [];
+
+    for (const simulationFile of simulationFileArray) {
+        const simulationModule = await (window as any).modules[simulationFile]();
+        const simulation: ISimulation<Record<string, unknown>> = simulationModule.default;
+
+        simulations.push(simulation);
     }
-    return tests;
+
+    return simulations;
 }
 
-async function test(rootElement: HTMLElement) {
+async function test() {
+    const simulations = await createTestsFromSimulations();
     const results: IResult[] = [];
-    const tests = createTestsFromSimulations(rootElement);
-    for (const t of tests) {
+
+    for (const simulation of simulations) {
         try {
-            await t.render(rootElement);
-            const result = await axe.run(rootElement);
-            results.push({ comp: t.title, result });
-            await t.cleanup();
+            const result = await checkIfSimulationIsAccessible(simulation);
+            results.push({ simulation: simulation.name, result });
         } catch (error) {
-            results.push({ comp: t.title, error, impact: t.impact });
+            results.push({ simulation: simulation.name, error });
         }
     }
+
     (window as any).puppeteerReportResults(results);
 }
 
-test(document.getElementById('react-root')!);
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// eslint-disable-next-line no-console
+test().catch(err => console.error(err));

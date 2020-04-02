@@ -1,8 +1,8 @@
 import { registerRequireHooks } from './';
 import path from 'path';
 
-export function cliInit(projectPath: string): void {
-    registerRequireHooks(projectPath);
+export function cliInit(): void {
+    registerRequireHooks();
 }
 
 export function getWebpackConfigPath(projectPath: string): string {

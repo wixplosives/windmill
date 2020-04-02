@@ -35,15 +35,15 @@ export * from './react-renderer';
 //     // const browser = await puppeteer.launch({ headless: false });
 //     // const page = await browser.newPage();
 //     // await page.goto('http://localhost:8081/main');
-//     // await page.evaluate(simulations => {
-//     //     window.localStorage.setItem('simulations', simulations);
+// await page.evaluate(simulations => {
+//     window.localStorage.setItem('simulations', simulations);
 
-//     //     const script = document.createElement('script');
-//     //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     //     script.src = (window as any).modules['/Users/kieranw/Documents/code/windmill/packages/scripts/src/test']();
-//     //     script.crossOrigin = 'anonymous';
-//     //     document.head.appendChild(script);
-//     // }, JSON.stringify(simulations));
+//     const script = document.createElement('script');
+//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//     script.src = (window as any).modules['/Users/kieranw/Documents/code/windmill/packages/scripts/src/test']();
+//     script.crossOrigin = 'anonymous';
+//     document.head.appendChild(script);
+// }, JSON.stringify(simulations));
 // };
 
 // runScript()

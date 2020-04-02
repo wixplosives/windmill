@@ -1,28 +1,41 @@
 import path from 'path';
 import puppeteer from 'puppeteer';
-import { WebpackConfigurator, serve, IServer, waitForPageError, consoleError, consoleLog } from '@windmill/utils';
+import {
+    WebpackConfigurator,
+    serve,
+    IServer,
+    waitForPageError,
+    consoleError,
+    consoleLog,
+    getEntryCode
+} from '@windmill/utils';
 import { IResult } from './browser/run';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 import chalk from 'chalk';
 import axe from 'axe-core';
-import { getEntryCode, renderInjector } from '@windmill/scripts';
-import webpack from 'webpack';
+import { renderInjector } from '@windmill/scripts';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
 
-function getWebpackConfig(simulations: string[], webpackConfigPath: string) {
+function getWebpackConfig(simulations: string[], projectPath: string, webpackConfigPath: string) {
     const virtualEntryPlugin = new VirtualModulesPlugin({
         './@windmill-a11y.js': getEntryCode(simulations, renderInjector)
     });
 
-    return WebpackConfigurator.load(webpackConfigPath)
-        .addEntry('tests', path.join(ownPath, 'esm/browser/run'))
+    return WebpackConfigurator.load(
+        {
+            entry: simulations,
+            context: projectPath,
+            plugins: [virtualEntryPlugin]
+        },
+        webpackConfigPath
+    )
+        .setEntry('test', path.join(ownPath, 'esm/browser/run'))
         .addHtml({
             template: path.join(ownPath, '/templates', 'index.template'),
             title: 'Accessibility'
         })
-        .addPlugin(virtualEntryPlugin as webpack.Plugin)
         .suppressReactDevtoolsSuggestion()
         .getConfig();
 }
@@ -32,14 +45,14 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
     let hasError = false;
     let index = 0;
     results.forEach(res => {
-        msg.push(`${index + 1}. Testing component ${res.comp}...`);
+        msg.push(`${chalk.bold(`${index + 1}`)}. Testing component ${res.simulation}...`);
         if (res.error) {
             hasError = true;
             msg.push(`Error while testing component - ${res.error}`);
         } else if (res.result) {
             if (res.result.violations.length) {
                 (res.result.violations as axe.AxeResults['violations']).forEach(violation => {
-                    const impactLevel = res.impact ? res.impact : impact;
+                    const impactLevel = impact;
 
                     if (
                         violation.impact &&
@@ -48,17 +61,17 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
                         hasError = true;
                         violation.nodes.forEach(node => {
                             const selector = node.target.join(' > ');
-                            const compName = `${res.comp} - ${selector}`;
+                            const compName = `${res.simulation} - ${selector}`;
                             msg[index] += `\n  ${chalk.red(compName)}: (Impact: ${violation.impact})\n  ${
                                 node.failureSummary
                             }`;
                         });
                     } else {
-                        msg[index] += ' No errors found.';
+                        msg[index] += chalk.green(' No errors found.');
                     }
                 });
             } else {
-                msg[index] += ' No errors found.';
+                msg[index] += chalk.green(' No errors found.');
             }
         }
         index++;
@@ -66,13 +79,18 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
     return { message: msg.join('\n'), hasError };
 }
 
-export async function a11yTest(simulations: string | string[], impact: axe.ImpactValue, webpackConfigPath: string) {
+export async function a11yTest(
+    simulations: string[],
+    impact: axe.ImpactValue,
+    projectPath: string,
+    webpackConfigPath: string
+) {
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running a11y test...');
     try {
         server = await serve({
-            webpackConfig: getWebpackConfig(simulations, webpackConfigPath)
+            webpackConfig: getWebpackConfig(simulations, projectPath, webpackConfigPath)
         });
         browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -81,7 +99,24 @@ export async function a11yTest(simulations: string | string[], impact: axe.Impac
         page.on('dialog', dialog => {
             dialog.dismiss().catch(err => consoleError(err));
         });
+
+        await page.evaluateOnNewDocument(simulations => {
+            localStorage.clear();
+            localStorage.setItem('simulations', simulations);
+        }, JSON.stringify(simulations));
+
         await page.goto(server.getUrl());
+
+        // await page.evaluate(simulations => {
+        //     window.localStorage.setItem('simulations', simulations);
+
+        //     // const script = document.createElement('script');
+        //     // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        //     // script.src = (window as any).modules['/Users/kieranw/Documents/code/windmill/packages/scripts/src/test']();
+        //     // script.crossOrigin = 'anonymous';
+        //     // document.head.appendChild(script);
+        // }, JSON.stringify(simulations));
+
         const results = await Promise.race([waitForPageError(page), getResults]);
         const { message, hasError } = formatResults(results, impact);
         if (hasError) {

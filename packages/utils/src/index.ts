@@ -4,3 +4,4 @@ export { waitForPageError, logConsoleMessages, runTestsInPuppeteer } from './pup
 export * from './console';
 export * from './http';
 export * from './render';
+export * from './create-webpack-config';

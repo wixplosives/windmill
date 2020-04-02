@@ -2,7 +2,7 @@ import { createSimulation } from '@wixc3/wcs-core';
 import { Image } from '../../../src';
 
 export default createSimulation({
-    name: 'Image without alt',
+    name: 'Image with alt',
     componentType: Image,
     props: {
         alt: 'A tiger',

@@ -1,9 +1,12 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { createPreviewConfig, OverrideConfig } from './create-webpack-config';
 
 export class WebpackConfigurator {
-    public static load(path: string): WebpackConfigurator {
-        return new WebpackConfigurator(require(path) as webpack.Configuration);
+    public static load(config: OverrideConfig, path: string): WebpackConfigurator {
+        const initialConfig = require(path) as webpack.Configuration;
+        const mergedConfig = createPreviewConfig(config, initialConfig);
+        return new WebpackConfigurator(mergedConfig);
     }
 
     constructor(private config: webpack.Configuration) {}
@@ -45,16 +48,6 @@ export class WebpackConfigurator {
         this.addPlugin(new HtmlWebpackPlugin(html));
         return this;
     }
-
-    // public addJson(options: { filename: string; data: any }): this {
-    //     this.addPlugin(
-    //         new RawAssetWebpackPlugin({
-    //             filename: options.filename,
-    //             data: JSON.stringify(options.data)
-    //         })
-    //     );
-    //     return this;
-    // }
 
     // Suppress "Download the React DevTools" message which adds noise in
     // headless mode when console output is proxied to stdout.
