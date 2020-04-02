@@ -1,4 +1,6 @@
 export * from './find-simulations';
+export * from './create-webpack-config';
+export * from './react-renderer';
 
 // import { findSimulations } from './find-simulations';
 // import path from 'path';

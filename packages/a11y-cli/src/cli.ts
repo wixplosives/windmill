@@ -1,7 +1,8 @@
 import { Command } from 'commander';
 import { a11yTest, impactLevels } from './';
-import { cliInit, getWebpackConfigPath } from '@windill/node-utils';
-import { findSimulations, consoleError } from '@windmill/utils';
+import { cliInit, getWebpackConfigPath } from '@windmill/node-utils';
+import { consoleError } from '@windmill/utils';
+import { findSimulations } from '@windmill/scripts';
 
 const projectPath = process.cwd();
 cliInit(projectPath);
@@ -15,7 +16,7 @@ program
         `Only display issues with impact level <i> and higher. Values are: ${impactLevels.join(', ')}`
     )
     .action(options => {
-        const simulations = findSimulations();
+        const simulations = findSimulations(projectPath);
         const impact = options.impact || 'minor';
         if (!impactLevels.includes(impact)) {
             throw new Error(`Invalid impact level ${impact}`);

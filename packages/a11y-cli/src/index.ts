@@ -1,21 +1,28 @@
 import path from 'path';
 import puppeteer from 'puppeteer';
-import { WebpackConfigurator, serve, IServer, waitForPageError, consoleError, consoleLog } from '@ui-autotools/utils';
+import { WebpackConfigurator, serve, IServer, waitForPageError, consoleError, consoleLog } from '@windmill/utils';
 import { IResult } from './browser/run';
+import VirtualModulesPlugin from 'webpack-virtual-modules';
 import chalk from 'chalk';
 import axe from 'axe-core';
+import { getEntryCode, renderInjector } from '@windmill/scripts';
+import webpack from 'webpack';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
 
-function getWebpackConfig(entry: string | string[], webpackConfigPath: string) {
+function getWebpackConfig(simulations: string[], webpackConfigPath: string) {
+    const virtualEntryPlugin = new VirtualModulesPlugin({
+        './@windmill-a11y.js': getEntryCode(simulations, renderInjector)
+    });
+
     return WebpackConfigurator.load(webpackConfigPath)
-        .setEntry('meta', entry)
-        .addEntry('meta', path.join(ownPath, 'esm/browser/run'))
+        .addEntry('tests', path.join(ownPath, 'esm/browser/run'))
         .addHtml({
             template: path.join(ownPath, '/templates', 'index.template'),
             title: 'Accessibility'
         })
+        .addPlugin(virtualEntryPlugin as webpack.Plugin)
         .suppressReactDevtoolsSuggestion()
         .getConfig();
 }
@@ -31,7 +38,7 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
             msg.push(`Error while testing component - ${res.error}`);
         } else if (res.result) {
             if (res.result.violations.length) {
-                res.result.violations.forEach(violation => {
+                (res.result.violations as axe.AxeResults['violations']).forEach(violation => {
                     const impactLevel = res.impact ? res.impact : impact;
 
                     if (
@@ -69,6 +76,7 @@ export async function a11yTest(simulations: string | string[], impact: axe.Impac
         });
         browser = await puppeteer.launch();
         const page = await browser.newPage();
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         const getResults = new Promise<any[]>(resolve => page.exposeFunction('puppeteerReportResults', resolve));
         page.on('dialog', dialog => {
             dialog.dismiss().catch(err => consoleError(err));
@@ -88,7 +96,7 @@ export async function a11yTest(simulations: string | string[], impact: axe.Impac
     } finally {
         if (browser) {
             try {
-                browser!.close();
+                await browser?.close();
             } catch (_) {
                 // Ignore the error since we're already handling an exception.
             }

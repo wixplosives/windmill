@@ -1,6 +1,6 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-import { checkIfComponent } from '@windmill/a11y';
+import { checkIfSimulationIsAccessible } from '@windmill/a11y';
 // import axe from 'axe-core';
 
 interface ITest {
