@@ -1,5 +1,5 @@
 {
-  "name": "@windmill/utils",
+  "name": "@windmill/node-utils",
   "version": "1.0.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -28,11 +28,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "chalk": "^4.0.0",
-    "html-webpack-plugin": "^4.0.4",
-    "koa": "^2.11.0",
-    "koa-webpack": "^5.3.0",
-    "puppeteer": "^2.1.1"
-  }
+  "dependencies": {}
 }
