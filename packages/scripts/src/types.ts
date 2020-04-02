@@ -2,6 +2,7 @@ import webpack from 'webpack';
 
 export interface IStartWebpackServerParams {
     entry: string[];
+    testPath: string;
     projectPath: string;
     webpackConfigPath: string;
     publicPath?: string;
