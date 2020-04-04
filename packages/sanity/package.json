@@ -27,5 +27,8 @@
   "private": true,
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "webpack-virtual-modules": "^0.2.1"
   }
 }
