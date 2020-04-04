@@ -92,7 +92,7 @@ export async function a11yTest(
         server = await serve({
             webpackConfig: getWebpackConfig(simulations, projectPath, webpackConfigPath)
         });
-        browser = await puppeteer.launch();
+        browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         const getResults = new Promise<any[]>(resolve => page.exposeFunction('puppeteerReportResults', resolve));

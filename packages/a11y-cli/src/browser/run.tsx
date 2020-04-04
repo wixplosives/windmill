@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { checkIfSimulationIsAccessible } from '@windmill/a11y';
 import axe from 'axe-core';
 import { ISimulation } from '@wixc3/wcs-core';
