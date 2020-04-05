@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@windmill/utils": "^1.0.0",
-    "@windmill/a11y-cli": "^1.0.0"
+    "@windmill/a11y": "^1.0.0",
+    "@windmill/sanity": "^1.0.0"
   },
   "files": [
     "cjs",

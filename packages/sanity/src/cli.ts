@@ -1,22 +1,23 @@
 import { Command } from 'commander';
 import { cliInit, getWebpackConfigPath } from '@windmill/node-utils';
-import { consoleError } from '@windmill/utils';
+// import { consoleError } from '@windmill/utils';
 import { findSimulations } from '@windmill/scripts';
-import { checkIfSimulationCanBeSSRendered } from './ssr-test';
+import { runSSRTests } from './ssr-test/run-ssr-tests';
 
 const projectPath = process.cwd();
 cliInit();
 const program = new Command();
-const webpackConfigPath = getWebpackConfigPath(projectPath);
+// const webpackConfigPath = getWebpackConfigPath(projectPath);
 
 program
     .description('run sanity tests on simulations')
     .option('-p, --project <p>', `Project path`)
     .option('-w, --webpack <w>', `webpack path`)
     .action((options) => {
-        const simulations = findSimulations(options.project || projectPath);
+        const simulationFiles = findSimulations(options.project || projectPath);
 
-        hydrationTest(projectPath, simulations, webpackConfigPath);
+        runSSRTests(simulationFiles);
+        // hydrationTest(projectPath, simulations, webpackConfigPath);
         // a11yTest(
         //     simulations,
         //     impact,

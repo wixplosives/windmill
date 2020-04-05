@@ -7,7 +7,7 @@ import {
     waitForPageError,
     consoleError,
     consoleLog,
-    getEntryCode
+    getEntryCode,
 } from '@windmill/utils';
 import { IResult } from './browser/run';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
@@ -20,21 +20,21 @@ export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 
 
 function getWebpackConfig(simulations: string[], projectPath: string, webpackConfigPath: string) {
     const virtualEntryPlugin = new VirtualModulesPlugin({
-        './@windmill-a11y.js': getEntryCode(simulations, renderInjector)
+        './@windmill-a11y.js': getEntryCode(simulations, renderInjector),
     });
 
     return WebpackConfigurator.load(
         {
             entry: simulations,
             context: projectPath,
-            plugins: [virtualEntryPlugin]
+            plugins: [virtualEntryPlugin],
         },
         webpackConfigPath
     )
         .setEntry('test', path.join(ownPath, 'esm/browser/run'))
         .addHtml({
             template: path.join(ownPath, '/templates', 'index.template'),
-            title: 'Accessibility'
+            title: 'Accessibility',
         })
         .suppressReactDevtoolsSuggestion()
         .getConfig();
@@ -44,14 +44,14 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
     const msg: string[] = [];
     let hasError = false;
     let index = 0;
-    results.forEach(res => {
+    results.forEach((res) => {
         msg.push(`${chalk.bold(`${index + 1}`)}. Testing component ${res.simulation}...`);
         if (res.error) {
             hasError = true;
             msg.push(`Error while testing component - ${res.error}`);
         } else if (res.result) {
             if (res.result.violations.length) {
-                (res.result.violations as axe.AxeResults['violations']).forEach(violation => {
+                (res.result.violations as axe.AxeResults['violations']).forEach((violation) => {
                     const impactLevel = impact;
 
                     if (
@@ -59,7 +59,7 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
                         impactLevels.indexOf(violation.impact) >= impactLevels.indexOf(impactLevel)
                     ) {
                         hasError = true;
-                        violation.nodes.forEach(node => {
+                        violation.nodes.forEach((node) => {
                             const selector = node.target.join(' > ');
                             const compName = `${res.simulation} - ${selector}`;
                             msg[index] += `\n  ${chalk.red(compName)}: (Impact: ${violation.impact})\n  ${
@@ -90,17 +90,17 @@ export async function a11yTest(
     consoleLog('Running a11y test...');
     try {
         server = await serve({
-            webpackConfig: getWebpackConfig(simulations, projectPath, webpackConfigPath)
+            webpackConfig: getWebpackConfig(simulations, projectPath, webpackConfigPath),
         });
-        browser = await puppeteer.launch({ headless: false });
+        browser = await puppeteer.launch();
         const page = await browser.newPage();
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        const getResults = new Promise<any[]>(resolve => page.exposeFunction('puppeteerReportResults', resolve));
-        page.on('dialog', dialog => {
-            dialog.dismiss().catch(err => consoleError(err));
+        const getResults = new Promise<any[]>((resolve) => page.exposeFunction('puppeteerReportResults', resolve));
+        page.on('dialog', (dialog) => {
+            dialog.dismiss().catch((err) => consoleError(err));
         });
 
-        await page.evaluateOnNewDocument(simulations => {
+        await page.evaluateOnNewDocument((simulations) => {
             localStorage.clear();
             localStorage.setItem('simulations', simulations);
         }, JSON.stringify(simulations));

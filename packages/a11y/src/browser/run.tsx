@@ -1,6 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { checkIfSimulationIsAccessible } from '@windmill/a11y';
+import { checkIfSimulationIsAccessible } from '../a11y-test';
 import axe from 'axe-core';
 import { ISimulation } from '@wixc3/wcs-core';
 
@@ -44,4 +42,4 @@ async function test() {
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 // eslint-disable-next-line no-console
-test().catch(err => console.error(err));
+test().catch((err) => console.error(err));

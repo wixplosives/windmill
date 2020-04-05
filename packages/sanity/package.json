@@ -4,6 +4,9 @@
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
+  "bin": {
+    "windmill-sanity": "bin/cli.js"
+  },
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
@@ -19,7 +22,8 @@
   "files": [
     "cjs",
     "esm",
-    "src"
+    "src",
+    "bin"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
