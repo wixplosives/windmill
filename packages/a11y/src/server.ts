@@ -80,7 +80,7 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
 }
 
 export async function a11yTest(
-    simulations: string[],
+    simulationFilePaths: string[],
     impact: axe.ImpactValue,
     projectPath: string,
     webpackConfigPath: string
@@ -90,7 +90,7 @@ export async function a11yTest(
     consoleLog('Running a11y test...');
     try {
         server = await serve({
-            webpackConfig: getWebpackConfig(simulations, projectPath, webpackConfigPath),
+            webpackConfig: getWebpackConfig(simulationFilePaths, projectPath, webpackConfigPath),
         });
         browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -103,7 +103,7 @@ export async function a11yTest(
         await page.evaluateOnNewDocument((simulations) => {
             localStorage.clear();
             localStorage.setItem('simulations', simulations);
-        }, JSON.stringify(simulations));
+        }, JSON.stringify(simulationFilePaths));
 
         await page.goto(server.getUrl());
 

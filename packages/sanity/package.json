@@ -26,7 +26,8 @@
     "cjs",
     "esm",
     "src",
-    "bin"
+    "bin",
+    "templates"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
@@ -37,8 +38,9 @@
   },
   "dependencies": {
     "@file-services/memory": "^2.2.0",
+    "sinon": "^9.0.1",
+    "sinon-chai": "^3.5.0",
     "temp": "^0.9.1",
-    "webpack-virtual-modules": "^0.2.1",
-    "@windmill/ssr": "^1.0.0"
+    "webpack-virtual-modules": "^0.2.1"
   }
 }

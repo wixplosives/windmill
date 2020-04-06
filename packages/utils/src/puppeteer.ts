@@ -10,11 +10,11 @@ export function waitForPageError(page: puppeteer.Page): Promise<never> {
     // Puppeteer functions we're awaiting on will throw on disconnect anyway.
 
     return new Promise((_, reject) => {
-        page.on('pageerror', e => {
+        page.on('pageerror', (e) => {
             reject(e);
         });
 
-        page.on('error', e => {
+        page.on('error', (e) => {
             reject(new Error(`Page crashed ${e}`));
         });
     });
@@ -22,8 +22,8 @@ export function waitForPageError(page: puppeteer.Page): Promise<never> {
 
 export function logConsoleMessages(page: puppeteer.Page) {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    page.on('console', async msg => {
-        const msgArgs = await Promise.all(msg.args().map(a => a.jsonValue()));
+    page.on('console', async (msg) => {
+        const msgArgs = await Promise.all(msg.args().map((a) => a.jsonValue()));
         consoleLog(...msgArgs);
     });
 }
@@ -60,10 +60,12 @@ async function failIfTestsStall(page: puppeteer.Page, timeout: number) {
 export async function runTestsInPuppeteer({
     testPageUrl,
     noSandbox,
-    puppeteerOptions
+    preNavigationHook,
+    puppeteerOptions,
 }: {
     testPageUrl: string;
     noSandbox?: boolean;
+    preNavigationHook?: (page: puppeteer.Page) => Promise<void>;
     puppeteerOptions?: puppeteer.LaunchOptions;
 }) {
     const loadTimeout = 20000;
@@ -78,8 +80,12 @@ export async function runTestsInPuppeteer({
         const page = await browser.newPage();
         await page.setViewport({ width: viewportWidth, height: viewportHeight });
 
-        page.on('dialog', dialog => {
-            dialog.dismiss().catch(err => consoleError(err));
+        if (preNavigationHook) {
+            await preNavigationHook(page);
+        }
+
+        page.on('dialog', (dialog) => {
+            dialog.dismiss().catch((err) => consoleError(err));
         });
 
         logConsoleMessages(page);
@@ -88,7 +94,7 @@ export async function runTestsInPuppeteer({
             waitForPageError(page),
             loadTestPage(page, testPageUrl, loadTimeout).then(() =>
                 Promise.race([waitForTestResults(page), failIfTestsStall(page, testTimeout)])
-            )
+            ),
         ]);
 
         return numFailedTests;

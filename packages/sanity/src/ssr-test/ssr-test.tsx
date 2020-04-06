@@ -13,7 +13,7 @@ export const checkIfSimulationCanBeSSRendered = (simulation: ISimulation<Record<
             expect(() => document).to.throw();
         });
 
-        describe(simulation.name, () => {
+        describe(`Simulation: ${simulation.name}`, () => {
             it(`should render simulation: "${simulation.name}" to string without throwing`, () => {
                 expect(
                     () => renderToString(simulationToJsx(simulation)),
