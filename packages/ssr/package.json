@@ -1,12 +1,9 @@
 {
-  "name": "@windmill/sanity",
+  "name": "@windmill/ssr",
   "version": "1.0.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
-  "bin": {
-    "windmill-sanity": "bin/cli.js"
-  },
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
@@ -16,17 +13,17 @@
     "build:esm-watch": "tsc -p tsconfig.build.json --watch --outDir esm --module esnext",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
-    "test": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
+    "test": "mocha \"test/**/*.spec.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react-dom": "^16.13.1",
+    "webpack": ">=4"
   },
   "files": [
     "cjs",
     "esm",
-    "src",
-    "bin"
+    "src"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
@@ -36,9 +33,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@file-services/memory": "^2.2.0",
-    "temp": "^0.9.1",
-    "webpack-virtual-modules": "^0.2.1",
-    "@windmill/ssr": "^1.0.0"
+    "@wixc3/wcs-core": "^1.5.0",
+    "chai": "^4.2.0"
   }
 }

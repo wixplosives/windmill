@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@windmill/*": ["node_modules/@windmill/*/src"]
+    }
+  },
+  "include": ["src"]
+}

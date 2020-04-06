@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import { cliInit, getWebpackConfigPath } from '@windmill/node-utils';
 // import { consoleError } from '@windmill/utils';
 import { findSimulations } from '@windmill/scripts';
-import { runSSRTests } from './ssr-test/run-ssr-tests';
+import runSSRTests from './ssr-test/mocha-wrapper';
 
 const projectPath = process.cwd();
 cliInit();
