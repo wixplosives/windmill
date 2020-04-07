@@ -25,7 +25,7 @@ program
         }
 
         await runSSRTests(simulations);
-        await hydrationTest(simulationFilePaths, simulations, projectPath, webpackConfigPath);
+        // await hydrationTest(simulationFilePaths, simulations, projectPath, webpackConfigPath);
     });
 
 program.parse(process.argv);
