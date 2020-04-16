@@ -15,6 +15,7 @@ async function createTestsFromSimulations() {
     const simulations: ISimulation<Record<string, unknown>>[] = [];
 
     for (const simulationFile of simulationFileArray) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const simulationModule = await (window as any).modules[simulationFile]();
         const simulation: ISimulation<Record<string, unknown>> = simulationModule.default;
 
@@ -37,9 +38,9 @@ async function test() {
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).puppeteerReportResults(results);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 // eslint-disable-next-line no-console
 test().catch((err) => console.error(err));

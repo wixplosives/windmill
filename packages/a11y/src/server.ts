@@ -95,7 +95,7 @@ export async function a11yTest(
         browser = await puppeteer.launch();
         const page = await browser.newPage();
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        const getResults = new Promise<any[]>((resolve) => page.exposeFunction('puppeteerReportResults', resolve));
+        const getResults = new Promise<IResult[]>((resolve) => page.exposeFunction('puppeteerReportResults', resolve));
         page.on('dialog', (dialog) => {
             dialog.dismiss().catch((err) => consoleError(err));
         });
@@ -106,16 +106,6 @@ export async function a11yTest(
         }, JSON.stringify(simulationFilePaths));
 
         await page.goto(server.getUrl());
-
-        // await page.evaluate(simulations => {
-        //     window.localStorage.setItem('simulations', simulations);
-
-        //     // const script = document.createElement('script');
-        //     // // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        //     // script.src = (window as any).modules['/Users/kieranw/Documents/code/windmill/packages/scripts/src/test']();
-        //     // script.crossOrigin = 'anonymous';
-        //     // document.head.appendChild(script);
-        // }, JSON.stringify(simulations));
 
         const results = await Promise.race([waitForPageError(page), getResults]);
         const { message, hasError } = formatResults(results, impact);

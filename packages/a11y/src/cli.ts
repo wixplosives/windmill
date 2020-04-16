@@ -24,12 +24,11 @@ program
             throw new Error(`Invalid impact level ${impact}`);
         }
 
-        a11yTest(
-            simulations,
-            impact,
-            options.project || projectPath,
-            options.webpack || webpackConfigPath
-        ).catch((err) => consoleError(err));
+        a11yTest(simulations, impact, options.project || projectPath, options.webpack || webpackConfigPath).catch(
+            (err) => {
+                throw err;
+            }
+        );
     });
 
 program.parse(process.argv);
