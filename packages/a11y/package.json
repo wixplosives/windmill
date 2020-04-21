@@ -29,6 +29,6 @@
     "access": "public"
   },
   "dependencies": {
-    "axe-core": "^3.5.2"
+    "axe-core": "^3.5.3"
   }
 }
