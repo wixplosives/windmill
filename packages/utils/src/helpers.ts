@@ -1,6 +1,7 @@
 import { posix as posixPath, win32 as win32Path } from '@file-services/path';
 import { connect } from 'net';
 import { WebpackConfigFile, IWcsConfig } from './types';
+import { consoleError } from '.';
 
 export function isWindowsStyleAbsolutePath(fsPath: string): boolean {
     return !posixPath.isAbsolute(fsPath) && win32Path.isAbsolute(fsPath);
