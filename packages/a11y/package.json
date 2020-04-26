@@ -37,8 +37,8 @@
     "access": "public"
   },
   "dependencies": {
-    "axe-core": "^3.5.2",
-    "webpack": "^4.42.1",
-    "webpack-virtual-modules": "^0.2.1"
+    "axe-core": "^3.5.3",
+    "webpack": "^4.43.0",
+    "webpack-virtual-modules": "^0.2.2"
   }
 }
