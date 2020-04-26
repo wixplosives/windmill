@@ -5,3 +5,7 @@ export * from './console';
 export * from './http';
 export * from './render';
 export * from './create-webpack-config';
+export * from './types';
+export * from './react-renderer';
+export * from './helpers';
+export * from './find-simulations';

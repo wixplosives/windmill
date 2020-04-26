@@ -42,5 +42,6 @@ async function test() {
     (window as any).puppeteerReportResults(results);
 }
 
-// eslint-disable-next-line no-console
-test().catch((err) => console.error(err));
+test().catch((err) => {
+    throw err;
+});

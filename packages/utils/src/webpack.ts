@@ -54,7 +54,7 @@ export class WebpackConfigurator {
     public suppressReactDevtoolsSuggestion(): this {
         this.addPlugin(
             new webpack.DefinePlugin({
-                __REACT_DEVTOOLS_GLOBAL_HOOK__: '({isDisabled: true})'
+                __REACT_DEVTOOLS_GLOBAL_HOOK__: '({isDisabled: true})',
             })
         );
         return this;

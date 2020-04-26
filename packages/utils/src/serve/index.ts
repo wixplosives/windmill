@@ -3,6 +3,7 @@ import Koa from 'koa';
 import koaWebpack from 'koa-webpack';
 import { Log } from './log';
 import { getServerUrl } from '../http';
+import koaStatic from 'koa-static';
 
 export interface IServeOptions {
     webpackConfig: webpack.Configuration;
@@ -18,6 +19,7 @@ export interface IServer {
 
 interface IServerOptions {
     middleware: Koa.Middleware & koaWebpack.CombinedWebpackMiddleware;
+    staticMiddleware: Koa.Middleware;
     host: string;
     port: number;
     log: Log;
@@ -47,12 +49,12 @@ function createCompiler({ webpackConfig, log, watch }: ICompilerOptions) {
         // on the bail mode and the type of the error. `hooks.failed` seems to be
         // specific to missing entry points.
 
-        compiler.hooks.failed.tap('Serve', error => {
+        compiler.hooks.failed.tap('Serve', (error) => {
             log.compilationError(error);
             reject();
         });
 
-        compiler.hooks.done.tap('Serve', stats => {
+        compiler.hooks.done.tap('Serve', (stats) => {
             log.compilationFinished(stats);
             stats.hasErrors() ? reject() : resolve();
         });
@@ -67,25 +69,30 @@ function createMiddleware({ compiler, watch }: IMiddlewareOptions) {
         devMiddleware: {
             publicPath: '/',
             logLevel: 'silent',
-            watchOptions: watch ? {} : { ignored: '**/*' }
+            watchOptions: watch ? {} : { ignored: '**/*' },
         },
         hotClient: watch
             ? {
                   hmr: false,
                   logLevel: 'error',
-                  reload: true
+                  reload: true,
               }
-            : false
+            : false,
     });
+}
+
+function createStaticMiddleware({ compiler }: IMiddlewareOptions) {
+    return koaStatic(compiler.options.context || process.cwd());
 }
 
 function createServer({
     middleware,
+    staticMiddleware,
     host,
     port,
-    log
+    log,
 }: IServerOptions): { server: IServer; serverPromise: Promise<unknown> } {
-    const server = new Koa().use(middleware).listen({ host, port });
+    const server = new Koa().use(middleware).use(staticMiddleware).listen({ host, port });
     const getUrl = () => getServerUrl(server);
     const close = () => {
         middleware.close();
@@ -122,16 +129,18 @@ export async function serve(options: IServeOptions): Promise<IServer> {
     const { compiler, compilerPromise } = createCompiler({
         webpackConfig,
         watch,
-        log
+        log,
     });
 
     const middleware = await createMiddleware({ compiler, watch });
+    const staticMiddleware = createStaticMiddleware({ compiler, watch });
 
     const { server, serverPromise } = createServer({
         middleware,
+        staticMiddleware,
         host,
         port,
-        log
+        log,
     });
 
     try {

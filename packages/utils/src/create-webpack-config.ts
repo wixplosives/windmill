@@ -17,15 +17,15 @@ export function createPreviewConfig(
         context: overrideConfig.context,
         mode: 'development',
         entry: {
-            main: './@windmill-a11y.js'
+            main: './@windmill-a11y.js',
         },
         output: {
             libraryTarget: 'umd',
             library: 'webpackModuleSystem',
-            crossOriginLoading: 'anonymous'
+            crossOriginLoading: 'anonymous',
         },
         optimization: {
-            namedModules: true
+            namedModules: true,
         },
         resolve,
         module: {
@@ -35,12 +35,12 @@ export function createPreviewConfig(
                 ...module.rules,
                 {
                     test: /@windmill-a11y\.js/,
-                    use: join(__dirname, '..', 'static', 'virtual-entry-loader.js')
-                }
-            ]
+                    use: join(__dirname, '..', 'static', 'virtual-entry-loader.js'),
+                },
+            ],
         },
         plugins: [...plugins, ...overrideConfig.plugins],
-        devtool
+        devtool,
     };
 }
 

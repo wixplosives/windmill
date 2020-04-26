@@ -13,7 +13,7 @@ import { IResult } from './browser/run';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 import chalk from 'chalk';
 import axe from 'axe-core';
-import { renderInjector } from '@windmill/scripts';
+import { renderInjector } from '@windmill/utils';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
@@ -48,7 +48,7 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
         msg.push(`${chalk.bold(`${index + 1}`)}. Testing component ${res.simulation}...`);
         if (res.error) {
             hasError = true;
-            msg.push(`Error while testing component - ${res.error}`);
+            msg.push(`Error while testing component - ${JSON.stringify(res.error)}`);
         } else if (res.result) {
             if (res.result.violations.length) {
                 (res.result.violations as axe.AxeResults['violations']).forEach((violation) => {
@@ -97,7 +97,9 @@ export async function a11yTest(
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         const getResults = new Promise<IResult[]>((resolve) => page.exposeFunction('puppeteerReportResults', resolve));
         page.on('dialog', (dialog) => {
-            dialog.dismiss().catch((err) => consoleError(err));
+            dialog.dismiss().catch((err) => {
+                throw err;
+            });
         });
 
         await page.evaluateOnNewDocument((simulations) => {
