@@ -26,9 +26,9 @@ function formatWebpackStats(stats: webpack.Stats) {
 }
 
 export class Log {
-  private firstRun: boolean = true;
-  private listening: boolean = false;
-  private watch: boolean = false;
+  private firstRun = true;
+  private listening = false;
+  private watch = false;
 
   constructor(watch: boolean) {
     this.watch = watch;
