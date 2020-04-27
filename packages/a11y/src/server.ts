@@ -94,8 +94,12 @@ export async function a11yTest(
         });
         browser = await puppeteer.launch();
         const page = await browser.newPage();
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        const getResults = new Promise<IResult[]>((resolve) => page.exposeFunction('puppeteerReportResults', resolve));
+        const getResults = new Promise<IResult[]>((resolve) => {
+            page.exposeFunction('puppeteerReportResults', resolve).catch((err) => {
+                throw err;
+            });
+        });
+
         page.on('dialog', (dialog) => {
             dialog.dismiss().catch((err) => {
                 throw err;

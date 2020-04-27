@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import React from 'react';
 import { Image } from '../src';
-import { render } from '@windmill/utils';
+import { render } from './render';
 
 describe('Image', () => {
     it('renders an image with src', () => {
