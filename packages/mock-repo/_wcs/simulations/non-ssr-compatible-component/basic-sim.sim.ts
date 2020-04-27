@@ -4,5 +4,5 @@ import { NonSSRComp } from '../../../src';
 export default createSimulation({
     name: 'NonSSRComp',
     componentType: NonSSRComp,
-    props: {}
+    props: {},
 });

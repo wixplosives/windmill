@@ -1,7 +1,8 @@
 import { Command } from 'commander';
 import { a11yTest, impactLevels } from './server';
 import { cliInit, getWebpackConfigPath } from '@windmill/node-utils';
-import { findSimulations, consoleError } from '@windmill/utils';
+import { consoleError } from '@windmill/utils';
+import glob from 'glob';
 
 cliInit();
 const program = new Command();
@@ -16,31 +17,50 @@ program
     )
     .option('-p, --project <p>', `Project path`)
     .option('-w, --webpack <w>', `webpack path`)
-    .action((options) => {
-        const projectPath = options.project || process.cwd();
-        const webpackConfigPath = options.webpack || getWebpackConfigPath(projectPath);
+    .parse(process.argv);
 
-        if (!webpackConfigPath) {
-            printErrorAndExit('Could not find a webpack config.');
+const { args, project, webpack, impactLevel } = program;
+
+const projectPath = project || process.cwd();
+const webpackConfigPath = webpack || getWebpackConfigPath(projectPath);
+
+if (!webpackConfigPath) {
+    printErrorAndExit('Could not find a webpack config.');
+}
+
+const simulations: string[] = [];
+const defaultSimulationPattern = ['*.sim.ts', '*.sim.tsx'];
+
+if (args.length > 0) {
+    for (const arg of args) {
+        for (const foundFile of glob.sync(arg, { absolute: true, cwd: projectPath, matchBase: true })) {
+            simulations.push(foundFile);
         }
+    }
 
-        const simulations = findSimulations(projectPath);
-
-        if (simulations.length === 0) {
-            printErrorAndExit(`Could not find any simulations under: ${projectPath}`);
+    if (simulations.length === 0) {
+        printErrorAndExit(`Could not find any simulations matching the pattern: ${args}`);
+    }
+} else {
+    for (const simPattern of defaultSimulationPattern) {
+        for (const foundFile of glob.sync(simPattern, { absolute: true, cwd: projectPath, matchBase: true })) {
+            simulations.push(foundFile);
         }
+    }
 
-        const impact = options.impact || 'minor';
-        if (!impactLevels.includes(impact)) {
-            printErrorAndExit(`Invalid impact level ${impact}`);
-        }
+    if (simulations.length === 0) {
+        printErrorAndExit(`Could not find any simulations matching the pattern: ${defaultSimulationPattern}`);
+    }
+}
 
-        a11yTest(simulations, impact, projectPath, webpackConfigPath).catch((err) => {
-            printErrorAndExit(err);
-        });
-    });
+const impact = impactLevel || 'minor';
+if (!impactLevels.includes(impact)) {
+    printErrorAndExit(`Invalid impact level ${impact}`);
+}
 
-program.parse(process.argv);
+a11yTest(simulations, impact, projectPath, webpackConfigPath).catch((err) => {
+    printErrorAndExit(err);
+});
 
 function printErrorAndExit(message: unknown) {
     consoleError(message);
