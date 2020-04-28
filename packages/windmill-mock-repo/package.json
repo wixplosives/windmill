@@ -1,5 +1,5 @@
 {
-  "name": "@wixc3/windmill-/mock-repo",
+  "name": "@wixc3/windmill-mock-repo",
   "version": "1.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -17,8 +17,8 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@wixc3/windmill-/a11y": "^1.0.1",
-    "@wixc3/windmill-/utils": "^1.0.1"
+    "@wixc3/windmill-a11y": "^1.0.1",
+    "@wixc3/windmill-utils": "^1.0.1"
   },
   "files": [
     "cjs",

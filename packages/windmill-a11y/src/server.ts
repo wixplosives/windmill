@@ -8,12 +8,12 @@ import {
     consoleError,
     consoleLog,
     getEntryCode,
-} from '@wixc3/windmill-/utils';
+} from '@wixc3/windmill-utils';
 import { IResult } from './browser/run';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 import chalk from 'chalk';
 import axe from 'axe-core';
-import { renderInjector } from '@wixc3/windmill-/utils';
+import { renderInjector } from '@wixc3/windmill-utils';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];

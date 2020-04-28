@@ -1,5 +1,5 @@
 {
-  "name": "@wixc3/windmill-/node-utils",
+  "name": "@wixc3/windmill-node-utils",
   "version": "1.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",

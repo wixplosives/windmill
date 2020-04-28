@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { a11yTest, impactLevels } from './server';
-import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-/node-utils';
-import { consoleError } from '@wixc3/windmill-/utils';
+import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-node-utils';
+import { consoleError } from '@wixc3/windmill-utils';
 import glob from 'glob';
 
 cliInit();
