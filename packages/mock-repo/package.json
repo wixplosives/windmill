@@ -17,7 +17,8 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@windmill/utils": "^1.0.0"
+    "@windmill/utils": "^1.0.0",
+    "@windmill/a11y": "^1.0.0"
   },
   "files": [
     "cjs",

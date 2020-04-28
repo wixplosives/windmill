@@ -8,14 +8,17 @@
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
     "build": "yarn build:cjs && yarn build:esm",
+    "build:watch": "run-p build:cjs-watch build:esm-watch",
+    "build:cjs-watch": "tsc -p tsconfig.build.json --watch --outDir cjs --module commonjs",
+    "build:esm-watch": "tsc -p tsconfig.build.json --watch --outDir esm --module esnext",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
     "test": "mocha \"test/**/*.spec.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16"
+    "webpack": ">=4",
+    "html-webpack-plugin": ">=4"
   },
   "files": [
     "cjs",
@@ -28,5 +31,11 @@
   "private": true,
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "koa": "^2.11.0",
+    "koa-webpack": "^5.3.0",
+    "puppeteer": "^3.0.1"
   }
 }
