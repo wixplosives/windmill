@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-a11y",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@wixc3/windmill-node-utils": "^1.0.2",
-    "@wixc3/windmill-utils": "^1.0.3",
+    "@wixc3/windmill-utils": "^1.0.4",
     "axe-core": "^3.5.3",
     "glob": "^7.1.6",
     "webpack": "^4.43.0",
