@@ -23,7 +23,8 @@
   "files": [
     "cjs",
     "esm",
-    "src"
+    "src",
+    "patch-console.js"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
