@@ -1,6 +1,6 @@
 {
   "name": "@windmill/utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -17,8 +17,8 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "webpack": ">=4",
-    "html-webpack-plugin": ">=4"
+    "html-webpack-plugin": ">=4",
+    "webpack": ">=4"
   },
   "files": [
     "cjs",

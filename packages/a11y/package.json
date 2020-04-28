@@ -1,6 +1,6 @@
 {
   "name": "@windmill/a11y",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -39,11 +39,11 @@
     "access": "public"
   },
   "dependencies": {
+    "@windmill/node-utils": "^1.0.1",
+    "@windmill/utils": "^1.0.1",
     "axe-core": "^3.5.3",
     "glob": "^7.1.6",
     "webpack": "^4.43.0",
-    "webpack-virtual-modules": "^0.2.2",
-    "@windmill/utils": "^1.0.0",
-    "@windmill/node-utils": "^1.0.0"
+    "webpack-virtual-modules": "^0.2.2"
   }
 }
