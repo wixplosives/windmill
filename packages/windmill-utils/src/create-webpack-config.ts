@@ -17,7 +17,7 @@ export function createPreviewConfig(
         context: overrideConfig.context,
         mode: 'development',
         entry: {
-            main: './@windmill-a11y.js',
+            main: './@wixc3/windmill--a11y.js',
         },
         output: {
             libraryTarget: 'umd',
@@ -34,7 +34,7 @@ export function createPreviewConfig(
             rules: [
                 ...module.rules,
                 {
-                    test: /@windmill-a11y\.js/,
+                    test: /@wixc3/windmill--a11y\.js/,
                     use: join(__dirname, '..', 'static', 'virtual-entry-loader.js'),
                 },
             ],

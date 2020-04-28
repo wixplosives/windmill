@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import SimulationForImageWithoutAlt from '@windmill/mock-repo/_wcs/simulations/Image/image-without-alt.sim';
-import SimulationForImageWithAlt from '@windmill/mock-repo/_wcs/simulations/Image/image-with-alt.sim';
+import SimulationForImageWithoutAlt from '@wixc3/windmill-/mock-repo/_wcs/simulations/Image/image-without-alt.sim';
+import SimulationForImageWithAlt from '@wixc3/windmill-/mock-repo/_wcs/simulations/Image/image-with-alt.sim';
 import { checkIfSimulationIsAccessible } from '../src';
 
 describe('checkIfSimulationIsAccessible', () => {
