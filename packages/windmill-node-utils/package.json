@@ -1,12 +1,9 @@
 {
-  "name": "@windmill/a11y",
+  "name": "@wixc3/windmill-node-utils",
   "version": "1.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
-  "bin": {
-    "windmill-a11y": "bin/cli.js"
-  },
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
@@ -16,20 +13,16 @@
     "build:esm-watch": "tsc -p tsconfig.build.json --watch --outDir esm --module esnext",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
-    "test": "yarn test:node && yarn test:browser",
-    "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
-    "test:browser": "mocha-pup \"test/**/*.spec.ts?(x)\"",
+    "test": "mocha \"test/**/*.spec.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "webpack": ">=4"
   },
   "files": [
-    "src",
-    "bin",
     "cjs",
     "esm",
-    "templates"
+    "src"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
@@ -37,14 +30,6 @@
   "private": false,
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@windmill/node-utils": "^1.0.1",
-    "@windmill/utils": "^1.0.1",
-    "axe-core": "^3.5.3",
-    "glob": "^7.1.6",
-    "webpack": "^4.43.0",
-    "webpack-virtual-modules": "^0.2.2"
   },
   "gitHead": "d82ad6a3d547fff67c1b434580ae511f6b7ef6e0"
 }

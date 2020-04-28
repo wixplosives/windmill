@@ -8,19 +8,19 @@ import {
     consoleError,
     consoleLog,
     getEntryCode,
-} from '@windmill/utils';
+} from '@wixc3/windmill-utils';
 import { IResult } from './browser/run';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 import chalk from 'chalk';
 import axe from 'axe-core';
-import { renderInjector } from '@windmill/utils';
+import { renderInjector } from '@wixc3/windmill-utils';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
 
 function getWebpackConfig(simulations: string[], projectPath: string, webpackConfigPath: string) {
     const virtualEntryPlugin = new VirtualModulesPlugin({
-        './@windmill-a11y.js': getEntryCode(simulations, renderInjector),
+        './@wixc3/windmill--a11y.js': getEntryCode(simulations, renderInjector),
     });
 
     return WebpackConfigurator.load(

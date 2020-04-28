@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@windmill/*": ["node_modules/@windmill/*/src"]
+      "@wixc3/*": ["node_modules/@wixc3/*/src"]
     }
   },
   "include": ["src"]

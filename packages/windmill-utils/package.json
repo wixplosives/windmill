@@ -1,5 +1,5 @@
 {
-  "name": "@windmill/node-utils",
+  "name": "@wixc3/windmill-utils",
   "version": "1.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -17,6 +17,7 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
+    "html-webpack-plugin": ">=4",
     "webpack": ">=4"
   },
   "files": [
@@ -30,6 +31,12 @@
   "private": false,
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "koa": "^2.11.0",
+    "koa-webpack": "^5.3.0",
+    "puppeteer": "^3.0.1"
   },
   "gitHead": "d82ad6a3d547fff67c1b434580ae511f6b7ef6e0"
 }
