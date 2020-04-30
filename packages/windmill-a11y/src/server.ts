@@ -20,7 +20,7 @@ export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 
 
 function getWebpackConfig(simulations: string[], projectPath: string, webpackConfigPath: string) {
     const virtualEntryPlugin = new VirtualModulesPlugin({
-        './@wixc3/windmill--a11y.js': getEntryCode(simulations, renderInjector),
+        './@wixc3/windmill-a11y.js': getEntryCode(simulations, renderInjector),
     });
 
     return WebpackConfigurator.load(
@@ -83,7 +83,8 @@ export async function a11yTest(
     simulationFilePaths: string[],
     impact: axe.ImpactValue,
     projectPath: string,
-    webpackConfigPath: string
+    webpackConfigPath: string,
+    debug: boolean
 ) {
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
@@ -92,7 +93,8 @@ export async function a11yTest(
         server = await serve({
             webpackConfig: getWebpackConfig(simulationFilePaths, projectPath, webpackConfigPath),
         });
-        browser = await puppeteer.launch();
+        // We don't want to be headless and we want to have devtools open if debug is true
+        browser = await puppeteer.launch({ headless: !debug, devtools: debug });
         const page = await browser.newPage();
         const getResults = new Promise<IResult[]>((resolve) => {
             page.exposeFunction('puppeteerReportResults', resolve).catch((err) => {
@@ -127,14 +129,19 @@ export async function a11yTest(
     } finally {
         if (browser) {
             try {
-                await browser?.close();
+                if (!debug) {
+                    await browser?.close();
+                }
             } catch (_) {
                 // Ignore the error since we're already handling an exception.
             }
         }
-        if (server) {
+        if (server && !debug) {
             server.close();
         }
-        process.exit();
+
+        if (!debug) {
+            process.exit();
+        }
     }
 }

@@ -16,10 +16,11 @@ program
         `Only display issues with impact level <i> and higher. Values are: ${impactLevels.join(', ')}`
     )
     .option('-p, --project <p>', `Project path`)
+    .option('-d, --debug', `Debug mode`)
     .option('-w, --webpack <w>', `webpack path`)
     .parse(process.argv);
 
-const { args, project, webpack, impactLevel } = program;
+const { args, project, webpack, impactLevel, debug } = program;
 
 const projectPath = project || process.cwd();
 const webpackConfigPath = webpack || getWebpackConfigPath(projectPath);
@@ -58,11 +59,13 @@ if (!impactLevels.includes(impact)) {
     printErrorAndExit(`Invalid impact level ${impact}`);
 }
 
-a11yTest(simulations, impact, projectPath, webpackConfigPath).catch((err) => {
+a11yTest(simulations, impact, projectPath, webpackConfigPath, debug).catch((err) => {
     printErrorAndExit(err);
 });
 
 function printErrorAndExit(message: unknown) {
     consoleError(message);
-    process.exit(1);
+    if (!debug) {
+        process.exit(1);
+    }
 }
