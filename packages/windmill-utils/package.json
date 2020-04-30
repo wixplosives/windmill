@@ -24,7 +24,8 @@
     "cjs",
     "esm",
     "src",
-    "patch-console.js"
+    "patch-console.js",
+    "static"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
