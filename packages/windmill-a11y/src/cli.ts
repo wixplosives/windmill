@@ -31,10 +31,11 @@ if (!webpackConfigPath) {
 
 const simulations: string[] = [];
 const defaultSimulationPattern = ['*.sim.ts', '*.sim.tsx'];
+const globOptions: glob.IOptions = { absolute: true, cwd: projectPath, matchBase: true };
 
 if (args.length > 0) {
     for (const arg of args) {
-        for (const foundFile of glob.sync(arg, { absolute: true, cwd: projectPath, matchBase: true })) {
+        for (const foundFile of glob.sync(arg, globOptions)) {
             simulations.push(foundFile);
         }
     }
@@ -44,7 +45,7 @@ if (args.length > 0) {
     }
 } else {
     for (const simPattern of defaultSimulationPattern) {
-        for (const foundFile of glob.sync(simPattern, { absolute: true, cwd: projectPath, matchBase: true })) {
+        for (const foundFile of glob.sync(simPattern, globOptions)) {
             simulations.push(foundFile);
         }
     }
