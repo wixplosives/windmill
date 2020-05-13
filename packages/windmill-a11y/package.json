@@ -45,6 +45,5 @@
     "glob": "^7.1.6",
     "webpack": "^4.43.0",
     "webpack-virtual-modules": "^0.2.2"
-  },
-  "gitHead": "d82ad6a3d547fff67c1b434580ae511f6b7ef6e0"
+  }
 }
