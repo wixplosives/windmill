@@ -18,6 +18,7 @@
   },
   "peerDependencies": {
     "html-webpack-plugin": ">=4",
+    "puppeteer": ">=1",
     "webpack": ">=4"
   },
   "files": [
@@ -39,8 +40,7 @@
     "chalk": "^4.0.0",
     "koa": "^2.11.0",
     "koa-static": "^5.0.0",
-    "koa-webpack": "^5.3.0",
-    "puppeteer": "^3.0.2"
+    "koa-webpack": "^5.3.0"
   },
   "gitHead": "d82ad6a3d547fff67c1b434580ae511f6b7ef6e0"
 }
