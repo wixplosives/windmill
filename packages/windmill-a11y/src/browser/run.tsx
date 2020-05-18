@@ -1,6 +1,7 @@
 import { checkIfSimulationIsAccessible } from '../a11y-test';
 import axe from 'axe-core';
 import { ISimulation } from '@wixc3/wcs-core';
+import 'simulation/simulations.js';
 
 export interface IResult {
     simulation: string;
@@ -8,16 +9,14 @@ export interface IResult {
     error?: Error;
 }
 
-const simulationsJSON = window.localStorage.getItem('simulations');
-const simulationFileArray = simulationsJSON && JSON.parse(simulationsJSON);
-
 async function createTestsFromSimulations() {
     const simulations: ISimulation<Record<string, unknown>>[] = [];
+    // TODO: This should be unknown
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const simulationFiles: any[] = await Promise.all((window as any).simulations);
 
-    for (const simulationFile of simulationFileArray) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const simulationModule = await (window as any).modules[simulationFile]();
-        const simulation: ISimulation<Record<string, unknown>> = simulationModule.default;
+    for (const simulationFile of simulationFiles) {
+        const simulation: ISimulation<Record<string, unknown>> = simulationFile.default;
 
         simulations.push(simulation);
     }

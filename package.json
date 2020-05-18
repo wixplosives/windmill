@@ -16,8 +16,12 @@
     "prettify": "npx prettier \"packages/**/*.{js,ts,tsx}\" --write"
   },
   "devDependencies": {
+    "@file-services/memory": "^2.2.0",
+    "@file-services/node": "^2.2.0",
+    "@file-services/overlay": "^2.2.0",
     "@file-services/path": "^2.2.0",
     "@file-services/types": "^2.2.0",
+    "@file-services/webpack": "^2.2.0",
     "@stylable/cli": "^3.4.4",
     "@stylable/core": "^3.4.4",
     "@stylable/dom-test-kit": "^3.4.4",
@@ -43,7 +47,6 @@
     "@types/sinon-chai": "^3.2.4",
     "@types/temp": "^0.8.34",
     "@types/webpack": "^4.41.12",
-    "@types/webpack-virtual-modules": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "@wixc3/wcs-core": "^1.5.0",

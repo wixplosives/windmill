@@ -1,11 +1,12 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { createPreviewConfig, OverrideConfig } from './create-webpack-config';
+import { IMemFileSystem } from '@file-services/memory';
 
 export class WebpackConfigurator {
-    public static load(config: OverrideConfig, path: string): WebpackConfigurator {
+    public static load(config: OverrideConfig, path: string, memFs: IMemFileSystem): WebpackConfigurator {
         const initialConfig = require(path) as webpack.Configuration;
-        const mergedConfig = createPreviewConfig(config, initialConfig);
+        const mergedConfig = createPreviewConfig(config, initialConfig, memFs);
         return new WebpackConfigurator(mergedConfig);
     }
 

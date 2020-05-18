@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import { join } from 'path';
+import { IMemFileSystem } from '@file-services/memory';
 
 export interface OverrideConfig {
     entry: string[];
@@ -9,20 +10,19 @@ export interface OverrideConfig {
 
 export function createPreviewConfig(
     overrideConfig: OverrideConfig,
-    webpackConfig: webpack.Configuration
+    webpackConfig: webpack.Configuration,
+    memFs: IMemFileSystem
 ): webpack.Configuration {
     const { module = { rules: [] }, plugins = [], resolve = {}, devtool } = webpackConfig;
 
     return {
         context: overrideConfig.context,
         mode: 'development',
-        entry: {
-            main: './@wixc3/windmill-a11y.js',
-        },
         output: {
             libraryTarget: 'umd',
             library: 'webpackModuleSystem',
             crossOriginLoading: 'anonymous',
+            path: memFs.resolve('dist'),
         },
         optimization: {
             namedModules: true,
@@ -31,28 +31,19 @@ export function createPreviewConfig(
         module: {
             ...module,
             strictExportPresence: false,
-            rules: [
-                ...module.rules,
-                {
-                    test: /@wixc3\/windmill-a11y\.js/,
-                    use: join(__dirname, '..', 'static', 'virtual-entry-loader.js'),
-                },
-            ],
+            rules: [...module.rules],
         },
         plugins: [...plugins, ...overrideConfig.plugins],
         devtool,
     };
 }
 
-export function getEntryCode(entryFiles: string[], renderer: (...args: string[]) => string) {
-    const entryCode = ['window.modules = module.exports = {'];
-    for (const moduleFilePath of entryFiles) {
-        entryCode.push(`${JSON.stringify(moduleFilePath)}: () => import(${JSON.stringify(moduleFilePath)}),`);
+export function getEntryCode(entryFiles: string[]) {
+    const entryCode = ['window.simulations = []'];
+    for (const [index, moduleFilePath] of entryFiles.entries()) {
+        entryCode.push(`const simulation${index} = import(${JSON.stringify(moduleFilePath)});`);
+        entryCode.push(`window.simulations.push(simulation${index})`);
     }
-
-    entryCode.push('};');
-
-    entryCode.push(renderer());
 
     return entryCode.join('\n');
 }
