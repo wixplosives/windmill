@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import { join } from 'path';
 import { IMemFileSystem } from '@file-services/memory';
 
 export interface OverrideConfig {

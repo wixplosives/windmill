@@ -8,7 +8,6 @@ import {
     consoleError,
     consoleLog,
     getEntryCode,
-    renderInjector,
 } from '@wixc3/windmill-utils';
 import { IResult } from './browser/run';
 import chalk from 'chalk';
