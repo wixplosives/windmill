@@ -23,24 +23,21 @@ function getWebpackConfig(
     webpackConfigPath: string,
     memFs: IMemFileSystem
 ) {
-    return (
-        WebpackConfigurator.load(
-            {
-                entry: simulations,
-                context: projectPath,
-                plugins: [],
-            },
-            webpackConfigPath,
-            memFs
-        )
-            .setEntry('test', path.join(ownPath, 'esm/browser/run'))
-            // .setEntry('simulation', path.join(ownPath, 'simulation'))
-            .addHtml({
-                template: path.join(ownPath, '/templates', 'index.template'),
-                title: 'Accessibility',
-            })
-            .suppressReactDevtoolsSuggestion()
-    );
+    return WebpackConfigurator.load(
+        {
+            entry: simulations,
+            context: projectPath,
+            plugins: [],
+        },
+        webpackConfigPath,
+        memFs
+    )
+        .setEntry('test', path.join(ownPath, 'esm/browser/run'))
+        .addHtml({
+            template: path.join(ownPath, '/templates', 'index.template'),
+            title: 'Accessibility',
+        })
+        .suppressReactDevtoolsSuggestion();
 }
 
 function formatResults(results: IResult[], impact: axe.ImpactValue): { message: string; hasError: boolean } {

@@ -41,6 +41,7 @@
   "dependencies": {
     "@wixc3/windmill-node-utils": "^1.0.2",
     "@wixc3/windmill-utils": "^1.0.7",
+    "@file-services/memory": "^2.2.0",
     "axe-core": "^3.5.3",
     "glob": "^7.1.6",
     "webpack": "^4.43.0"

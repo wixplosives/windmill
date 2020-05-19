@@ -39,6 +39,7 @@
     "@file-services/node": "^2.2.0",
     "@file-services/overlay": "^2.2.0",
     "@file-services/path": "^2.2.0",
+    "@file-services/webpack": "^2.2.0",
     "chalk": "^4.0.0",
     "koa": "^2.12.0",
     "koa-static": "^5.0.0",
