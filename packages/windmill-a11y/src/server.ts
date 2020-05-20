@@ -13,6 +13,7 @@ import { IResult } from './browser/run';
 import chalk from 'chalk';
 import axe from 'axe-core';
 import { createMemoryFs, IMemFileSystem } from '@file-services/memory';
+import nodeFs from '@file-services/node';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
@@ -23,21 +24,24 @@ function getWebpackConfig(
     webpackConfigPath: string,
     memFs: IMemFileSystem
 ) {
-    return WebpackConfigurator.load(
-        {
-            entry: simulations,
-            context: projectPath,
-            plugins: [],
-        },
-        webpackConfigPath,
-        memFs
-    )
-        .setEntry('test', path.join(ownPath, 'esm/browser/run'))
-        .addHtml({
-            template: path.join(ownPath, '/templates', 'index.template'),
-            title: 'Accessibility',
-        })
-        .suppressReactDevtoolsSuggestion();
+    return (
+        WebpackConfigurator.load(
+            {
+                entry: simulations,
+                context: projectPath,
+                plugins: [],
+            },
+            webpackConfigPath,
+            memFs
+        )
+            // .setEntry('test', path.join(ownPath, 'esm/browser/run'))
+            .setEntry('simulation', nodeFs.join(__dirname, 'simulation'))
+            .addHtml({
+                template: path.join(ownPath, '/templates', 'index.template'),
+                title: 'Accessibility',
+            })
+            .suppressReactDevtoolsSuggestion()
+    );
 }
 
 function formatResults(results: IResult[], impact: axe.ImpactValue): { message: string; hasError: boolean } {
@@ -89,6 +93,7 @@ export async function a11yTest(
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running a11y test...');
+
     try {
         const memFs = createMemoryFs({
             simulation: {
