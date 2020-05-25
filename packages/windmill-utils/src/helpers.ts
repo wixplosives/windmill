@@ -6,7 +6,7 @@ export function isWindowsStyleAbsolutePath(fsPath: string): boolean {
     return !posixPath.isAbsolute(fsPath) && win32Path.isAbsolute(fsPath);
 }
 
-export function getFileExtname(filePath: string) {
+export function getFileExtname(filePath: string): string {
     let basePath = filePath;
     const totalExtParts = [];
     let ext = win32Path.extname(basePath);
@@ -18,7 +18,7 @@ export function getFileExtname(filePath: string) {
     return totalExtParts.join('');
 }
 
-export async function findPort(preferredPort = 8080, numOfRetries = 10) {
+export async function findPort(preferredPort = 8080, numOfRetries = 10): Promise<number> {
     let currentPort = preferredPort;
     do {
         try {

@@ -9,7 +9,7 @@ const createContainer = () => {
     return container;
 };
 
-export const render = (jsx: JSX.Element) => {
+export const render = (jsx: JSX.Element): { container: HTMLDivElement } => {
     const container = createContainer();
     ReactDOM.render(jsx, container);
     return { container };

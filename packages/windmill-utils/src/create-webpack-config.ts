@@ -37,7 +37,7 @@ export function createPreviewConfig(
     };
 }
 
-export function getEntryCode(entryFiles: string[]) {
+export function getEntryCode(entryFiles: string[]): string {
     const entryCode = ['window.simulations = []'];
     for (const [index, moduleFilePath] of entryFiles.entries()) {
         entryCode.push(`const simulation${index} = import(${JSON.stringify(moduleFilePath)});`);

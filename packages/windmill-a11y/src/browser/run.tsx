@@ -12,10 +12,11 @@ export interface IResult {
 async function createTestsFromSimulations() {
     const simulations: ISimulation<Record<string, unknown>>[] = [];
     // TODO: This should be unknown
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     const simulationFiles: any[] = await Promise.all((window as any).simulations);
 
     for (const simulationFile of simulationFiles) {
+        // eslint-disable-next-line
         const simulation: ISimulation<Record<string, unknown>> = simulationFile.default;
 
         simulations.push(simulation);
@@ -33,11 +34,11 @@ async function test() {
             const result = await checkIfSimulationIsAccessible(simulation);
             results.push({ simulation: simulation.name, result });
         } catch (error) {
-            results.push({ simulation: simulation.name, error });
+            results.push({ simulation: simulation.name, error: error as Error });
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     (window as any).puppeteerReportResults(results);
 }
 

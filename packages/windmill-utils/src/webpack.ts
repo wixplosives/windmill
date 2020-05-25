@@ -12,7 +12,7 @@ export class WebpackConfigurator {
 
     constructor(private config: webpack.Configuration) {}
 
-    public getConfig() {
+    public getConfig(): webpack.Configuration {
         return this.config;
     }
 
