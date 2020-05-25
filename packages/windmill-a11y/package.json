@@ -11,9 +11,6 @@
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
     "build": "yarn build:cjs && yarn build:esm",
-    "build:watch": "run-p build:cjs-watch build:esm-watch",
-    "build:cjs-watch": "tsc -p tsconfig.build.json --watch --outDir cjs --module commonjs",
-    "build:esm-watch": "tsc -p tsconfig.build.json --watch --outDir esm --module esnext",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
     "test": "yarn test:node && yarn test:browser",
@@ -23,6 +20,14 @@
   },
   "peerDependencies": {
     "react": ">=16"
+  },
+  "dependencies": {
+    "@file-services/memory": "^2.2.0",
+    "@wixc3/windmill-node-utils": "^1.0.2",
+    "@wixc3/windmill-utils": "^1.0.7",
+    "axe-core": "^3.5.3",
+    "glob": "^7.1.6",
+    "webpack": "^4.43.0"
   },
   "files": [
     "src",
@@ -37,13 +42,5 @@
   "private": false,
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@wixc3/windmill-node-utils": "^1.0.2",
-    "@wixc3/windmill-utils": "^1.0.7",
-    "@file-services/memory": "^2.2.0",
-    "axe-core": "^3.5.3",
-    "glob": "^7.1.6",
-    "webpack": "^4.43.0"
   }
 }

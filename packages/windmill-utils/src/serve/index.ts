@@ -140,7 +140,7 @@ export async function serve(options: IServeOptions): Promise<IServer> {
     });
 
     if (options.memFs) {
-        const webpackFs = createWebpackFs(createOverlayFs(nodeFs, options.memFs, __dirname));
+        const webpackFs = createWebpackFs(createOverlayFs(nodeFs, options.memFs, options.projectPath));
         compiler.inputFileSystem = webpackFs;
         compiler.outputFileSystem = createWebpackFs(options.memFs);
     }

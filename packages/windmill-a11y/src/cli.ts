@@ -63,7 +63,7 @@ if (!impactLevels.includes(impact)) {
     printErrorAndExit(`Invalid impact level ${impact}`);
 }
 
-a11yTest(simulations, impact, projectPath, webpackConfigPath, debug).catch((err) => {
+a11yTest(simulations, impact, projectPath, webpackConfigPath as string, debug).catch((err) => {
     printErrorAndExit(err);
 });
 

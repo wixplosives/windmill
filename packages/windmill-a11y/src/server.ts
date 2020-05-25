@@ -12,29 +12,22 @@ import {
 import { IResult } from './browser/run';
 import chalk from 'chalk';
 import axe from 'axe-core';
-import { createMemoryFs, IMemFileSystem } from '@file-services/memory';
+import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
 
-function getWebpackConfig(
-    simulations: string[],
-    projectPath: string,
-    webpackConfigPath: string,
-    memFs: IMemFileSystem
-) {
+function getWebpackConfig(simulations: string[], projectPath: string, webpackConfigPath: string) {
     return WebpackConfigurator.load(
         {
             entry: simulations,
-            context: projectPath,
             plugins: [],
         },
-        webpackConfigPath,
-        memFs
+        webpackConfigPath
     )
-        .setEntry('test', path.join(ownPath, 'esm/browser/run'))
-        .setEntry('simulation', nodeFs.join(__dirname, 'simulation/simulations.js'))
+        .setEntry('test', require.resolve('./browser/run'))
+        .setEntry('simulation', nodeFs.join(projectPath, 'simulation/simulations.js'))
         .addHtml({
             template: path.join(ownPath, '/templates', 'index.template'),
             title: 'Accessibility',
@@ -101,7 +94,7 @@ export async function a11yTest(
 
         server = await serve({
             memFs,
-            webpackConfigurator: getWebpackConfig(simulationFilePaths, projectPath, webpackConfigPath, memFs),
+            webpackConfigurator: getWebpackConfig(simulationFilePaths, projectPath, webpackConfigPath),
             projectPath,
         });
         // We don't want to be headless and we want to have devtools open if debug is true

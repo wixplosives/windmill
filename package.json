@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "lerna run clean --stream --parallel",
     "build": "lerna run build --stream --parallel",
-    "build:watch": "lerna run --parallel build:watch",
     "lint": "eslint . -f codeframe",
     "pretest": "yarn typecheck && yarn lint",
     "test": "yarn test:browser && yarn test:node",

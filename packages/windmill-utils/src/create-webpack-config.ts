@@ -1,39 +1,23 @@
 import webpack from 'webpack';
-import { IMemFileSystem } from '@file-services/memory';
 
 export interface OverrideConfig {
-    entry: string[];
-    context: string;
-    plugins: webpack.Plugin[];
+    plugins?: webpack.Plugin[];
 }
 
 export function createPreviewConfig(
     overrideConfig: OverrideConfig,
-    webpackConfig: webpack.Configuration,
-    memFs: IMemFileSystem
+    webpackConfig: webpack.Configuration
 ): webpack.Configuration {
-    const { module = { rules: [] }, plugins = [], resolve = {}, devtool } = webpackConfig;
-
     return {
-        context: overrideConfig.context,
+        ...webpackConfig,
         mode: 'development',
         output: {
+            ...webpackConfig.output,
             libraryTarget: 'umd',
             library: 'webpackModuleSystem',
             crossOriginLoading: 'anonymous',
-            path: memFs.resolve('dist'),
         },
-        optimization: {
-            namedModules: true,
-        },
-        resolve,
-        module: {
-            ...module,
-            strictExportPresence: false,
-            rules: [...module.rules],
-        },
-        plugins: [...plugins, ...overrideConfig.plugins],
-        devtool,
+        plugins: [...(webpackConfig.plugins || []), ...(overrideConfig.plugins || [])],
     };
 }
 

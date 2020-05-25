@@ -1,10 +1,10 @@
-import { registerRequireHooks } from './';
-import path from 'path';
+import fs from '@file-services/node';
+import { registerRequireHooks } from './require-hooks/require-hooks';
 
 export function cliInit(): void {
     registerRequireHooks();
 }
 
-export function getWebpackConfigPath(projectPath: string): string {
-    return path.join(projectPath, './webpack.config.js');
+export function getWebpackConfigPath(projectPath: string): string | undefined {
+    return fs.findClosestFileSync(projectPath, 'webpack.config.js');
 }

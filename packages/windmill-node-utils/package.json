@@ -8,9 +8,6 @@
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
     "build": "yarn build:cjs && yarn build:esm",
-    "build:watch": "run-p build:cjs-watch build:esm-watch",
-    "build:cjs-watch": "tsc -p tsconfig.build.json --watch --outDir cjs --module commonjs",
-    "build:esm-watch": "tsc -p tsconfig.build.json --watch --outDir esm --module esnext",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
     "test": "mocha \"test/**/*.spec.ts?(x)\"",
@@ -18,6 +15,9 @@
   },
   "peerDependencies": {
     "webpack": ">=4"
+  },
+  "dependencies": {
+    "@file-services/node": "^2.2.0"
   },
   "files": [
     "cjs",
