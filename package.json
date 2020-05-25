@@ -9,9 +9,9 @@
     "build:watch": "lerna run --parallel build:watch",
     "lint": "eslint . -f codeframe",
     "pretest": "yarn typecheck && yarn lint",
-    "test": "yarn test:browser yarn test:node",
+    "test": "yarn test:browser && yarn test:node",
     "test:browser": "mocha-pup \"packages/**/test/**/*.spec.ts?(x)\"",
-    "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
+    "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"packages/**/test/**/*.unit.ts?(x)\"",
     "typecheck": "tsc --noEmit",
     "prettify": "npx prettier \"packages/**/*.{js,ts,tsx}\" --write"
   },
