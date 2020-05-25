@@ -62,8 +62,8 @@ function formatResults(results: IResult[], impact: axe.ImpactValue): { message: 
                         violation.nodes.forEach((node) => {
                             const selector = node.target.join(' > ');
                             const compName = `${res.simulation} - ${selector}`;
-                            msg[index] += `\n  ${chalk.red(compName)}: (Impact: ${violation.impact})\n  ${
-                                node.failureSummary
+                            msg[index] += `\n  ${chalk.red(compName)}: (Impact: ${violation.impact as string})\n  ${
+                                node.failureSummary as string
                             }`;
                         });
                     } else {
@@ -85,7 +85,7 @@ export async function a11yTest(
     projectPath: string,
     webpackConfigPath: string,
     debug: boolean
-) {
+): Promise<void> {
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running a11y test...');
@@ -124,7 +124,7 @@ export async function a11yTest(
             consoleLog(message);
         }
     } catch (error) {
-        consoleError(error.toString());
+        consoleError((error as Error).toString());
         process.exitCode = 1;
     } finally {
         if (browser) {

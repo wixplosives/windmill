@@ -44,7 +44,7 @@ export function createPreviewConfig(
     };
 }
 
-export function getEntryCode(entryFiles: string[], renderer: (...args: string[]) => string) {
+export function getEntryCode(entryFiles: string[], renderer: (...args: string[]) => string): string {
     const entryCode = ['window.modules = module.exports = {'];
     for (const moduleFilePath of entryFiles) {
         entryCode.push(`${JSON.stringify(moduleFilePath)}: () => import(${JSON.stringify(moduleFilePath)}),`);

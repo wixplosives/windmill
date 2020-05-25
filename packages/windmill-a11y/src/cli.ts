@@ -1,8 +1,9 @@
+import glob from 'glob';
+import { ImpactValue } from 'axe-core';
 import { Command } from 'commander';
-import { a11yTest, impactLevels } from './server';
 import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-node-utils';
 import { consoleError } from '@wixc3/windmill-utils';
-import glob from 'glob';
+import { a11yTest, impactLevels } from './server';
 
 cliInit();
 const program = new Command();
@@ -22,8 +23,8 @@ program
 
 const { args, project, webpack, impactLevel, debug } = program;
 
-const projectPath = project || process.cwd();
-const webpackConfigPath = webpack || getWebpackConfigPath(projectPath);
+const projectPath = (project as string) || process.cwd();
+const webpackConfigPath = (webpack as string) || getWebpackConfigPath(projectPath);
 
 if (!webpackConfigPath) {
     printErrorAndExit('Could not find a webpack config.');
@@ -41,7 +42,7 @@ if (args.length > 0) {
     }
 
     if (simulations.length === 0) {
-        printErrorAndExit(`Could not find any simulations matching the pattern: ${args}`);
+        printErrorAndExit(`Could not find any simulations matching the pattern: ${args.join(', ')}`);
     }
 } else {
     for (const simPattern of defaultSimulationPattern) {
@@ -51,11 +52,13 @@ if (args.length > 0) {
     }
 
     if (simulations.length === 0) {
-        printErrorAndExit(`Could not find any simulations matching the pattern: ${defaultSimulationPattern}`);
+        printErrorAndExit(
+            `Could not find any simulations matching the pattern: ${defaultSimulationPattern.join(', ')}`
+        );
     }
 }
 
-const impact = impactLevel || 'minor';
+const impact = ((impactLevel as string) || 'minor') as ImpactValue;
 if (!impactLevels.includes(impact)) {
     printErrorAndExit(`Invalid impact level ${impact}`);
 }

@@ -2,25 +2,16 @@ import puppeteer from 'puppeteer';
 import { sleep } from './sleep';
 import { consoleLog } from './index';
 import { consoleError } from './console';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { patchConsole } = require('../patch-console');
+
+const { patchConsole } = require('../patch-console') as { patchConsole: () => void };
 
 export function waitForPageError(page: puppeteer.Page): Promise<never> {
     // We don't need to handle `disconnected` event because any of the
     // Puppeteer functions we're awaiting on will throw on disconnect anyway.
-
-    return new Promise((_, reject) => {
-        page.on('pageerror', (e) => {
-            reject(e);
-        });
-
-        page.on('error', (e) => {
-            reject(new Error(`Page crashed ${e}`));
-        });
-    });
+    return new Promise((_, rej) => page.once('pageerror', rej).once('error', rej));
 }
 
-export function logConsoleMessages(page: puppeteer.Page) {
+export function logConsoleMessages(page: puppeteer.Page): void {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     page.on('console', async (msg) => {
         const msgArgs = await Promise.all(msg.args().map((a) => a.jsonValue()));
@@ -67,7 +58,7 @@ export async function runTestsInPuppeteer({
     noSandbox?: boolean;
     preNavigationHook?: (page: puppeteer.Page) => Promise<void>;
     puppeteerOptions?: puppeteer.LaunchOptions;
-}) {
+}): Promise<number> {
     const loadTimeout = 20000;
     const testTimeout = 5000;
     const viewportWidth = 800;
@@ -92,8 +83,8 @@ export async function runTestsInPuppeteer({
 
         const numFailedTests = await Promise.race([
             waitForPageError(page),
-            loadTestPage(page, testPageUrl, loadTimeout).then(() =>
-                Promise.race([waitForTestResults(page), failIfTestsStall(page, testTimeout)])
+            loadTestPage(page, testPageUrl, loadTimeout).then(
+                () => Promise.race([waitForTestResults(page), failIfTestsStall(page, testTimeout)]) as Promise<number>
             ),
         ]);
 
