@@ -1,7 +1,7 @@
 import { checkIfSimulationIsAccessible } from '../a11y-test';
 import axe from 'axe-core';
 import { ISimulation } from '@wixc3/wcs-core';
-import 'simulation/simulations.js';
+// import 'simulation/simulations.js';
 
 export interface IResult {
     simulation: string;
