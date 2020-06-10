@@ -9,7 +9,6 @@ import {
     consoleLog,
     getEntryCode,
 } from '@wixc3/windmill-utils';
-import { IResult } from './browser/run';
 import chalk from 'chalk';
 import axe from 'axe-core';
 import { createMemoryFs } from '@file-services/memory';
@@ -17,17 +16,20 @@ import nodeFs from '@file-services/node';
 
 const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
+export interface Result {
+    simulation: string;
+    result?: axe.AxeResults;
+    error?: Error;
+}
 
-function getWebpackConfig(simulations: string[], projectPath: string, webpackConfigPath: string) {
+function getWebpackConfig(projectPath: string, webpackConfigPath: string): WebpackConfigurator {
     return WebpackConfigurator.load(
         {
-            entry: simulations,
             plugins: [],
         },
         webpackConfigPath
     )
-        .setEntry('test', require.resolve('./browser/run'))
-        .setEntry('simulation', nodeFs.join(projectPath, 'simulation/simulations.js'))
+        .setEntry('test', nodeFs.join(projectPath, 'test/test.js'))
         .addHtml({
             template: path.join(ownPath, '/templates', 'index.template'),
             title: 'Accessibility',
@@ -35,7 +37,7 @@ function getWebpackConfig(simulations: string[], projectPath: string, webpackCon
         .suppressReactDevtoolsSuggestion();
 }
 
-function formatResults(results: IResult[], impact: axe.ImpactValue): { message: string; hasError: boolean } {
+function formatResults(results: Result[], impact: axe.ImpactValue): { message: string; hasError: boolean } {
     const msg: string[] = [];
     let hasError = false;
     let index = 0;
@@ -90,17 +92,33 @@ export async function a11yTest(
             simulation: {
                 'simulations.js': getEntryCode(simulationFilePaths),
             },
+            test: {
+                'test.js': `
+                    import {getSimulations} from '../simulation/simulations';
+                    import {test} from '@wixc3/windmill-a11y';
+                    
+                    async function runTests() {
+                        const simulations = (await getSimulations()).map((sim) => sim.default);
+                        test(simulations);
+                    }
+
+                    runTests().catch((err) => {
+                        throw err;
+                    });
+
+                `,
+            },
         });
 
         server = await serve({
             memFs,
-            webpackConfigurator: getWebpackConfig(simulationFilePaths, projectPath, webpackConfigPath),
+            webpackConfigurator: getWebpackConfig(projectPath, webpackConfigPath),
             projectPath,
         });
         // We don't want to be headless and we want to have devtools open if debug is true
         browser = await puppeteer.launch({ headless: !debug, devtools: debug });
         const page = await browser.newPage();
-        const getResults = new Promise<IResult[]>((resolve) => {
+        const getResults = new Promise<Result[]>((resolve) => {
             page.exposeFunction('puppeteerReportResults', resolve).catch((err) => {
                 throw err;
             });

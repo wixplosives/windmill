@@ -22,11 +22,13 @@ export function createPreviewConfig(
 }
 
 export function getEntryCode(entryFiles: string[]): string {
-    const entryCode = ['window.simulations = []'];
+    const entryCode = ['export async function getSimulations() { const simulations = []'];
     for (const [index, moduleFilePath] of entryFiles.entries()) {
-        entryCode.push(`const simulation${index} = import(${JSON.stringify(moduleFilePath)});`);
-        entryCode.push(`window.simulations.push(simulation${index})`);
+        entryCode.push(`const simulation${index} = await import(${JSON.stringify(moduleFilePath)});`);
+        entryCode.push(`simulations.push(simulation${index})`);
     }
+
+    entryCode.push(`return simulations; }`);
 
     return entryCode.join('\n');
 }

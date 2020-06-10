@@ -67,7 +67,7 @@ a11yTest(simulations, impact, projectPath, webpackConfigPath as string, debug).c
     printErrorAndExit(err);
 });
 
-function printErrorAndExit(message: unknown) {
+function printErrorAndExit(message: unknown): void {
     consoleError(message);
     if (!debug) {
         process.exit(1);
