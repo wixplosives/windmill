@@ -5,7 +5,7 @@
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "bin": {
-    "windmill-a11y": "bin/cli.js"
+    "windmill-a11y": "bin/windmill-a11y.js"
   },
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
