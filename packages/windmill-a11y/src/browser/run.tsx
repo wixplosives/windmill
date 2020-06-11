@@ -3,7 +3,6 @@ import { ISimulation } from '@wixc3/wcs-core';
 import { Result } from '../server';
 
 export async function test(simulations: ISimulation<Record<string, unknown>>[]): Promise<void> {
-    // const simulations = await createTestsFromSimulations(simulationArray);
     const results: Result[] = [];
 
     for (const simulation of simulations) {
