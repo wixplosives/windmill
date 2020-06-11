@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import { dirname, resolve } from 'path';
 import { spawnSync } from 'child_process';
 
-const cliSrcPath = require.resolve('../src/cli.ts');
+const cliSrcPath = require.resolve('../bin/windmill-a11y.js');
 const mockRepoRoot = dirname(require.resolve('@wixc3/windmill-mock-repo/package.json'));
 
 const runA11y = (args: string[] = []) =>
-    spawnSync('node', ['-r', '@ts-tools/node/r', cliSrcPath, ...args.map((arg) => `"${arg}"`)], {
+    spawnSync('node', [cliSrcPath, ...args.map((arg) => `"${arg}"`)], {
         cwd: resolve(mockRepoRoot),
         shell: true,
         encoding: 'utf8',
