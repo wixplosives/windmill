@@ -1,7 +1,7 @@
 {
   "name": "@wixc3/windmill-mock-repo",
   "version": "1.0.7",
-  "main": "cjs/index.js",
+  "main": "src/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "scripts": {
