@@ -1,7 +1,7 @@
 {
   "name": "@wixc3/windmill-a11y",
   "version": "1.0.7",
-  "main": "src/index",
+  "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "bin": {
