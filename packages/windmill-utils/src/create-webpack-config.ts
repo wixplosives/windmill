@@ -1,58 +1,34 @@
 import webpack from 'webpack';
-import { join } from 'path';
 
 export interface OverrideConfig {
-    entry: string[];
-    context: string;
-    plugins: webpack.Plugin[];
+    plugins?: webpack.Plugin[];
 }
 
 export function createPreviewConfig(
     overrideConfig: OverrideConfig,
     webpackConfig: webpack.Configuration
 ): webpack.Configuration {
-    const { module = { rules: [] }, plugins = [], resolve = {}, devtool } = webpackConfig;
-
     return {
-        context: overrideConfig.context,
+        ...webpackConfig,
         mode: 'development',
-        entry: {
-            main: './@wixc3/windmill-a11y.js',
-        },
         output: {
+            ...webpackConfig.output,
             libraryTarget: 'umd',
             library: 'webpackModuleSystem',
             crossOriginLoading: 'anonymous',
         },
-        optimization: {
-            namedModules: true,
-        },
-        resolve,
-        module: {
-            ...module,
-            strictExportPresence: false,
-            rules: [
-                ...module.rules,
-                {
-                    test: /@wixc3\/windmill-a11y\.js/,
-                    use: join(__dirname, '..', 'static', 'virtual-entry-loader.js'),
-                },
-            ],
-        },
-        plugins: [...plugins, ...overrideConfig.plugins],
-        devtool,
+        plugins: [...(webpackConfig.plugins || []), ...(overrideConfig.plugins || [])],
     };
 }
 
-export function getEntryCode(entryFiles: string[], renderer: (...args: string[]) => string): string {
-    const entryCode = ['window.modules = module.exports = {'];
-    for (const moduleFilePath of entryFiles) {
-        entryCode.push(`${JSON.stringify(moduleFilePath)}: () => import(${JSON.stringify(moduleFilePath)}),`);
+export function getEntryCode(entryFiles: string[]): string {
+    const entryCode = ['export async function getSimulations() { const simulations = []'];
+    for (const [index, moduleFilePath] of entryFiles.entries()) {
+        entryCode.push(`const simulation${index} = await import(${JSON.stringify(moduleFilePath)});`);
+        entryCode.push(`simulations.push(simulation${index})`);
     }
 
-    entryCode.push('};');
-
-    entryCode.push(renderer());
+    entryCode.push(`return simulations; }`);
 
     return entryCode.join('\n');
 }

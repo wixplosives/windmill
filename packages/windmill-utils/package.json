@@ -1,16 +1,13 @@
 {
   "name": "@wixc3/windmill-utils",
   "version": "1.0.7",
-  "main": "cjs/index.js",
+  "main": "src/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
     "build": "yarn build:cjs && yarn build:esm",
-    "build:watch": "run-p build:cjs-watch build:esm-watch",
-    "build:cjs-watch": "tsc -p tsconfig.build.json --watch --outDir cjs --module commonjs",
-    "build:esm-watch": "tsc -p tsconfig.build.json --watch --outDir esm --module esnext",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
     "test": "mocha \"test/**/*.spec.ts?(x)\"",
@@ -36,7 +33,10 @@
     "access": "public"
   },
   "dependencies": {
+    "@file-services/node": "^2.2.0",
+    "@file-services/overlay": "^2.2.0",
     "@file-services/path": "^2.2.0",
+    "@file-services/webpack": "^2.2.0",
     "chalk": "^4.0.0",
     "koa": "^2.12.0",
     "koa-static": "^5.0.0",

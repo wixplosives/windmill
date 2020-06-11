@@ -4,12 +4,19 @@ import koaWebpack from 'koa-webpack';
 import { Log } from './log';
 import { getServerUrl } from '../http';
 import koaStatic from 'koa-static';
+import { IMemFileSystem } from '@file-services/memory';
+import { createWebpackFs } from '@file-services/webpack';
+import { nodeFs } from '@file-services/node';
+import { createOverlayFs } from '@file-services/overlay';
+import { WebpackConfigurator } from '../webpack';
 
 export interface IServeOptions {
-    webpackConfig: webpack.Configuration;
+    webpackConfigurator: WebpackConfigurator;
+    projectPath: string;
     host?: string;
     port?: number;
     watch?: boolean;
+    memFs?: IMemFileSystem;
 }
 
 export interface IServer {
@@ -114,7 +121,7 @@ export async function serve(options: IServeOptions): Promise<IServer> {
     // We're not using a random port by default because Chrome and Firefox
     // block connections to some ports (e.g. 2049 - nfs, 6000 - X11) to prevent
     // cross-protocol attacks.
-    const webpackConfig = options.webpackConfig;
+    const webpackConfig = options.webpackConfigurator.getConfig();
     const host = options.host || '127.0.0.1';
     const port = options.port || 0x420;
 
@@ -131,6 +138,12 @@ export async function serve(options: IServeOptions): Promise<IServer> {
         watch,
         log,
     });
+
+    if (options.memFs) {
+        const webpackFs = createWebpackFs(createOverlayFs(nodeFs, options.memFs, options.projectPath));
+        compiler.inputFileSystem = webpackFs;
+        compiler.outputFileSystem = createWebpackFs(options.memFs);
+    }
 
     const middleware = await createMiddleware({ compiler, watch });
     const staticMiddleware = createStaticMiddleware({ compiler, watch });
