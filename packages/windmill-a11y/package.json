@@ -27,6 +27,7 @@
     "@wixc3/windmill-utils": "^1.0.8",
     "axe-core": "^3.5.3",
     "glob": "^7.1.6",
+    "tsconfig-paths": "^3.9.0",
     "webpack": "^4.43.0"
   },
   "files": [
