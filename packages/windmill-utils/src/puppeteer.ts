@@ -3,6 +3,7 @@ import { sleep } from './sleep';
 import { consoleLog } from './index';
 import { consoleError } from './console';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { patchConsole } = require('../patch-console') as { patchConsole: () => void };
 
 export function waitForPageError(page: puppeteer.Page): Promise<never> {
