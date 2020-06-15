@@ -4,10 +4,10 @@ module.exports = {
     tabWidth: 4,
     overrides: [
         {
-            files: '*.json',
+            files: ['*.json', '*.md', '*.yml'],
             options: {
-                tabWidth: 2
-            }
-        }
-    ]
+                tabWidth: 2,
+            },
+        },
+    ],
 };
