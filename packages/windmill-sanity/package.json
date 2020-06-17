@@ -1,11 +1,11 @@
 {
   "name": "@wixc3/windmill-sanity",
-  "version": "1.0.7",
+  "version": "1.0.0",
   "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "bin": {
-    "windmill-a11y": "bin/windmill-sanity.js"
+    "windmill-sanity": "bin/windmill-sanity.js"
   },
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
@@ -13,9 +13,8 @@
     "build": "yarn build:cjs && yarn build:esm",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
-    "test": "yarn test:node && yarn test:browser",
+    "test": "yarn test:node",
     "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
-    "test:browser": "mocha-pup \"test/**/*.spec.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
