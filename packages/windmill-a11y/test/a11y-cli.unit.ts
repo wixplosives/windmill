@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { dirname, resolve } from 'path';
+import { dirname, resolve, join } from 'path';
 import { spawnSync } from 'child_process';
 
 const cliSrcPath = require.resolve('../bin/windmill-a11y.js');
@@ -26,6 +26,16 @@ describe('The a11y cli', function () {
         const { stdout, status } = runA11y(['basic-sim.sim.ts']);
 
         expect(stdout).to.include('Running a11y test');
+        expect(stdout).to.include('Testing component NonSSRComp');
+        expect(stdout).to.include('No errors found');
+        expect(status).to.equal(0);
+    });
+
+    it('should load a config and call any hooks defined in the config', () => {
+        const configPath = join(mockRepoRoot, 'test-a11y-config.js');
+        const { stdout, status } = runA11y(['--config', `${configPath}`, 'basic-sim.sim.ts']);
+
+        expect(stdout).to.include('This is a hook that gets called before loading your simulations');
         expect(stdout).to.include('Testing component NonSSRComp');
         expect(stdout).to.include('No errors found');
         expect(status).to.equal(0);
