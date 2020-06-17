@@ -38,7 +38,6 @@ const windmillConfigPath = (config as string) || fs.findClosestFileSync(projectP
 let windmillConfig: WindmillConfig | undefined = undefined;
 if (windmillConfigPath) {
     windmillConfig = require(windmillConfigPath) as WindmillConfig;
-    console.log('windmillConfig:', windmillConfig);
 }
 
 if (windmillConfig?.hooks) {
