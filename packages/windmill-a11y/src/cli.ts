@@ -1,9 +1,18 @@
 import glob from 'glob';
+import fs from '@file-services/node';
 import { ImpactValue } from 'axe-core';
 import { Command } from 'commander';
 import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-node-utils';
 import { consoleError } from '@wixc3/windmill-utils';
 import { a11yTest, impactLevels } from './server';
+
+interface WindmillConfig {
+    projectPath: string;
+    webpackConfigPath: string;
+    hooks: [() => void];
+    simulationFilePattern: string[];
+    a11yImpactLevel: ImpactValue;
+}
 
 cliInit();
 const program = new Command();
@@ -19,19 +28,33 @@ program
     .option('-p, --project <p>', `Project path`)
     .option('-d, --debug', `Debug mode`)
     .option('-w, --webpack <w>', `webpack path`)
+    .option('-c, --config <c>', `Config file path`)
     .parse(process.argv);
 
-const { args, project, webpack, impactLevel, debug } = program;
-
+const { args, project, webpack, impactLevel, debug, config } = program;
 const projectPath = (project as string) || process.cwd();
-const webpackConfigPath = (webpack as string) || getWebpackConfigPath(projectPath);
+const windmillConfigPath = (config as string) || fs.findClosestFileSync(projectPath, 'windmill.config.js');
+
+let windmillConfig: WindmillConfig | undefined = undefined;
+if (windmillConfigPath) {
+    windmillConfig = require(windmillConfigPath) as WindmillConfig;
+    console.log('windmillConfig:', windmillConfig);
+}
+
+if (windmillConfig?.hooks) {
+    for (const hook of windmillConfig.hooks) {
+        hook();
+    }
+}
+
+const webpackConfigPath = (webpack as string) || windmillConfig?.webpackConfigPath || getWebpackConfigPath(projectPath);
 
 if (!webpackConfigPath) {
     printErrorAndExit('Could not find a webpack config.');
 }
 
 const simulations: string[] = [];
-const defaultSimulationPattern = ['*.sim.ts', '*.sim.tsx'];
+const simulationFilePattern = windmillConfig?.simulationFilePattern || ['*.sim.ts', '*.sim.tsx'];
 const globOptions: glob.IOptions = { absolute: true, cwd: projectPath, matchBase: true };
 
 if (args.length > 0) {
@@ -45,20 +68,18 @@ if (args.length > 0) {
         printErrorAndExit(`Could not find any simulations matching the pattern: ${args.join(', ')}`);
     }
 } else {
-    for (const simPattern of defaultSimulationPattern) {
+    for (const simPattern of simulationFilePattern) {
         for (const foundFile of glob.sync(simPattern, globOptions)) {
             simulations.push(foundFile);
         }
     }
 
     if (simulations.length === 0) {
-        printErrorAndExit(
-            `Could not find any simulations matching the pattern: ${defaultSimulationPattern.join(', ')}`
-        );
+        printErrorAndExit(`Could not find any simulations matching the pattern: ${simulationFilePattern.join(', ')}`);
     }
 }
 
-const impact = ((impactLevel as string) || 'minor') as ImpactValue;
+const impact = ((impactLevel as string) || windmillConfig?.a11yImpactLevel || 'minor') as ImpactValue;
 if (!impactLevels.includes(impact)) {
     printErrorAndExit(`Invalid impact level ${impact}`);
 }
