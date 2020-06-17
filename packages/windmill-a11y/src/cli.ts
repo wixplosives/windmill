@@ -5,14 +5,7 @@ import { Command } from 'commander';
 import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-node-utils';
 import { consoleError } from '@wixc3/windmill-utils';
 import { a11yTest, impactLevels } from './server';
-
-interface WindmillConfig {
-    projectPath: string;
-    webpackConfigPath: string;
-    hooks: [() => void];
-    simulationFilePattern: string[];
-    a11yImpactLevel: ImpactValue;
-}
+import { WindmillConfig } from './types';
 
 cliInit();
 const program = new Command();
