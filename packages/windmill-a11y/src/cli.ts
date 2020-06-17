@@ -30,6 +30,7 @@ const windmillConfigPath = (config as string) || fs.findClosestFileSync(projectP
 
 let windmillConfig: WindmillConfig | undefined = undefined;
 if (windmillConfigPath) {
+    // eslint-disable/no-var-requires
     windmillConfig = require(windmillConfigPath) as WindmillConfig;
 }
 
