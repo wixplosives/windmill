@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-node-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",

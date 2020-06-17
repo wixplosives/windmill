@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-if (fs.existsSync(path.join(__dirname, '../cjs/cli'))) {
+if (fs.existsSync(path.join(__dirname, '../cjs/cli.js'))) {
     require('../cjs/cli');
 } else {
     require('tsconfig-paths/register');

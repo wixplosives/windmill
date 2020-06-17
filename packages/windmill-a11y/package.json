@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-a11y",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -23,10 +23,11 @@
   },
   "dependencies": {
     "@file-services/memory": "^2.2.0",
-    "@wixc3/windmill-node-utils": "^1.0.2",
-    "@wixc3/windmill-utils": "^1.0.7",
-    "axe-core": "^3.5.3",
+    "@wixc3/windmill-node-utils": "^1.0.3",
+    "@wixc3/windmill-utils": "^1.0.8",
+    "axe-core": "^3.5.4",
     "glob": "^7.1.6",
+    "tsconfig-paths": "^3.9.0",
     "webpack": "^4.43.0"
   },
   "files": [

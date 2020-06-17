@@ -4,7 +4,7 @@
 // browser and Node is inefficient and can cause Puppeteer to freeze. The
 // solution is to wrap console.log with a function that does all formatting
 // in the browser. This allows us to pass only primitive values to Node.
-exports.patchConsole = function() {
+exports.patchConsole = function () {
     const colors = {
         bold: [1, 22],
         italic: [3, 23],
@@ -18,7 +18,7 @@ exports.patchConsole = function() {
         green: [32, 39],
         magenta: [35, 39],
         red: [31, 39],
-        yellow: [33, 39]
+        yellow: [33, 39],
     };
 
     const styles = {
@@ -29,14 +29,14 @@ exports.patchConsole = function() {
         null: 'bold',
         string: 'green',
         date: 'magenta',
-        regexp: 'red'
+        regexp: 'red',
     };
 
     function inspect(obj, opts = {}) {
         const ctx = {
             seen: [],
             stylize: opts.colors ? stylizeWithColor : stylizeNoColor,
-            depth: opts.depth || 2
+            depth: opts.depth || 2,
         };
         return formatValue(ctx, obj, ctx.depth);
     }
@@ -92,7 +92,7 @@ exports.patchConsole = function() {
     function arrayToHash(array) {
         var hash = {};
 
-        array.forEach(function(val) {
+        array.forEach(function (val) {
             hash[val] = true;
         });
 
@@ -121,7 +121,7 @@ exports.patchConsole = function() {
                 output.push('');
             }
         }
-        keys.forEach(function(key) {
+        keys.forEach(function (key) {
             if (!key.match(/^\d+$/)) {
                 output.push(formatProperty(ctx, value, recurseTimes, visibleKeys, key, true));
             }
@@ -210,7 +210,7 @@ exports.patchConsole = function() {
         if (array) {
             output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
         } else {
-            output = keys.map(function(key) {
+            output = keys.map(function (key) {
                 return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
             });
         }
@@ -248,7 +248,7 @@ exports.patchConsole = function() {
                     if (array) {
                         str = str
                             .split('\n')
-                            .map(function(line) {
+                            .map(function (line) {
                                 return '  ' + line;
                             })
                             .join('\n')
@@ -258,7 +258,7 @@ exports.patchConsole = function() {
                             '\n' +
                             str
                                 .split('\n')
-                                .map(function(line) {
+                                .map(function (line) {
                                     return '   ' + line;
                                 })
                                 .join('\n');
@@ -292,12 +292,7 @@ exports.patchConsole = function() {
         if (isUndefined(value)) return ctx.stylize('undefined', 'undefined');
         if (isString(value)) {
             var simple =
-                "'" +
-                JSON.stringify(value)
-                    .replace(/^"|"$/g, '')
-                    .replace(/'/g, "\\'")
-                    .replace(/\\"/g, '"') +
-                "'";
+                "'" + JSON.stringify(value).replace(/^"|"$/g, '').replace(/'/g, "\\'").replace(/\\"/g, '"') + "'";
             return ctx.stylize(simple, 'string');
         }
         if (isNumber(value)) return ctx.stylize('' + value, 'number');
@@ -306,11 +301,7 @@ exports.patchConsole = function() {
     }
 
     function reduceToSingleString(output, base, braces) {
-        // eslint-disable-next-line no-unused-vars
-        var numLinesEst = 0;
-        var length = output.reduce(function(prev, cur) {
-            numLinesEst++;
-            if (cur.indexOf('\n') >= 0) numLinesEst++;
+        var length = output.reduce(function (prev, cur) {
             // eslint-disable-next-line no-control-regex
             return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
         }, 0);
@@ -329,8 +320,8 @@ exports.patchConsole = function() {
     // eslint-disable-next-line no-console
     const consoleLog = console.log;
     // eslint-disable-next-line no-console
-    console.log = function(...args) {
-        args = args.length ? args.map(arg => (isPrimitive(arg) ? arg : inspect(arg, { colors: true }))) : [''];
+    console.log = function (...args) {
+        args = args.length ? args.map((arg) => (isPrimitive(arg) ? arg : inspect(arg, { colors: true }))) : [''];
 
         consoleLog.apply(console, args);
     };

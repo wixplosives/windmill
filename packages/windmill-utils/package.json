@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-utils",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -37,8 +37,8 @@
     "@file-services/overlay": "^2.2.0",
     "@file-services/path": "^2.2.0",
     "@file-services/webpack": "^2.2.0",
-    "chalk": "^4.0.0",
-    "koa": "^2.12.0",
+    "chalk": "^4.1.0",
+    "koa": "^2.12.1",
     "koa-static": "^5.0.0",
     "koa-webpack": "^5.3.0"
   }

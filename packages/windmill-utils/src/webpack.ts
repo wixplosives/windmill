@@ -4,6 +4,7 @@ import { createPreviewConfig, OverrideConfig } from './create-webpack-config';
 
 export class WebpackConfigurator {
     public static load(config: OverrideConfig, path: string): WebpackConfigurator {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const initialConfig = require(path) as webpack.Configuration;
         const mergedConfig = createPreviewConfig(config, initialConfig);
         return new WebpackConfigurator(mergedConfig);
