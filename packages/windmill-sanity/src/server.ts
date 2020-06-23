@@ -23,7 +23,8 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
         },
         webpackConfigPath
     )
-        .setEntry('test', nodeFs.join(projectPath, 'test/test.js'))
+        .setEntry('test', nodeFs.join(projectPath, 'mocha-setup/setup.js'))
+        .addEntry('test', nodeFs.join(projectPath, 'test/test.js'))
         .addHtml({
             template: path.join(ownPath, '/templates', 'index.template'),
             title: 'Sanity',
@@ -48,20 +49,53 @@ export async function sanityTests(
             },
             test: {
                 'test.js': `
-                    import {getSimulations} from '../simulation/simulations';
-                    import {hydrationTest} from '@wixc3/windmill-sanity';
+                    import { hydrationTest } from '@wixc3/windmill-sanity';
+                    import { renderToString } from 'react-dom/server';
+                    import { simulationToJsx } from '@wixc3/wcs-core';
+                    import { getSimulations } from '../simulation/simulations';
                     
                     async function runTests() {
                         const simulations = (await getSimulations()).map((sim) => sim.default);
                         for (const simulation of simulations) {
-                            hydrationTest(simulation);
+                            const simulationJsx = simulationToJsx(simulation);
+                            const simulationString = renderToString(simulationJsx);
+                            hydrationTest(simulation, simulationString);
                         }
+                        
+                        mocha.run()
+                            .on('test end', () => window.mochaStatus.numCompletedTests++)
+                            .on('fail',     () => window.mochaStatus.numFailedTests++)
+                            .on('end',      () => window.mochaStatus.finished = true);
                     }
 
                     runTests().catch((err) => {
                         throw err;
                     });
+                `,
+            },
+            'mocha-setup': {
+                'setup.js': `
+                    // Mocha officially supports this import in browser environment
+                    require('mocha/mocha.js');
 
+                    mocha.setup('bdd');
+                    mocha.cleanReferencesAfterRun(false);
+
+                    // This needs to be accessible by Puppeteer.
+                    window.mochaStatus = {
+                        numCompletedTests: 0,
+                        numFailedTests: 0,
+                        finished: false
+                    };
+
+                    // Start Mocha in the next tick because we haven't yet included the test files.
+
+                    // setTimeout(() => {
+                    //     mocha.run()
+                    //         .on('test end', () => window.mochaStatus.numCompletedTests++)
+                    //         .on('fail',     () => window.mochaStatus.numFailedTests++)
+                    //         .on('end',      () => window.mochaStatus.finished = true);
+                    // }, 0);
                 `,
             },
         });
@@ -80,11 +114,6 @@ export async function sanityTests(
                 throw err;
             });
         });
-
-        await page.evaluateOnNewDocument((simulations) => {
-            localStorage.clear();
-            localStorage.setItem('simulations', simulations);
-        }, JSON.stringify(simulationFilePaths));
 
         await page.goto(server.getUrl());
 

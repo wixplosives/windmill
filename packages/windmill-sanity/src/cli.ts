@@ -1,9 +1,8 @@
 import glob from 'glob';
-import { ImpactValue } from 'axe-core';
 import { Command } from 'commander';
 import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-node-utils';
 import { consoleError } from '@wixc3/windmill-utils';
-import { a11yTest, impactLevels } from './server';
+import { sanityTests } from './server';
 
 cliInit();
 const program = new Command();
@@ -11,17 +10,13 @@ const program = new Command();
 process.on('unhandledRejection', printErrorAndExit);
 
 program
-    .description('run accessibility tests on simulations')
-    .option(
-        '-i, --impact <i>',
-        `Only display issues with impact level <i> and higher. Values are: ${impactLevels.join(', ')}`
-    )
+    .description('run sanity tests on simulations')
     .option('-p, --project <p>', `Project path`)
     .option('-d, --debug', `Debug mode`)
     .option('-w, --webpack <w>', `webpack path`)
     .parse(process.argv);
 
-const { args, project, webpack, impactLevel, debug } = program;
+const { args, project, webpack, debug } = program;
 
 const projectPath = (project as string) || process.cwd();
 const webpackConfigPath = (webpack as string) || getWebpackConfigPath(projectPath);
@@ -58,12 +53,7 @@ if (args.length > 0) {
     }
 }
 
-const impact = ((impactLevel as string) || 'minor') as ImpactValue;
-if (!impactLevels.includes(impact)) {
-    printErrorAndExit(`Invalid impact level ${impact}`);
-}
-
-a11yTest(simulations, impact, projectPath, webpackConfigPath as string, debug).catch((err) => {
+sanityTests(simulations, projectPath, webpackConfigPath as string, debug).catch((err) => {
     printErrorAndExit(err);
 });
 

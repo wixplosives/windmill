@@ -130,11 +130,6 @@ export async function a11yTest(
             });
         });
 
-        await page.evaluateOnNewDocument((simulations) => {
-            localStorage.clear();
-            localStorage.setItem('simulations', simulations);
-        }, JSON.stringify(simulationFilePaths));
-
         await page.goto(server.getUrl());
 
         const results = await Promise.race([waitForPageError(page), getResults]);

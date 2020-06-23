@@ -18,6 +18,11 @@ export function logConsoleMessages(page: puppeteer.Page): void {
         const msgArgs = await Promise.all(msg.args().map((a) => a.jsonValue()));
         consoleLog(...msgArgs);
     });
+
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    page.on('pageerror', (msg) => {
+        consoleError(msg);
+    });
 }
 
 async function loadTestPage(page: puppeteer.Page, testPageUrl: string, timeout: number) {

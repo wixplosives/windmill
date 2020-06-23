@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <title>Sanity Tests</title>
   <link rel="icon" href="data:,">
-  <script>components = <%= htmlWebpackPlugin.options.components %>;</script>
 </head>
 <body>
   <div id="mocha"></div>
