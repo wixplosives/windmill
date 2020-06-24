@@ -4,13 +4,10 @@ import {
     WebpackConfigurator,
     serve,
     IServer,
-    waitForPageError,
-    consoleError,
     consoleLog,
     getEntryCode,
     runTestsInPuppeteer,
 } from '@wixc3/windmill-utils';
-import chalk from 'chalk';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
 
@@ -79,23 +76,14 @@ export async function sanityTests(
                     require('mocha/mocha.js');
 
                     mocha.setup('bdd');
-                    mocha.cleanReferencesAfterRun(false);
+                    // mocha.cleanReferencesAfterRun(false);
 
-                    // This needs to be accessible by Puppeteer.
+                    // This needs to be accessible by Puppeteer
                     window.mochaStatus = {
                         numCompletedTests: 0,
                         numFailedTests: 0,
                         finished: false
                     };
-
-                    // Start Mocha in the next tick because we haven't yet included the test files.
-
-                    // setTimeout(() => {
-                    //     mocha.run()
-                    //         .on('test end', () => window.mochaStatus.numCompletedTests++)
-                    //         .on('fail',     () => window.mochaStatus.numFailedTests++)
-                    //         .on('end',      () => window.mochaStatus.finished = true);
-                    // }, 0);
                 `,
             },
         });

@@ -1,10 +1,9 @@
 import glob from 'glob';
 import { Command } from 'commander';
-import { cliInit, getWebpackConfigPath } from '@wixc3/windmill-node-utils';
+import { getWebpackConfigPath } from '@wixc3/windmill-node-utils';
 import { consoleError } from '@wixc3/windmill-utils';
 import { sanityTests } from './server';
 
-cliInit();
 const program = new Command();
 
 process.on('unhandledRejection', printErrorAndExit);
