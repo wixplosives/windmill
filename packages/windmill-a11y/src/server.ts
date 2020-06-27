@@ -98,7 +98,7 @@ export async function a11yTest(
                     import {test} from '@wixc3/windmill-a11y';
                     
                     async function runTests() {
-                        const simulations = (await getSimulations()).map((sim) => sim.default);
+                        const simulations = await getSimulations();
                         test(simulations);
                     }
 

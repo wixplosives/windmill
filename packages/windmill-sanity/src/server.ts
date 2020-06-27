@@ -5,11 +5,13 @@ import {
     serve,
     IServer,
     consoleLog,
-    getEntryCode,
     runTestsInPuppeteer,
+    getEntryCodeWithSSRComps,
 } from '@wixc3/windmill-utils';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
+import { renderToString } from 'react-dom/server';
+import { simulationToJsx } from '@wixc3/wcs-core';
 
 const ownPath = path.resolve(__dirname, '..');
 
@@ -29,6 +31,18 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
         .suppressReactDevtoolsSuggestion();
 }
 
+const renderSimulationsToString = (simulationFilePaths: string[]): string[] => {
+    const simulationsAsString = [];
+
+    for (const simulationFilePath of simulationFilePaths) {
+        // eslint-disable-next-line
+        const sim = require(simulationFilePath).default;
+        simulationsAsString.push(renderToString(simulationToJsx(sim)));
+    }
+
+    return simulationsAsString;
+};
+
 export async function sanityTests(
     simulationFilePaths: string[],
     projectPath: string,
@@ -39,24 +53,27 @@ export async function sanityTests(
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running sanity tests...');
 
+    const simulationsRenderedToString = renderSimulationsToString(simulationFilePaths);
+
     try {
         const memFs = createMemoryFs({
             simulation: {
-                'simulations.js': getEntryCode(simulationFilePaths),
+                'simulations.js': getEntryCodeWithSSRComps(simulationFilePaths, simulationsRenderedToString),
             },
+            // TODO: REFACTOR OUT GOOD LORD
             test: {
                 'test.js': `
                     import { hydrationTest } from '@wixc3/windmill-sanity';
+                    import { eventListenerTest } from '@wixc3/windmill-sanity';
                     import { renderToString } from 'react-dom/server';
                     import { simulationToJsx } from '@wixc3/wcs-core';
                     import { getSimulations } from '../simulation/simulations';
                     
                     async function runTests() {
-                        const simulations = (await getSimulations()).map((sim) => sim.default);
-                        for (const simulation of simulations) {
-                            const simulationJsx = simulationToJsx(simulation);
-                            const simulationString = renderToString(simulationJsx);
-                            hydrationTest(simulation, simulationString);
+                        const simulationsData = await getSimulations();
+                        for (const simulationData of simulationsData) {
+                            hydrationTest(simulationData.simulation, simulationData.simulationRenderedToString);
+                            eventListenerTest(simulationData.simulation);
                         }
                         
                         mocha.run()

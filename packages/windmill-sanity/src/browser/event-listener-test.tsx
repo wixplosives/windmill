@@ -1,13 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import { AllEvents } from './all-events';
 import { attachEventListenerLogger } from './override-event-listeners';
 import { Listener } from './listener';
 import { ISimulation, simulationToJsx } from '@wixc3/wcs-core';
-
-const hydrate = ReactDOM.hydrate || ReactDOM.render;
 
 chai.use(sinonChai);
 
@@ -24,10 +22,7 @@ function leftoverListenerErrors(listeners: Listener[], eventTarget: string) {
  * we are able to check if any events are left.
  */
 
-export const eventListenerTest = (
-    simulation: ISimulation<Record<string, unknown>>,
-    simulationRenderedToString: string
-): void => {
+export const eventListenerTest = (simulation: ISimulation<Record<string, unknown>>): void => {
     describe('Event Listener test', () => {
         const root = document.getElementById('root') as HTMLElement;
 
@@ -53,11 +48,8 @@ export const eventListenerTest = (
                 const documentLogger = attachEventListenerLogger(document);
                 const bodyLogger = attachEventListenerLogger(document.body);
 
-                const originalInnerHTML = root.innerHTML;
-                root.innerHTML = simulationRenderedToString;
-                hydrate(simulationToJsx(simulation), root);
+                render(simulationToJsx(simulation), root);
                 ReactDOM.unmountComponentAtNode(root);
-                root.innerHTML = originalInnerHTML;
 
                 const errors = [
                     ...leftoverListenerErrors(windowLogger.listeners.getAll(), 'window'),

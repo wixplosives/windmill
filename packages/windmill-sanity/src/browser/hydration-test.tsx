@@ -36,6 +36,7 @@ export const hydrationTest = (
             // Set root's HTML to the SSR component
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             root.innerHTML = renderedComponentString;
+            // console.log('renderedComponentString:', renderedComponentString);
 
             // TODO: add opt-out for strict mode
             hydrate(<React.StrictMode>{simulationToJsx(simulation)}</React.StrictMode>, root);
