@@ -1,6 +1,6 @@
 import { checkIfSimulationIsAccessible } from '../a11y-test';
-import { ISimulation } from '@wixc3/wcs-core';
-import { Result } from '../server';
+import type { ISimulation } from '@wixc3/wcs-core';
+import type { Result } from '../server';
 
 export async function test(simulations: ISimulation<Record<string, unknown>>[]): Promise<void> {
     const results: Result[] = [];

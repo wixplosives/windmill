@@ -10,7 +10,7 @@ import {
     getEntryCode,
 } from '@wixc3/windmill-utils';
 import chalk from 'chalk';
-import axe from 'axe-core';
+import type axe from 'axe-core';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
 

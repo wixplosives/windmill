@@ -4,11 +4,11 @@ import koaWebpack from 'koa-webpack';
 import { Log } from './log';
 import { getServerUrl } from '../http';
 import koaStatic from 'koa-static';
-import { IMemFileSystem } from '@file-services/memory';
+import type { IMemFileSystem } from '@file-services/memory';
 import { createWebpackFs } from '@file-services/webpack';
 import { nodeFs } from '@file-services/node';
 import { createOverlayFs } from '@file-services/overlay';
-import { WebpackConfigurator } from '../webpack';
+import type { WebpackConfigurator } from '../webpack';
 
 export interface IServeOptions {
     webpackConfigurator: WebpackConfigurator;
