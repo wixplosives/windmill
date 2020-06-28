@@ -7,11 +7,14 @@ import {
     consoleLog,
     runTestsInPuppeteer,
     getEntryCodeWithSSRComps,
+    consoleError,
+    ISimulationsToString,
 } from '@wixc3/windmill-utils';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
 import { renderToString } from 'react-dom/server';
 import { simulationToJsx } from '@wixc3/wcs-core';
+import chalk from 'chalk';
 
 const ownPath = path.resolve(__dirname, '..');
 
@@ -31,13 +34,32 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
         .suppressReactDevtoolsSuggestion();
 }
 
-const renderSimulationsToString = (simulationFilePaths: string[]): string[] => {
-    const simulationsAsString = [];
+const renderSimulationsToString = (simulationFilePaths: string[]): ISimulationsToString => {
+    const simulationsAsString: ISimulationsToString = {};
 
     for (const simulationFilePath of simulationFilePaths) {
-        // eslint-disable-next-line
-        const sim = require(simulationFilePath).default;
-        simulationsAsString.push(renderToString(simulationToJsx(sim)));
+        try {
+            // eslint-disable-next-line
+            const sim = require(simulationFilePath).default;
+
+            if (sim) {
+                simulationsAsString[simulationFilePath] = renderToString(simulationToJsx(sim));
+            }
+        } catch (e) {
+            consoleError(
+                `\n${chalk.yellow("Couldn't require simulation")} "${chalk.underline(
+                    simulationFilePath
+                )}" ${chalk.yellow(
+                    'in node.'
+                )} Windmill will continue, but will skip hydration tests for this component, as this error means that either: \n\t${chalk.cyan(
+                    'a)'
+                )} this component is not SSR-compatible, or \n\t${chalk.cyan(
+                    'b)'
+                )} require hooks haven't been configured for your project. \n\nPlease check the Windmill documentation for more information. For debugging purposes, the error has been printed below.`
+            );
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            consoleError(`\n${chalk.red('Error:')}`, e);
+        }
     }
 
     return simulationsAsString;

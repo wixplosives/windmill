@@ -27,6 +27,10 @@ export interface ISimulationWithSSRComp {
     simulationRenderedToString?: string;
 }
 
+export interface ISimulationsToString {
+    [simulationFilePath: string]: string;
+}
+
 export function getEntryCode(entryFiles: string[]): string {
     const entryCode = [
         `
@@ -44,7 +48,10 @@ export function getEntryCode(entryFiles: string[]): string {
     return entryCode.join('\n');
 }
 
-export function getEntryCodeWithSSRComps(entryFiles: string[], simulationsRenderedToString: string[]): string {
+export function getEntryCodeWithSSRComps(
+    entryFiles: string[],
+    simulationsRenderedToString: ISimulationsToString
+): string {
     const entryCode = [
         `
     export async function getSimulations() { 
@@ -53,7 +60,8 @@ export function getEntryCodeWithSSRComps(entryFiles: string[], simulationsRender
     for (const [index, moduleFilePath] of entryFiles.entries()) {
         entryCode.push(`const simulation${index} = await import(${JSON.stringify(moduleFilePath)});`);
         entryCode.push(
-            `simulations.push({simulation: simulation${index}.default, simulationRenderedToString: '${simulationsRenderedToString[index]}'})`
+            // eslint-disable-next-line
+            `simulations.push({simulation: simulation${index}.default, simulationRenderedToString: '${simulationsRenderedToString[moduleFilePath]}'})`
         );
     }
 
