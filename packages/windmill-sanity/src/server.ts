@@ -92,8 +92,11 @@ export async function sanityTests(
                     // Mocha officially supports this import in browser environment
                     require('mocha/mocha.js');
 
-                    mocha.setup('bdd');
-                    // mocha.cleanReferencesAfterRun(false);
+                    mocha.setup({
+                        ui: 'bdd',
+                        reporter: 'spec',
+                        useColors: true
+                      });
 
                     // This needs to be accessible by Puppeteer
                     window.mochaStatus = {
@@ -110,8 +113,9 @@ export async function sanityTests(
             webpackConfigurator: getWebpackConfig(projectPath, webpackConfigPath),
             projectPath,
         });
-        // We don't want to be headless and we want to have devtools open if debug is true
-        browser = await puppeteer.launch({ headless: !debug, devtools: debug });
+
+        // We want to have devtools open if debug is true
+        browser = await puppeteer.launch({ devtools: debug });
         const page = await browser.newPage();
 
         page.on('dialog', (dialog) => {

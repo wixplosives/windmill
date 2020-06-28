@@ -115,8 +115,9 @@ export async function a11yTest(
             webpackConfigurator: getWebpackConfig(projectPath, webpackConfigPath),
             projectPath,
         });
-        // We don't want to be headless and we want to have devtools open if debug is true
-        browser = await puppeteer.launch({ headless: !debug, devtools: debug });
+
+        // We want to have devtools open if debug is true
+        browser = await puppeteer.launch({ devtools: debug });
         const page = await browser.newPage();
         const getResults = new Promise<Result[]>((resolve) => {
             page.exposeFunction('puppeteerReportResults', resolve).catch((err) => {
