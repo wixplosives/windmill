@@ -60,29 +60,12 @@ export async function sanityTests(
             simulation: {
                 'simulations.js': getEntryCodeWithSSRComps(simulationFilePaths, simulationsRenderedToString),
             },
-            // TODO: REFACTOR OUT GOOD LORD
             test: {
                 'test.js': `
-                    import { hydrationTest } from '@wixc3/windmill-sanity';
-                    import { eventListenerTest } from '@wixc3/windmill-sanity';
-                    import { renderToString } from 'react-dom/server';
-                    import { simulationToJsx } from '@wixc3/wcs-core';
+                    import { runTests } from '@wixc3/windmill-sanity';
                     import { getSimulations } from '../simulation/simulations';
                     
-                    async function runTests() {
-                        const simulationsData = await getSimulations();
-                        for (const simulationData of simulationsData) {
-                            hydrationTest(simulationData.simulation, simulationData.simulationRenderedToString);
-                            eventListenerTest(simulationData.simulation);
-                        }
-                        
-                        mocha.run()
-                            .on('test end', () => window.mochaStatus.numCompletedTests++)
-                            .on('fail',     () => window.mochaStatus.numFailedTests++)
-                            .on('end',      () => window.mochaStatus.finished = true);
-                    }
-
-                    runTests().catch((err) => {
+                    runTests(getSimulations).catch((err) => {
                         throw err;
                     });
                 `,
