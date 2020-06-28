@@ -40,7 +40,7 @@ export function getEntryCode(entryFiles: string[]): string {
     for (const [index, moduleFilePath] of entryFiles.entries()) {
         entryCode.push(`const simulation${index} = await import(${JSON.stringify(moduleFilePath)});`);
 
-        entryCode.push(`simulations.push({simulation: simulation${index}}.default)`);
+        entryCode.push(`simulations.push({simulation: simulation${index}.default});`);
     }
 
     entryCode.push(`return simulations; }`);

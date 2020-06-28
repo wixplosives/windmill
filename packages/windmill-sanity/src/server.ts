@@ -101,13 +101,13 @@ export async function sanityTests(
                         ui: 'bdd',
                         reporter: 'spec',
                         color: true
-                      });
+                    });
 
-                    // This needs to be accessible by Puppeteer
+                    // This needs to be accessible by Puppeteer.
                     window.mochaStatus = {
-                        numCompletedTests: 0,
-                        numFailedTests: 0,
-                        finished: false
+                        completed: 0,
+                        failed: 0,
+                        finished: false,
                     };
                 `,
             },

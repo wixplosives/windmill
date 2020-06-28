@@ -28,7 +28,8 @@ const runTest = (mocha: Mocha, getPassFlag: (flag: number) => void) => {
 };
 
 // Invoking this method runs our ssr-test in the mocha environment
-export const ssrTestWithFailingComp = (getPassFlag: (flag: number) => void) => {
+export const ssrTestWithFailingComp = (getPassFlag: (flag: number) => void): void => {
+    require('@stylable/node/register');
     const pathToFailingTest = path.dirname(require.resolve('./ssr-failing-test.ts'));
     const failingMocha = new Mocha({ reporter: MyReporter });
     failingMocha.addFile(pathToFailingTest + '/ssr-failing-test.ts');
@@ -36,7 +37,8 @@ export const ssrTestWithFailingComp = (getPassFlag: (flag: number) => void) => {
     runTest(failingMocha, getPassFlag);
 };
 
-export const ssrTestWithPassingComp = (getPassFlag: (flag: number) => void) => {
+export const ssrTestWithPassingComp = (getPassFlag: (flag: number) => void): void => {
+    require('@stylable/node/register');
     const pathToPassingTest = path.dirname(require.resolve('./ssr-passing-test.ts'));
     const passingMocha = new Mocha({ reporter: MyReporter });
     passingMocha.addFile(pathToPassingTest + '/ssr-passing-test.ts');

@@ -14,7 +14,7 @@ export const hydrationTest = (
     simulation: ISimulation<Record<string, unknown>>,
     renderedComponentString: string
 ): void => {
-    describe(`Hydration test for ${simulation.name}`, () => {
+    describe(`${simulation.name} hydration test`, () => {
         let consoleSpy: sinon.SinonSpy<Parameters<Console['log']>, ReturnType<Console['log']>>;
         let errorSpy: sinon.SinonSpy<Parameters<Console['error']>, ReturnType<Console['error']>>;
         const root = document.getElementById('root') as HTMLElement;

@@ -1071,6 +1071,27 @@
     postcss-value-parser "^4.1.0"
     url-regex "^5.0.0"
 
+"@stylable/core@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-3.7.0.tgz#31a7853de17ccc879b7744b5df830ee86f8c32b7"
+  integrity sha512-jL1xY3moVlwdc2P2MM4sHLfs86IAOe+5vemTtRNAh62lc8iIzWLRHk7hxBxC2MCbTyIbK3q96OgVfX644u9hng==
+  dependencies:
+    css-selector-tokenizer "^0.7.2"
+    deindent "^0.1.0"
+    enhanced-resolve "^4.2.0"
+    is-url-superb "^4.0.0"
+    is-vendor-prefixed "^3.3.1"
+    jest-docblock "^26.0.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.clonedeepwith "^4.5.0"
+    murmurhash "^1.0.0"
+    postcss "^7.0.32"
+    postcss-js "^2.0.3"
+    postcss-nested "^4.2.1"
+    postcss-safe-parser "^4.0.2"
+    postcss-selector-matches "^4.0.0"
+    postcss-value-parser "^4.1.0"
+
 "@stylable/dom-test-kit@^3.6.3":
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.6.3.tgz#0ce05aa05e84dc7c159ef746c59e28e29bc44e38"
@@ -1086,6 +1107,13 @@
   dependencies:
     "@stylable/core" "^3.6.3"
 
+"@stylable/module-utils@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@stylable/module-utils/-/module-utils-3.7.0.tgz#8195afbe76d3c142cd1e532cfae103d64a28a9ac"
+  integrity sha512-GjWVWpVhM2wXIp31UZMLTP+GohtuZA1uxUvQwXINFeS2Do22KhFjvLAp6g5W63GCORLSLdyDczKV0+zGxrJAjA==
+  dependencies:
+    "@stylable/core" "^3.7.0"
+
 "@stylable/node@^3.6.3":
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/@stylable/node/-/node-3.6.3.tgz#ab9357ba1eb364a88f9d7e549f3052ca53b82296"
@@ -1093,6 +1121,15 @@
   dependencies:
     "@stylable/core" "^3.6.3"
     "@stylable/module-utils" "^3.6.3"
+    find-config "^1.0.0"
+
+"@stylable/node@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@stylable/node/-/node-3.7.0.tgz#87a5a5839c075d8338102b9ba70329f9de0585da"
+  integrity sha512-EfyjbOTryBIulq0/TZ7dtk3pke/oAl00ecb2NXfOrLRuJY5YkqSZ8FRkswocvFofYfy2Dr1yMefYYxP94bLl0w==
+  dependencies:
+    "@stylable/core" "^3.7.0"
+    "@stylable/module-utils" "^3.7.0"
     find-config "^1.0.0"
 
 "@stylable/optimizer@^3.6.3":
@@ -3643,6 +3680,15 @@ enhanced-resolve@^4.0.0, enhanced-resolve@^4.1.0, enhanced-resolve@^4.1.1:
     memory-fs "^0.5.0"
     tapable "^1.0.0"
 
+enhanced-resolve@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-4.2.0.tgz#5d43bda4a0fd447cb0ebbe71bef8deff8805ad0d"
+  integrity sha512-S7eiFb/erugyd1rLb6mQ3Vuq+EXHv5cpCkNqqIkYkBgN2QdFnyCZzFBleqwGEx4lgNGYij81BWnCrFNK7vxvjQ==
+  dependencies:
+    graceful-fs "^4.1.2"
+    memory-fs "^0.5.0"
+    tapable "^1.0.0"
+
 entities@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
@@ -5446,6 +5492,11 @@ is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
+
+is-url-superb@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/is-url-superb/-/is-url-superb-4.0.0.tgz#b54d1d2499bb16792748ac967aa3ecb41a33a8c2"
+  integrity sha512-GI+WjezhPPcbM+tqE9LnmsY5qqjwHzTvjJ36wxYX5ujNXefSUJ/T17r5bqDV8yLhcgB59KTPNOc9O9cmHTPWsA==
 
 is-utf8@^0.2.0:
   version "0.2.1"

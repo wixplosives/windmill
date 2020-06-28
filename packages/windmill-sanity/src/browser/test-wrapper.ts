@@ -19,9 +19,9 @@ export async function runTests(getSimulations: () => Promise<ISimulationWithSSRC
     mocha
         .run()
         // eslint-disable-next-line
-        .on('test end', () => (window as any).mochaStatus.numCompletedTests++)
+        .on('test end', () => (window as any).mochaStatus.completed++)
         // eslint-disable-next-line
-        .on('fail', () => (window as any).mochaStatus.numFailedTests++)
+        .on('fail', () => (window as any).mochaStatus.failed++)
         // eslint-disable-next-line
         .on('end', () => ((window as any).mochaStatus.finished = true));
 }

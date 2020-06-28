@@ -31,13 +31,13 @@ describe('The sanity cli', function () {
         expect(status).to.equal(0);
     });
 
-    // it('should load a config and call any hooks defined in the config', () => {
-    //     const configPath = join(mockRepoRoot, 'test-a11y-config.js');
-    //     const { stdout, status } = runSanity(['--config', `${configPath}`, 'basic-sim.sim.ts']);
+    it('should load a config and call any hooks defined in the config', () => {
+        const configPath = join(mockRepoRoot, 'test-a11y-config.js');
+        const { stdout, status } = runSanity(['--config', `${configPath}`, 'basic-sim.sim.ts']);
 
-    //     expect(stdout).to.include('This is a hook that gets called before loading your simulations');
-    //     expect(stdout).to.include('Testing component NonSSRComp');
-    //     expect(stdout).to.include('No errors found');
-    //     expect(status).to.equal(0);
-    // });
+        expect(stdout).to.include('This is a hook that gets called before loading your simulations');
+        expect(stdout).to.include('Testing component NonSSRComp');
+        expect(stdout).to.include('No errors found');
+        expect(status).to.equal(0);
+    });
 });
