@@ -95,7 +95,7 @@ export async function sanityTests(
                     mocha.setup({
                         ui: 'bdd',
                         reporter: 'spec',
-                        useColors: true
+                        color: true
                       });
 
                     // This needs to be accessible by Puppeteer
