@@ -15,7 +15,7 @@ const runSanity = (args: string[] = []) =>
 describe('The sanity cli', function () {
     this.timeout(20_000);
 
-    it('should exit with exitCode 1 while running on mock-repo, a component with non-hydratable components', () => {
+    it('should exit with exitCode 1 while running on mock-repo, a repo with non-hydratable components', () => {
         const { stdout, status } = runSanity();
 
         expect(stdout).to.include('Running sanity tests...');
