@@ -31,7 +31,7 @@ describe('The sanity cli', function () {
 
     it('should load a config and call any hooks defined in the config', () => {
         const configPath = join(mockRepoRoot, 'test-a11y-config.js');
-        const { stdout, status } = runSanity(['--config', `${configPath}`, 'basic-sim.sim.ts']);
+        const { stdout, status } = runSanity(['--config', `${configPath}`, 'non-ssr-comp.sim.ts']);
 
         expect(stdout).to.include('This is a hook that gets called before loading your simulations');
         expect(status).to.equal(0);

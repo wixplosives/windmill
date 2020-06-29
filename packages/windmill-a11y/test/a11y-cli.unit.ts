@@ -23,7 +23,7 @@ describe('The a11y cli', function () {
     });
 
     it('should not error while running on non-ssr-comp, an accessible component', () => {
-        const { stdout, status } = runA11y(['basic-sim.sim.ts']);
+        const { stdout, status } = runA11y(['non-ssr-comp.sim.ts']);
 
         expect(stdout).to.include('Running a11y test');
         expect(stdout).to.include('Testing component NonSSRComp');
@@ -33,7 +33,7 @@ describe('The a11y cli', function () {
 
     it('should load a config and call any hooks defined in the config', () => {
         const configPath = join(mockRepoRoot, 'test-a11y-config.js');
-        const { stdout, status } = runA11y(['--config', `${configPath}`, 'basic-sim.sim.ts']);
+        const { stdout, status } = runA11y(['--config', `${configPath}`, 'non-ssr-comp.sim.ts']);
 
         expect(stdout).to.include('This is a hook that gets called before loading your simulations');
         expect(stdout).to.include('Testing component NonSSRComp');

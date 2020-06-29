@@ -13,7 +13,7 @@ import {
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
 import { renderToString } from 'react-dom/server';
-import { simulationToJsx } from '@wixc3/wcs-core';
+import { simulationToJsx, ISimulation } from '@wixc3/wcs-core';
 import chalk from 'chalk';
 
 const ownPath = path.resolve(__dirname, '..');
@@ -34,16 +34,31 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
         .suppressReactDevtoolsSuggestion();
 }
 
-const renderSimulationsToString = (simulationFilePaths: string[]): ISimulationsToString => {
-    const simulationsAsString: ISimulationsToString = {};
+const renderSimulationsToString = (
+    simulationFilePaths: string[]
+): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean } => {
+    const simulationsRenderedToString: ISimulationsToString = {};
+    let failedSSR = false;
 
     for (const simulationFilePath of simulationFilePaths) {
         try {
             // eslint-disable-next-line
-            const sim = require(simulationFilePath).default;
+            const sim: ISimulation<Record<string, unknown>> = require(simulationFilePath).default;
 
             if (sim) {
-                simulationsAsString[simulationFilePath] = renderToString(simulationToJsx(sim));
+                try {
+                    simulationsRenderedToString[simulationFilePath] = renderToString(simulationToJsx(sim));
+                } catch (e) {
+                    failedSSR = true;
+
+                    consoleError(
+                        `\n${chalk.red("Couldn't render simulation")} "${chalk.underline(sim.name)}" ${chalk.yellow(
+                            'to string.'
+                        )} Windmill will continue, but will skip hydration tests for this component, as this error means that this component is not SSR-compatible. For debugging purposes, the error has been printed below.`
+                    );
+                    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                    consoleError(`\n${chalk.red('Error:')}`, e);
+                }
             }
         } catch (e) {
             consoleError(
@@ -62,7 +77,7 @@ const renderSimulationsToString = (simulationFilePaths: string[]): ISimulationsT
         }
     }
 
-    return simulationsAsString;
+    return { simulationsRenderedToString, failedSSR };
 };
 
 export async function sanityTests(
@@ -75,7 +90,7 @@ export async function sanityTests(
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running sanity tests...');
 
-    const simulationsRenderedToString = renderSimulationsToString(simulationFilePaths);
+    const { simulationsRenderedToString, failedSSR } = renderSimulationsToString(simulationFilePaths);
 
     try {
         const memFs = createMemoryFs({
@@ -134,11 +149,8 @@ export async function sanityTests(
         const numFailedTests = await runTestsInPuppeteer({
             testPageUrl: server.getUrl(),
         });
-        if (numFailedTests) {
-            process.exitCode = 1;
-        }
 
-        if (numFailedTests) {
+        if (numFailedTests || failedSSR) {
             process.exitCode = 1;
         }
     } catch (error) {

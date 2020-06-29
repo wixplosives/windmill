@@ -8,9 +8,6 @@ export async function runTests(getSimulations: () => Promise<ISimulationWithSSRC
     for (const simulationData of simulationsData) {
         if (simulationData.simulationRenderedToString && simulationData.simulationRenderedToString !== 'undefined') {
             hydrationTest(simulationData.simulation, simulationData.simulationRenderedToString);
-        } else {
-            // eslint-disable-next-line no-console
-            console.warn(`\nSkipping hydration tests for simulation: "${simulationData.simulation.name}".\n`);
         }
 
         eventListenerTest(simulationData.simulation);
