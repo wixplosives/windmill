@@ -3,9 +3,8 @@ import fs from '@file-services/node';
 import type { ImpactValue } from 'axe-core';
 import { Command } from 'commander';
 import { getWebpackConfigPath } from '@wixc3/windmill-node-utils';
-import { consoleError } from '@wixc3/windmill-utils';
+import { consoleError, WindmillConfig } from '@wixc3/windmill-utils';
 import { a11yTest, impactLevels } from './server';
-import type { WindmillConfig } from './types';
 
 const program = new Command();
 
@@ -33,6 +32,7 @@ if (windmillConfigPath) {
     windmillConfig = require(windmillConfigPath) as WindmillConfig;
 }
 
+// TODO: Duplicate code here (also in cli.ts of sanity) - abstract as much of this cli stuff as possible
 if (windmillConfig?.hooks) {
     for (const hook of windmillConfig.hooks) {
         hook();

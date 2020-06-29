@@ -26,8 +26,6 @@ describe('The sanity cli', function () {
         const { stdout, status } = runSanity(['image-with-alt.sim.ts']);
 
         expect(stdout).to.include('Running sanity tests...');
-        // expect(stdout).to.include('Testing component Image With Alt');
-        expect(stdout).to.include('No errors found');
         expect(status).to.equal(0);
     });
 
@@ -36,8 +34,6 @@ describe('The sanity cli', function () {
         const { stdout, status } = runSanity(['--config', `${configPath}`, 'basic-sim.sim.ts']);
 
         expect(stdout).to.include('This is a hook that gets called before loading your simulations');
-        expect(stdout).to.include('Testing component NonSSRComp');
-        expect(stdout).to.include('No errors found');
         expect(status).to.equal(0);
     });
 });

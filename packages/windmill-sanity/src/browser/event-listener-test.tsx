@@ -4,7 +4,7 @@ import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import { AllEvents } from './all-events';
 import { attachEventListenerLogger } from './override-event-listeners';
-import { Listener } from './listener';
+import type { Listener } from './listener';
 import { ISimulation, simulationToJsx } from '@wixc3/wcs-core';
 
 chai.use(sinonChai);

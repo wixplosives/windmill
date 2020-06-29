@@ -1,4 +1,5 @@
 import type webpack from 'webpack';
+import type { ImpactValue } from 'axe-core';
 
 export interface IStartWebpackServerParams {
     entry: string[];
@@ -13,3 +14,11 @@ export interface IWcsConfig {
 }
 
 export type WebpackConfigFile = webpack.Configuration | IWcsConfig;
+
+export interface WindmillConfig {
+    projectPath: string;
+    webpackConfigPath: string;
+    hooks: [() => void];
+    simulationFilePattern: string[];
+    a11yImpactLevel: ImpactValue;
+}

@@ -1,7 +1,8 @@
 import glob from 'glob';
+import fs from '@file-services/node';
 import { Command } from 'commander';
 import { getWebpackConfigPath } from '@wixc3/windmill-node-utils';
-import { consoleError } from '@wixc3/windmill-utils';
+import { consoleError, WindmillConfig } from '@wixc3/windmill-utils';
 import { sanityTests } from './server';
 
 const program = new Command();
@@ -13,12 +14,27 @@ program
     .option('-p, --project <p>', `Project path`)
     .option('-d, --debug', `Debug mode`)
     .option('-w, --webpack <w>', `webpack path`)
+    .option('-c, --config <c>', `Config file path`)
     .parse(process.argv);
 
-const { args, project, webpack, debug } = program;
+const { args, project, webpack, debug, config } = program;
 
 const projectPath = (project as string) || process.cwd();
 const webpackConfigPath = (webpack as string) || getWebpackConfigPath(projectPath);
+const windmillConfigPath = (config as string) || fs.findClosestFileSync(projectPath, 'windmill.config.js');
+
+let windmillConfig: WindmillConfig | undefined = undefined;
+if (windmillConfigPath) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    windmillConfig = require(windmillConfigPath) as WindmillConfig;
+}
+
+// TODO: Duplicate code here (also in cli.ts of sanity) - abstract as much of this cli stuff as possible
+if (windmillConfig?.hooks) {
+    for (const hook of windmillConfig.hooks) {
+        hook();
+    }
+}
 
 if (!webpackConfigPath) {
     printErrorAndExit('Could not find a webpack config.');
