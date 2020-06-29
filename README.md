@@ -1,5 +1,7 @@
 <img src="assets/logo.png">
 
+<br />
+
 [![Build Status](https://travis-ci.com/wixplosives/windmill.svg?token=JxepjChyzQB66ehAYhtG&branch=master)](https://travis-ci.com/wixplosives/windmill)
 
 **Windmill** is a set of tools designed to automate how you test your components, by using **simulations**.
