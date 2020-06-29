@@ -47,6 +47,8 @@ yarn windmill-sanity non-ssr-comp.sim.ts
 
 By default, windmill will search your project for simulation files which match the pattern `*.sim.ts` or `*.sim.tsx`.
 
+### Configuration via config file
+
 Windmill configuration files can contain the following properties:
 
 ```ts
