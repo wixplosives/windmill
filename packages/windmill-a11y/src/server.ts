@@ -49,8 +49,6 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
             msg.push(`Error while testing component - ${JSON.stringify(res.error)}`);
         } else if (res.result) {
             if (!res.result.passed) {
-                hasError = true;
-
                 (res.result.violations as axe.AxeResults['violations']).forEach((violation) => {
                     const impactLevel = impact;
 
@@ -58,6 +56,7 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
                         violation.impact &&
                         impactLevels.indexOf(violation.impact) >= impactLevels.indexOf(impactLevel)
                     ) {
+                        hasError = true;
                         violation.nodes.forEach((node) => {
                             const selector = node.target.join(' > ');
                             const compName = `${res.simulation} - ${selector}`;
