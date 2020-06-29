@@ -15,7 +15,7 @@ These tools consume simulation files in the project, which are described [here](
 ### The Tools
 
 - `sanity` - component sanity test suite, asserts that:
-  - the component can render to string (for SSR compatibility)
+  - the component can render to string (for ssr compatibility)
   - hydration in the client works as intended
   - the component has no errors in <React.StrictMode />
   - nothing was printed to the console
