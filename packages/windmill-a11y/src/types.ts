@@ -1,4 +1,4 @@
-import { ImpactValue } from 'axe-core';
+import type { ImpactValue } from 'axe-core';
 
 export interface WindmillConfig {
     projectPath: string;

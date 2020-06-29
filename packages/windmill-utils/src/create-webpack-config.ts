@@ -1,5 +1,5 @@
-import webpack from 'webpack';
-import { ISimulation } from '@wixc3/wcs-core';
+import type webpack from 'webpack';
+import type { ISimulation } from '@wixc3/wcs-core';
 
 export interface OverrideConfig {
     plugins?: webpack.Plugin[];
