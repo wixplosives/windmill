@@ -65,7 +65,7 @@ The first three are the same as the CLI parameters above, but the last two are n
 hooks: [() => require('@ts-tools/node/r')];
 ```
 
-If you're using [Stylable](stylable.io), you'll have to add a hook to support loading `.st.css` files in node. It'll look something like this:
+For another example, if you're using [Stylable](stylable.io) you'll have to add a hook to support loading `.st.css` files in node, like so:
 
 ```js
 hooks: [() => require('@stylable/node/require')];
