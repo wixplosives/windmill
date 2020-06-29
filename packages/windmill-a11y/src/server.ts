@@ -8,6 +8,7 @@ import {
     consoleError,
     consoleLog,
     getEntryCode,
+    IA11yTestResult,
 } from '@wixc3/windmill-utils';
 import chalk from 'chalk';
 import type axe from 'axe-core';
@@ -18,7 +19,7 @@ const ownPath = path.resolve(__dirname, '..');
 export const impactLevels: axe.ImpactValue[] = ['minor', 'moderate', 'serious', 'critical'];
 export interface Result {
     simulation: string;
-    result?: axe.AxeResults;
+    result?: IA11yTestResult;
     error?: Error;
 }
 
@@ -47,7 +48,7 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
             hasError = true;
             msg.push(`Error while testing component - ${JSON.stringify(res.error)}`);
         } else if (res.result) {
-            if (res.result.violations.length) {
+            if (!res.result.passed) {
                 (res.result.violations as axe.AxeResults['violations']).forEach((violation) => {
                     const impactLevel = impact;
 
@@ -135,6 +136,7 @@ export async function a11yTest(
 
         const results = await Promise.race([waitForPageError(page), getResults]);
         const { message, hasError } = formatResults(results, impact);
+
         if (hasError) {
             process.exitCode = 1;
             consoleError(message);

@@ -5,14 +5,16 @@ import { checkIfSimulationIsAccessible } from '../src';
 
 describe('checkIfSimulationIsAccessible', () => {
     it('reports errors for an inaccessible component', async () => {
-        const results = await checkIfSimulationIsAccessible(SimulationForImageWithoutAlt);
+        const result = await checkIfSimulationIsAccessible(SimulationForImageWithoutAlt);
 
-        expect(results.violations.length).to.equal(1);
+        expect(result.passed).to.equal(false);
+        expect(result.violations?.length).to.equal(1);
     });
 
     it('does not report errors for an accessible component', async () => {
-        const results = await checkIfSimulationIsAccessible(SimulationForImageWithAlt);
+        const result = await checkIfSimulationIsAccessible(SimulationForImageWithAlt);
 
-        expect(results.violations.length).to.equal(0);
+        expect(result.passed).to.equal(true);
+        expect(result.violations).to.equal(undefined);
     });
 });
