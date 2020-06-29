@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/wixplosives/windmill.svg?token=JxepjChyzQB66ehAYhtG&branch=master)](https://travis-ci.com/wixplosives/windmill)
 
-**Windmill** is a set of tools designed to automate testing of components by using your **simulations**.
+**Windmill** is a set of tools designed to automate how you test your components, by using **simulations**.
 
 The benefit of windmill is two-fold: one, you don't need to do any extra work to add tests to your components -- just use the simulations you've already created for them. Two, every time you add a simulation, you're increasing test coverage of your component.
 
