@@ -2,10 +2,9 @@
   "name": "@wixc3/windmill-node-utils",
   "version": "1.0.4",
   "main": "cjs/index",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
+  "types": "cjs/index.d.ts",
   "scripts": {
-    "clean": "rimraf ./cjs ./esm",
+    "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "ts-build ./src --cjs",
     "test": "mocha \"test/**/*.spec.ts?(x)\"",
@@ -19,7 +18,6 @@
   },
   "files": [
     "cjs",
-    "esm",
     "src"
   ],
   "license": "MIT",

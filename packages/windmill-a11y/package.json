@@ -2,13 +2,12 @@
   "name": "@wixc3/windmill-a11y",
   "version": "1.0.11",
   "main": "cjs/index",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
+  "types": "cjs/index.d.ts",
   "bin": {
     "windmill-a11y": "bin/windmill-a11y.js"
   },
   "scripts": {
-    "clean": "rimraf ./cjs ./esm",
+    "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "ts-build ./src --cjs",
     "test": "yarn test:node && yarn test:browser",
@@ -32,7 +31,6 @@
     "src",
     "bin",
     "cjs",
-    "esm",
     "templates"
   ],
   "license": "MIT",
