@@ -36,8 +36,9 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
 
 const renderSimulationsToString = (
     simulationFilePaths: string[]
-): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean } => {
+): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean, errors: unknown[] } => {
     const simulationsRenderedToString: ISimulationsToString = {};
+    const errors = [];
     let failedSSR = false;
 
     for (const simulationFilePath of simulationFilePaths) {
@@ -51,17 +52,17 @@ const renderSimulationsToString = (
                 } catch (e) {
                     failedSSR = true;
 
-                    consoleError(
+                    errors.push(
                         `\n${chalk.red("Couldn't render simulation")} "${chalk.underline(sim.name)}" ${chalk.yellow(
                             'to string.'
                         )} Windmill will continue, but will skip hydration tests for this component, as this error means that this component is not SSR-compatible. For debugging purposes, the error has been printed below.`
                     );
                     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                    consoleError(`\n${chalk.red('Error:')}`, e);
+                    errors.push(`\n${chalk.red('Error:')}`, e);
                 }
             }
         } catch (e) {
-            consoleError(
+            errors.push(
                 `\n${chalk.yellow("Couldn't require simulation")} "${chalk.underline(
                     simulationFilePath
                 )}" ${chalk.yellow(
@@ -73,11 +74,11 @@ const renderSimulationsToString = (
                 )} require hooks haven't been configured for your project. \n\nPlease check the Windmill documentation for more information. For debugging purposes, the error has been printed below.`
             );
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            consoleError(`\n${chalk.red('Error:')}`, e);
+            errors.push(`\n${chalk.red('Error:')}`, e);
         }
     }
 
-    return { simulationsRenderedToString, failedSSR };
+    return { simulationsRenderedToString, failedSSR, errors };
 };
 
 export async function sanityTests(
@@ -90,7 +91,7 @@ export async function sanityTests(
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running sanity tests...');
 
-    const { simulationsRenderedToString, failedSSR } = renderSimulationsToString(simulationFilePaths);
+    const { simulationsRenderedToString, failedSSR, errors } = renderSimulationsToString(simulationFilePaths);
 
     try {
         const memFs = createMemoryFs({
@@ -149,6 +150,8 @@ export async function sanityTests(
         const numFailedTests = await runTestsInPuppeteer({
             testPageUrl: server.getUrl(),
         });
+
+        consoleError(...errors);
 
         if (numFailedTests || failedSSR) {
             process.exitCode = 1;
