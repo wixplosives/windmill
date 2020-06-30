@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import chai, { expect } from 'chai';
@@ -33,10 +32,9 @@ export const hydrationTest = (
         const testMessage = `should hydrate component: "${simulation.name}" without errors`;
         it(testMessage, () => {
             const oldRootHTML = root.innerHTML;
+
             // Set root's HTML to the SSR component
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             root.innerHTML = renderedComponentString;
-            // console.log('renderedComponentString:', renderedComponentString);
 
             // TODO: add opt-out for strict mode
             hydrate(<React.StrictMode>{simulationToJsx(simulation)}</React.StrictMode>, root);
@@ -45,7 +43,9 @@ export const hydrationTest = (
 
             // If args is not a primitive, it's not really of interest to us, since any React errors will be
             // strings. Therefore it's fine to print [object Object] in other cases
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const consoleArgs: string = consoleSpy.getCall(0) ? consoleSpy.getCall(0).args[0] : '';
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const errorArgs: string = errorSpy.getCall(0) ? errorSpy.getCall(0).args[0] : '';
             // tslint:disable-next-line:no-unused-expression
             expect(consoleSpy, `console was called with:\n ${consoleArgs}`).to.not.be.called;
