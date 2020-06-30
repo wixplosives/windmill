@@ -18,6 +18,11 @@ export function logConsoleMessages(page: puppeteer.Page): void {
         const msgArgs = await Promise.all(msg.args().map((a) => a.jsonValue()));
         consoleLog(...msgArgs);
     });
+
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    page.on('pageerror', (msg) => {
+        consoleError(msg);
+    });
 }
 
 async function loadTestPage(page: puppeteer.Page, testPageUrl: string, timeout: number) {
@@ -31,7 +36,7 @@ async function loadTestPage(page: puppeteer.Page, testPageUrl: string, timeout: 
 
 async function waitForTestResults(page: puppeteer.Page) {
     await page.waitForFunction('mochaStatus.finished');
-    return page.evaluate('mochaStatus.numFailedTests');
+    return page.evaluate('mochaStatus.failed');
 }
 
 async function failIfTestsStall(page: puppeteer.Page, timeout: number) {
@@ -40,7 +45,7 @@ async function failIfTestsStall(page: puppeteer.Page, timeout: number) {
     // eslint-disable-next-line no-constant-condition
     while (true) {
         await sleep(timeout);
-        const newVal = (await page.evaluate('mochaStatus.numCompletedTests')) as number;
+        const newVal = (await page.evaluate('mochaStatus.completed')) as number;
         if (newVal > numCompletedTests) {
             numCompletedTests = newVal;
         } else {

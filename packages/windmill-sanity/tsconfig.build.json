@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@wixc3/*": ["node_modules/@wixc3/*/src"]
+    }
+  },
+  "include": ["src"]
+}

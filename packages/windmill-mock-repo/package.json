@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@wixc3/windmill-a11y": "^1.0.10",
-    "@wixc3/windmill-utils": "^1.0.8"
+    "@wixc3/windmill-utils": "^1.0.8",
+    "@wixc3/windmill-sanity": "^1.0.0"
   },
   "files": [
     "cjs",

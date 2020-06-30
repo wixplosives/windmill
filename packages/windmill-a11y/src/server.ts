@@ -99,7 +99,7 @@ export async function a11yTest(
                     import {test} from '@wixc3/windmill-a11y';
                     
                     async function runTests() {
-                        const simulations = (await getSimulations()).map((sim) => sim.default);
+                        const simulations = await getSimulations();
                         test(simulations);
                     }
 
@@ -116,8 +116,9 @@ export async function a11yTest(
             webpackConfigurator: getWebpackConfig(projectPath, webpackConfigPath),
             projectPath,
         });
-        // We don't want to be headless and we want to have devtools open if debug is true
-        browser = await puppeteer.launch({ headless: !debug, devtools: debug });
+
+        // We want to have devtools open if debug is true
+        browser = await puppeteer.launch({ devtools: debug });
         const page = await browser.newPage();
         const getResults = new Promise<Result[]>((resolve) => {
             page.exposeFunction('puppeteerReportResults', resolve).catch((err) => {
@@ -130,11 +131,6 @@ export async function a11yTest(
                 throw err;
             });
         });
-
-        await page.evaluateOnNewDocument((simulations) => {
-            localStorage.clear();
-            localStorage.setItem('simulations', simulations);
-        }, JSON.stringify(simulationFilePaths));
 
         await page.goto(server.getUrl());
 

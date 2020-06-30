@@ -1,29 +1,39 @@
 {
-  "name": "@wixc3/windmill-utils",
-  "version": "1.0.8",
+  "name": "@wixc3/windmill-sanity",
+  "version": "1.0.0",
   "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
+  "bin": {
+    "windmill-sanity": "bin/windmill-sanity.js"
+  },
   "scripts": {
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
     "build": "yarn build:cjs && yarn build:esm",
     "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
-    "test": "mocha \"test/**/*.spec.ts?(x)\"",
+    "test": "yarn test:node",
+    "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "html-webpack-plugin": ">=4",
-    "puppeteer": ">=1",
-    "webpack": ">=4"
+    "react": ">=16"
+  },
+  "dependencies": {
+    "@file-services/memory": "^2.2.0",
+    "@wixc3/windmill-node-utils": "^1.0.2",
+    "@wixc3/windmill-utils": "^1.0.7",
+    "chalk": "^4.1.0",
+    "glob": "^7.1.6",
+    "webpack": "^4.43.0"
   },
   "files": [
+    "src",
+    "bin",
     "cjs",
     "esm",
-    "src",
-    "patch-console.js",
-    "static"
+    "templates"
   ],
   "license": "MIT",
   "repository": "git@github.com:wixplosives/windmill.git",
@@ -31,16 +41,5 @@
   "private": false,
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@file-services/node": "^2.2.0",
-    "@file-services/overlay": "^2.2.0",
-    "@file-services/path": "^2.2.0",
-    "@file-services/webpack": "^2.2.0",
-    "axe-core": "^3.5.5",
-    "chalk": "^4.1.0",
-    "koa": "^2.13.0",
-    "koa-static": "^5.0.0",
-    "koa-webpack": "^5.3.0"
   }
 }
