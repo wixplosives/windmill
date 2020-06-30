@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-mock-repo",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "cjs/index",
   "types": "cjs/index.d.ts",
   "scripts": {
@@ -14,8 +14,8 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@wixc3/windmill-a11y": "^1.0.12",
-    "@wixc3/windmill-sanity": "^1.0.2",
+    "@wixc3/windmill-a11y": "^1.0.13",
+    "@wixc3/windmill-sanity": "^1.0.3",
     "@wixc3/windmill-utils": "^1.0.10"
   },
   "files": [

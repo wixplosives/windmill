@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-a11y",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "cjs/index",
   "types": "cjs/index.d.ts",
   "bin": {
