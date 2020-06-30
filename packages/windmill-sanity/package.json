@@ -2,13 +2,12 @@
   "name": "@wixc3/windmill-sanity",
   "version": "1.0.1",
   "main": "cjs/index",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
+  "types": "cjs/index.d.ts",
   "bin": {
     "windmill-sanity": "bin/windmill-sanity.js"
   },
   "scripts": {
-    "clean": "rimraf ./cjs ./esm",
+    "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "ts-build ./src --cjs",
     "test": "yarn test:node",
@@ -30,7 +29,6 @@
     "src",
     "bin",
     "cjs",
-    "esm",
     "templates"
   ],
   "license": "MIT",
