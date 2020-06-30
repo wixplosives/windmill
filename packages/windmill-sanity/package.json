@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-sanity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "cjs/index",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@file-services/memory": "^2.2.0",
-    "@wixc3/windmill-node-utils": "^1.0.2",
-    "@wixc3/windmill-utils": "^1.0.7",
+    "@wixc3/windmill-node-utils": "^1.0.4",
+    "@wixc3/windmill-utils": "^1.0.9",
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
     "webpack": "^4.43.0"
