@@ -6,6 +6,7 @@ export async function runTests(getSimulations: () => Promise<ISimulationWithSSRC
     const simulationsData = await getSimulations();
 
     for (const simulationData of simulationsData) {
+        // check for string 'undefined' because the values have been serialized
         if (simulationData.simulationRenderedToString && simulationData.simulationRenderedToString !== 'undefined') {
             hydrationTest(simulationData.simulation, simulationData.simulationRenderedToString);
         }
