@@ -60,9 +60,9 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
                         violation.nodes.forEach((node) => {
                             const selector = node.target.join(' > ');
                             const compName = `${res.simulation} - ${selector}`;
-                            msg[index] += `\n  ${chalk.red(compName)}: (Impact: ${violation.impact as string})\n  ${
+                            msg[index] += `\n\n  ${chalk.red(compName)}: (Impact: ${violation.impact as string})\n\n  Violation description: ${violation.description} \n\n  ${
                                 node.failureSummary as string
-                            }`;
+                            } \n`;
                         });
                     } else {
                         msg[index] += chalk.green(' No errors found.');
