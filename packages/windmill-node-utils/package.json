@@ -14,7 +14,7 @@
     "webpack": ">=4"
   },
   "dependencies": {
-    "@file-services/node": "^2.2.0"
+    "@file-services/node": "^3.0.0"
   },
   "files": [
     "cjs",
