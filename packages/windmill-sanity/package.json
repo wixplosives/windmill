@@ -18,12 +18,12 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@file-services/memory": "^3.0.0",
+    "@file-services/memory": "^3.1.2",
     "@wixc3/windmill-node-utils": "^1.0.5",
     "@wixc3/windmill-utils": "^1.0.10",
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
-    "webpack": "^4.43.0"
+    "webpack": "^4.44.0"
   },
   "files": [
     "src",

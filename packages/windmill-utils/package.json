@@ -28,10 +28,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@file-services/node": "^3.0.0",
-    "@file-services/overlay": "^3.0.0",
-    "@file-services/path": "^3.0.0",
-    "@file-services/webpack": "^3.0.0",
+    "@file-services/node": "^3.1.1",
+    "@file-services/overlay": "^3.1.1",
+    "@file-services/path": "^3.1.1",
+    "@file-services/webpack": "^3.1.1",
     "axe-core": "^3.5.5",
     "chalk": "^4.1.0",
     "koa": "^2.13.0",
