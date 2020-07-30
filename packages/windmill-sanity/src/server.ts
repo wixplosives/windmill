@@ -36,7 +36,7 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
 
 const renderSimulationsToString = (
     simulationFilePaths: string[]
-): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean, errors: unknown[] } => {
+): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean; errors: unknown[] } => {
     const simulationsRenderedToString: ISimulationsToString = {};
     const errors = [];
     let failedSSR = false;
@@ -111,7 +111,7 @@ export async function sanityTests(
             'mocha-setup': {
                 'setup.js': `
                     // Mocha officially supports this import in browser environment
-                    require('mocha/mocha.js');
+                    import mocha from 'mocha/mocha.js';
 
                     mocha.setup({
                         ui: 'bdd',

@@ -15,7 +15,8 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "mocha": ">=8.1.0"
   },
   "dependencies": {
     "@file-services/memory": "^3.1.2",
@@ -23,7 +24,7 @@
     "@wixc3/windmill-utils": "^1.0.10",
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
-    "webpack": "^4.44.0"
+    "webpack": "^4.44.1"
   },
   "files": [
     "src",

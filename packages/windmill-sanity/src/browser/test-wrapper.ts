@@ -14,12 +14,16 @@ export async function runTests(getSimulations: () => Promise<ISimulationWithSSRC
         eventListenerTest(simulationData.simulation);
     }
 
+    // eslint-disable-next-line
+    const mocha = require('mocha/mocha.js');
+    /* eslint-disable */
+
     mocha
         .run()
-        // eslint-disable-next-line
         .on('test end', () => (window as any).mochaStatus.completed++)
         // eslint-disable-next-line
         .on('fail', () => (window as any).mochaStatus.failed++)
         // eslint-disable-next-line
         .on('end', () => ((window as any).mochaStatus.finished = true));
+    /* eslint-enable */
 }
