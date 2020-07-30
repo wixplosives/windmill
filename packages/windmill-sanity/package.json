@@ -1,6 +1,6 @@
 {
   "name": "@wixc3/windmill-sanity",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "main": "cjs/index",
   "types": "cjs/index.d.ts",
   "bin": {
@@ -15,13 +15,13 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "mocha": ">=8.1.0"
+    "mocha": ">=8.1.0",
+    "react": ">=16"
   },
   "dependencies": {
     "@file-services/memory": "^3.1.2",
-    "@wixc3/windmill-node-utils": "^1.0.5",
-    "@wixc3/windmill-utils": "^1.0.10",
+    "@wixc3/windmill-node-utils": "^2.0.0",
+    "@wixc3/windmill-utils": "^2.0.0",
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
     "webpack": "^4.44.1"
