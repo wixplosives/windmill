@@ -73,7 +73,7 @@ if (args.length > 0) {
 
 const impact = ((impactLevel as string) || windmillConfig?.a11yImpactLevel || 'minor') as ImpactValue;
 if (!impactLevels.includes(impact)) {
-    printErrorAndExit(`Invalid impact level ${impact}`);
+    printErrorAndExit(`Invalid impact level ${String(impact)}`);
 }
 
 a11yTest(simulations, impact, projectPath, webpackConfigPath as string, debug).catch((err) => {
