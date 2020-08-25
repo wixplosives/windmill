@@ -15,9 +15,10 @@ program
     .option('-d, --debug', `Debug mode`)
     .option('-w, --webpack <w>', `webpack path`)
     .option('-c, --config <c>', `Config file path`)
+    .option('-x, --exclude <x>', `Test glob to exclude`)
     .parse(process.argv);
 
-const { args, project, webpack, debug, config } = program;
+const { args, project, webpack, debug, config, exclude } = program;
 
 const projectPath = (project as string) || process.cwd();
 const webpackConfigPath = (webpack as string) || getWebpackConfigPath(projectPath);
@@ -42,7 +43,8 @@ if (!webpackConfigPath) {
 
 const simulations: string[] = [];
 const defaultSimulationPattern = ['*.sim.ts', '*.sim.tsx'];
-const globOptions: glob.IOptions = { absolute: true, cwd: projectPath, matchBase: true };
+const ignorePaths = windmillConfig?.ignorePaths ? windmillConfig?.ignorePaths : exclude ? [exclude] : [];
+const globOptions: glob.IOptions = { absolute: true, cwd: projectPath, matchBase: true, ignore: ignorePaths };
 
 if (args.length > 0) {
     for (const arg of args) {

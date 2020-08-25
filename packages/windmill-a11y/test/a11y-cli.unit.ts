@@ -40,4 +40,12 @@ describe('The a11y cli', function () {
         expect(stdout).to.include('No errors found');
         expect(status).to.equal(0);
     });
+
+    it('should ignore simulation files when using --exclude', () => {
+        const sim = 'image-with-alt.sim.ts';
+        const { stderr, status } = runA11y(['--exclude', `**/${sim}`, `${sim}`]);
+
+        expect(stderr).to.include(`Could not find any simulations matching the pattern: ${sim}`);
+        expect(status).to.equal(1);
+    });
 });
