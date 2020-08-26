@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import { dirname, resolve, join } from 'path';
 import { spawnSync } from 'child_process';
+import { impactLevels } from '../src/server';
+import type axe from 'axe-core';
 
 const cliSrcPath = require.resolve('../bin/windmill-a11y.js');
 const mockRepoRoot = dirname(require.resolve('@wixc3/windmill-mock-repo/package.json'));
@@ -46,6 +48,14 @@ describe('The a11y cli', function () {
         const { stderr, status } = runA11y(['--exclude', `**/${sim}`, `${sim}`]);
 
         expect(stderr).to.include(`Could not find any simulations matching the pattern: ${sim}`);
+        expect(status).to.equal(1);
+    });
+
+    it('should allow setting impact levels with --impact', () => {
+        const impactLevel: axe.ImpactValue = 'minor';
+        const { stderr, status } = runA11y(['--impact', `${impactLevel}`]);
+
+        expect(stderr).to.include(`Could not find any simulations matching the pattern:`);
         expect(status).to.equal(1);
     });
 });

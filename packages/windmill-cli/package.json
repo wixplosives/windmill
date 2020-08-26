@@ -1,0 +1,28 @@
+{
+  "name": "@wixc3/windmill-cli",
+  "version": "2.0.0",
+  "main": "cjs/index",
+  "types": "cjs/index.d.ts",
+  "scripts": {
+    "clean": "rimraf ./cjs",
+    "prebuild": "yarn clean",
+    "build": "ts-build ./src --cjs",
+    "test": "mocha \"test/**/*.spec.ts?(x)\"",
+    "prepack": "yarn build"
+  },
+  "peerDependencies": {
+    "webpack": ">=4"
+  },
+  "dependencies": {},
+  "files": [
+    "cjs",
+    "src"
+  ],
+  "license": "MIT",
+  "repository": "git@github.com:wixplosives/windmill.git",
+  "sideEffects": false,
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}
