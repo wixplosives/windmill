@@ -25,5 +25,6 @@ export interface WindmillConfig {
     webpackConfigPath: string;
     hooks: [() => void];
     simulationFilePattern: string[];
+    ignorePaths: string[];
     a11yImpactLevel: axe.ImpactValue;
 }

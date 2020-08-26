@@ -50,4 +50,12 @@ describe('The sanity cli', function () {
         expect(stdout).to.include('This is a hook that gets called before loading your simulations');
         expect(status).to.equal(0);
     });
+
+    it('should ignore simulation files when using --exclude', () => {
+        const sim = 'image-with-alt.sim.ts';
+        const { stderr, status } = runSanity(['--exclude', `**/${sim}`, `${sim}`]);
+
+        expect(stderr).to.include(`Could not find any simulations matching the pattern: ${sim}`);
+        expect(status).to.equal(1);
+    });
 });
