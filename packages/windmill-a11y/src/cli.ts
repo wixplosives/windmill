@@ -1,6 +1,6 @@
 import type { ImpactValue } from 'axe-core';
 import { a11yTest, impactLevels } from './server';
-import { CLI, printErrorAndExit } from '@wixc3/windmill-cli';
+import { CLI, printErrorAndExit } from '@wixc3/windmill-node-utils';
 
 const cli = new CLI();
 

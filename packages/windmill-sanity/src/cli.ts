@@ -1,5 +1,5 @@
 import { sanityTests } from './server';
-import { CLI, printErrorAndExit } from '@wixc3/windmill-cli';
+import { CLI, printErrorAndExit } from '@wixc3/windmill-node-utils';
 
 const cli = new CLI();
 

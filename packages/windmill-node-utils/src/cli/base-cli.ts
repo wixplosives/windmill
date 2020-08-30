@@ -1,7 +1,7 @@
 import glob from 'glob';
 import fs from '@file-services/node';
 import { Command } from 'commander';
-import { getWebpackConfigPath } from '@wixc3/windmill-node-utils';
+import { getWebpackConfigPath } from './cli-utils';
 import { consoleError, WindmillConfig } from '@wixc3/windmill-utils';
 
 export function printErrorAndExit(message: unknown, debug: boolean): void {
