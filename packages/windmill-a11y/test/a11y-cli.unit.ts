@@ -36,8 +36,9 @@ describe('The a11y cli', function () {
         const { stdout, status } = runA11y(['--config', `${configPath}`]);
 
         expect(stdout).to.include(
-            'Skipping a11y tests for project, due to "acccesible" set as "false" in the config file.'
+            'Skipping a11y tests for project, due to "nonAccessible" set as "true" in the config file.'
         );
+        expect(stdout).to.not.include('Running a11y test');
         expect(status).to.equal(0);
     });
 });

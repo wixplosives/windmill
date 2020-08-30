@@ -16,7 +16,7 @@ const { impact: impactLevel } = program;
 
 if (windmillConfig?.nonAccessible) {
     printMessageAndExit(
-        'Skipping a11y tests for project, due to "acccesible" set as "false" in the config file.',
+        'Skipping a11y tests for project, due to "nonAccessible" set as "true" in the config file.',
         debug
     );
 }

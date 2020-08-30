@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { dirname, resolve } from 'path';
+import { dirname, resolve, join } from 'path';
 import { spawnSync } from 'child_process';
 
 const cliSrcPath = require.resolve('../bin/windmill-sanity.js');
@@ -36,8 +36,34 @@ describe('The sanity cli', function () {
         expect(status).to.equal(1);
     });
 
+    it('should error while running on a component using legacy API', () => {
+        const { stdout, status } = runSanity(['comp-with-legacy-ref.sim.ts']);
+
+        expect(stdout).to.include('Running sanity tests...');
+        expect(status).to.equal(1);
+    });
+
     it('should not error while running on image comp, a ssr-compatible comp', () => {
         const { stdout, status } = runSanity(['image-with-alt.sim.ts']);
+
+        expect(stdout).to.include('Running sanity tests...');
+        expect(status).to.equal(0);
+    });
+
+    it('should not error when configured tp be "nonSSRCompatible" in the windmill config', () => {
+        const configPath = join(mockRepoRoot, 'non-ssr-config.ts');
+        const { stdout, status } = runSanity(['--config', `${configPath}`]);
+
+        expect(stdout).to.include(
+            'Skipping sanity tests for project, due to "nonSSRCompatible" set as "true" in the config file.'
+        );
+        expect(stdout).to.not.include('Running sanity tests...');
+        expect(status).to.equal(0);
+    });
+
+    it('should not error while running on a component using legacy API when "nonReactStrictModeCompliant" is set to "true"', () => {
+        const configPath = join(mockRepoRoot, 'non-strict-mode-config.ts');
+        const { stdout, status } = runSanity(['--config', `${configPath}`, 'comp-with-legacy-ref.sim.ts']);
 
         expect(stdout).to.include('Running sanity tests...');
         expect(status).to.equal(0);
