@@ -49,7 +49,6 @@ export class CLI {
             windmillConfig = require(windmillConfigPath) as WindmillConfig;
         }
 
-        // TODO: Duplicate code here (also in cli.ts of sanity) - abstract as much of this cli stuff as possible
         if (windmillConfig?.hooks) {
             for (const hook of windmillConfig.hooks) {
                 hook();
