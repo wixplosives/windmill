@@ -1,6 +1,6 @@
 import type { ImpactValue } from 'axe-core';
 import { a11yTest, impactLevels } from './server';
-import { CLI, printErrorAndExit } from '@wixc3/windmill-node-utils';
+import { CLI, printErrorAndExit, printMessageAndExit } from '@wixc3/windmill-node-utils';
 
 const cli = new CLI();
 
@@ -13,6 +13,13 @@ cli.program
 
 const { simulations, program, windmillConfig, webpackConfigPath, projectPath, debug } = cli.start();
 const { impact: impactLevel } = program;
+
+if (windmillConfig?.nonAccessible) {
+    printMessageAndExit(
+        'Skipping a11y tests for project, due to "acccesible" set as "false" in the config file.',
+        debug
+    );
+}
 
 const impact = ((impactLevel as string) || windmillConfig?.a11yImpactLevel || 'minor') as ImpactValue;
 
