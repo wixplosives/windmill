@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { dirname, resolve, join } from 'path';
+import { dirname, resolve } from 'path';
 import { spawnSync } from 'child_process';
 
 const cliSrcPath = require.resolve('../bin/windmill-sanity.js');
@@ -41,21 +41,5 @@ describe('The sanity cli', function () {
 
         expect(stdout).to.include('Running sanity tests...');
         expect(status).to.equal(0);
-    });
-
-    it('should load a config and call any hooks defined in the config', () => {
-        const configPath = join(mockRepoRoot, 'test-a11y-config.js');
-        const { stdout, status } = runSanity(['--config', `${configPath}`, 'image-with-alt.sim.ts']);
-
-        expect(stdout).to.include('This is a hook that gets called before loading your simulations');
-        expect(status).to.equal(0);
-    });
-
-    it('should ignore simulation files when using --exclude', () => {
-        const sim = 'image-with-alt.sim.ts';
-        const { stderr, status } = runSanity(['--exclude', `**/${sim}`, `${sim}`]);
-
-        expect(stderr).to.include(`Could not find any simulations matching the pattern: ${sim}`);
-        expect(status).to.equal(1);
     });
 });

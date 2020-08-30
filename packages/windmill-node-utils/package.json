@@ -7,14 +7,17 @@
     "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "ts-build ./src --cjs",
-    "test": "mocha \"test/**/*.spec.ts?(x)\"",
+    "test": "mocha -r @ts-tools/node/r \"test/**/*.unit.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
     "webpack": ">=4"
   },
   "dependencies": {
-    "@file-services/node": "^3.1.1"
+    "@file-services/node": "^3.1.1",
+    "@wixc3/windmill-utils": "^2.0.0",
+    "commander": "^6.1.0",
+    "glob": "^7.1.6"
   },
   "files": [
     "cjs",
