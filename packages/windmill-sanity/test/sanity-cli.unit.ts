@@ -50,7 +50,7 @@ describe('The sanity cli', function () {
         expect(status).to.equal(0);
     });
 
-    it('should not error when configured tp be "nonSSRCompatible" in the windmill config', () => {
+    it('should not error when configured to be "nonSSRCompatible" in the windmill config', () => {
         const configPath = join(mockRepoRoot, 'non-ssr-config.ts');
         const { stdout, status } = runSanity(['--config', `${configPath}`]);
 
