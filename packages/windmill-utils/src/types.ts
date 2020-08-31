@@ -20,11 +20,31 @@ export interface IA11yTestResult {
 
 export type WebpackConfigFile = webpack.Configuration | IWcsConfig;
 
-export interface WindmillConfig {
+export interface BaseConfig {
+    a11yImpactLevel: axe.ImpactValue;
+    nonAccessible: boolean;
+    nonSSRCompatible: boolean;
+    nonReactStrictModeCompatible: boolean;
+}
+
+// We don't expect users to supply everything
+export type WindmillConfig = Partial<BaseWindmillConfig>;
+
+export interface BaseWindmillConfig extends Partial<BaseConfig> {
     projectPath: string;
     webpackConfigPath: string;
     hooks: [() => void];
     simulationFilePattern: string[];
     ignorePaths: string[];
-    a11yImpactLevel: axe.ImpactValue;
+    componentConfig: ComponentConfig;
+    simulationConfig: SimulationConfig;
+}
+
+export interface ComponentConfig extends Partial<BaseConfig> {
+    componentPath: string;
+    exportName: string;
+}
+
+export interface SimulationConfig extends Partial<BaseConfig> {
+    simulationPath: string;
 }

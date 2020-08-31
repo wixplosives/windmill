@@ -11,7 +11,8 @@ chai.use(sinonChai);
 
 export const hydrationTest = (
     simulation: ISimulation<Record<string, unknown>>,
-    renderedComponentString: string
+    renderedComponentString: string,
+    nonReactStrictModeCompatible: boolean
 ): void => {
     describe(`${simulation.name} hydration test`, () => {
         let consoleSpy: sinon.SinonSpy<Parameters<Console['log']>, ReturnType<Console['log']>>;
@@ -36,8 +37,12 @@ export const hydrationTest = (
             // Set root's HTML to the SSR component
             root.innerHTML = renderedComponentString;
 
-            // TODO: add opt-out for strict mode
-            hydrate(<React.StrictMode>{simulationToJsx(simulation)}</React.StrictMode>, root);
+            if (nonReactStrictModeCompatible) {
+                hydrate(simulationToJsx(simulation), root);
+            } else {
+                hydrate(<React.StrictMode>{simulationToJsx(simulation)}</React.StrictMode>, root);
+            }
+
             ReactDOM.unmountComponentAtNode(root);
             root.innerHTML = oldRootHTML;
 

@@ -9,6 +9,7 @@ import {
     getEntryCodeWithSSRComps,
     consoleError,
     ISimulationsToString,
+    WindmillConfig,
 } from '@wixc3/windmill-utils';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
@@ -85,25 +86,31 @@ export async function sanityTests(
     simulationFilePaths: string[],
     projectPath: string,
     webpackConfigPath: string,
-    debug: boolean
+    debug: boolean,
+    windmillConfig?: WindmillConfig
 ): Promise<void> {
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running sanity tests...');
 
     const { simulationsRenderedToString, failedSSR, errors } = renderSimulationsToString(simulationFilePaths);
+    const windmillConfigString = windmillConfig ? JSON.stringify(windmillConfig) : JSON.stringify({});
 
     try {
         const memFs = createMemoryFs({
             simulation: {
                 'simulations.js': getEntryCodeWithSSRComps(simulationFilePaths, simulationsRenderedToString),
             },
+            config: {
+                'config.js': `export const config = '${windmillConfigString}'`,
+            },
             test: {
                 'test.js': `
                     import { runTests } from '@wixc3/windmill-sanity';
                     import { getSimulations } from '../simulation/simulations';
+                    import { config } from '../config/config';
                     
-                    runTests(getSimulations).catch((err) => {
+                    runTests(getSimulations, config).catch((err) => {
                         throw err;
                     });
                 `,

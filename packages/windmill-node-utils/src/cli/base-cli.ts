@@ -2,12 +2,19 @@ import glob from 'glob';
 import fs from '@file-services/node';
 import { Command } from 'commander';
 import { getWebpackConfigPath } from './cli-utils';
-import { consoleError, WindmillConfig } from '@wixc3/windmill-utils';
+import { consoleError, WindmillConfig, consoleLog } from '@wixc3/windmill-utils';
 
 export function printErrorAndExit(message: unknown, debug: boolean): void {
     consoleError(message);
     if (!debug) {
         process.exit(1);
+    }
+}
+
+export function printMessageAndExit(message: unknown, debug: boolean): void {
+    consoleLog(message);
+    if (!debug) {
+        process.exit(0);
     }
 }
 
@@ -46,7 +53,7 @@ export class CLI {
         let windmillConfig: WindmillConfig | undefined = undefined;
         if (windmillConfigPath) {
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            windmillConfig = require(windmillConfigPath) as WindmillConfig;
+            windmillConfig = (require(windmillConfigPath) as { windmillConfig: WindmillConfig }).windmillConfig;
         }
 
         if (windmillConfig?.hooks) {

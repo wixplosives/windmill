@@ -1,14 +1,22 @@
 import { hydrationTest } from '@wixc3/windmill-sanity';
 import { eventListenerTest } from '@wixc3/windmill-sanity';
-import type { ISimulationWithSSRComp } from '@wixc3/windmill-utils/src';
+import type { ISimulationWithSSRComp, WindmillConfig } from '@wixc3/windmill-utils/src';
 
-export async function runTests(getSimulations: () => Promise<ISimulationWithSSRComp[]>): Promise<void> {
+export async function runTests(
+    getSimulations: () => Promise<ISimulationWithSSRComp[]>,
+    configJSON: string
+): Promise<void> {
     const simulationsData = await getSimulations();
+    const config = JSON.parse(configJSON) as WindmillConfig;
 
     for (const simulationData of simulationsData) {
         // check for string 'undefined' because the values have been serialized
         if (simulationData.simulationRenderedToString && simulationData.simulationRenderedToString !== 'undefined') {
-            hydrationTest(simulationData.simulation, simulationData.simulationRenderedToString);
+            hydrationTest(
+                simulationData.simulation,
+                simulationData.simulationRenderedToString,
+                !!config.nonReactStrictModeCompatible
+            );
         }
 
         eventListenerTest(simulationData.simulation);
