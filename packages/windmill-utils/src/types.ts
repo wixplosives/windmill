@@ -22,9 +22,9 @@ export type WebpackConfigFile = webpack.Configuration | IWcsConfig;
 
 export interface BaseConfig {
     a11yImpactLevel: axe.ImpactValue;
-    nonAccessible: boolean;
-    nonSSRCompatible: boolean;
-    nonReactStrictModeCompatible: boolean;
+    accessible: boolean;
+    ssrCompatible: boolean;
+    reactStrictModeCompatible: boolean;
 }
 
 // We don't expect users to supply everything
@@ -36,15 +36,13 @@ export interface BaseWindmillConfig extends Partial<BaseConfig> {
     hooks: [() => void];
     simulationFilePattern: string[];
     ignorePaths: string[];
-    componentConfig: ComponentConfig;
-    simulationConfig: SimulationConfig;
-}
-
-export interface ComponentConfig extends Partial<BaseConfig> {
-    componentPath: string;
-    exportName: string;
+    simulationConfigs: SimulationConfig[];
 }
 
 export interface SimulationConfig extends Partial<BaseConfig> {
-    simulationPath: string;
+    /**
+     * A glob for matching simulations. Can be specific, for matching a
+     * single simulation. i.e. '**\/_wcs/simulations/my-comp.sim.ts'. Or can be more
+     * general, for matching all simulations of a certain component i.e. '**\/Image/*.sim.ts'. */
+    simulationGlob: string;
 }

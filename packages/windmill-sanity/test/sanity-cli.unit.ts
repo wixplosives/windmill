@@ -51,7 +51,7 @@ describe('The sanity cli', function () {
     });
 
     it('should not error when configured to be "nonSSRCompatible" in the windmill config', () => {
-        const configPath = join(mockRepoRoot, 'non-ssr-config.ts');
+        const configPath = join(mockRepoRoot, 'configs/non-ssr-config.ts');
         const { stdout, status } = runSanity(['--config', `${configPath}`]);
 
         expect(stdout).to.include(
@@ -62,7 +62,7 @@ describe('The sanity cli', function () {
     });
 
     it('should not error while running on a component using legacy API when "nonReactStrictModeCompliant" is set to "true"', () => {
-        const configPath = join(mockRepoRoot, 'non-strict-mode-config.ts');
+        const configPath = join(mockRepoRoot, 'configs/non-strict-mode-config.ts');
         const { stdout, status } = runSanity(['--config', `${configPath}`, 'comp-with-legacy-ref.sim.ts']);
 
         expect(stdout).to.include('Running sanity tests...');

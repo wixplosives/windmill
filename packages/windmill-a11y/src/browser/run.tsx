@@ -1,12 +1,11 @@
 import { checkIfSimulationIsAccessible } from '../a11y-test';
 import type { Result } from '../server';
-import type { ISimulationWithSSRComp } from '@wixc3/windmill-utils/src';
+import type { SimulationWithSSRComp, Simulation } from '@wixc3/windmill-utils/src';
 
-export async function test(simulationsData: ISimulationWithSSRComp[]): Promise<void> {
+export async function test(simulations: Simulation[]): Promise<void> {
     const results: Result[] = [];
 
-    for (const simulationData of simulationsData) {
-        const simulation = simulationData.simulation;
+    for (const simulation of simulations) {
         try {
             const result = await checkIfSimulationIsAccessible(simulation);
             results.push({ simulation: simulation.name, result });

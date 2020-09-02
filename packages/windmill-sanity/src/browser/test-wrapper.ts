@@ -1,9 +1,9 @@
 import { hydrationTest } from '@wixc3/windmill-sanity';
 import { eventListenerTest } from '@wixc3/windmill-sanity';
-import type { ISimulationWithSSRComp, WindmillConfig } from '@wixc3/windmill-utils/src';
+import type { SimulationWithSSRComp, WindmillConfig } from '@wixc3/windmill-utils/src';
 
 export async function runTests(
-    getSimulations: () => Promise<ISimulationWithSSRComp[]>,
+    getSimulations: () => Promise<SimulationWithSSRComp[]>,
     configJSON: string
 ): Promise<void> {
     const simulationsData = await getSimulations();
@@ -15,7 +15,7 @@ export async function runTests(
             hydrationTest(
                 simulationData.simulation,
                 simulationData.simulationRenderedToString,
-                !!config.nonReactStrictModeCompatible
+                !config.reactStrictModeCompatible
             );
         }
 

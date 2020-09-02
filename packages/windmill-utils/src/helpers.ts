@@ -1,6 +1,8 @@
 import { posix as posixPath, win32 as win32Path } from '@file-services/path';
 import { connect } from 'net';
-import type { WebpackConfigFile, IWcsConfig } from './types';
+import type { WebpackConfigFile, IWcsConfig, WindmillConfig, SimulationConfig } from './types';
+import type { ImpactValue } from 'axe-core';
+import m from 'minimatch';
 
 export function isWindowsStyleAbsolutePath(fsPath: string): boolean {
     return !posixPath.isAbsolute(fsPath) && win32Path.isAbsolute(fsPath);
@@ -55,3 +57,72 @@ export const loadScript = (src: string, document: Document): Promise<void> =>
         script.crossOrigin = 'anonymous';
         document.head.appendChild(script);
     });
+
+const defaultImpactLevel: ImpactValue = 'minor';
+
+export const defaultConfig: WindmillConfig = {
+    a11yImpactLevel: defaultImpactLevel,
+    accessible: true,
+    reactStrictModeCompatible: true,
+    ssrCompatible: true,
+};
+
+export function getBooleanValue(value: boolean | undefined, defaultValue = false): boolean {
+    return value === false ? false : value === true ? true : defaultValue;
+}
+
+export function matchWithGlob(file: string, /** glob or relative/absolute path */ fileToCheck: string): boolean {
+    return m(file, fileToCheck, { matchBase: true });
+}
+
+export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: WindmillConfig): SimulationConfig[] {
+    const accessible = getBooleanValue(bumpyConfig?.accessible, defaultConfig.accessible);
+    const reactStrictModeCompatible = getBooleanValue(
+        bumpyConfig?.reactStrictModeCompatible,
+        defaultConfig.reactStrictModeCompatible
+    );
+    const ssrCompatible = getBooleanValue(bumpyConfig?.ssrCompatible, defaultConfig.ssrCompatible);
+    const a11yImpactLevel = bumpyConfig?.a11yImpactLevel || defaultConfig.a11yImpactLevel;
+
+    const flattenedConfig: SimulationConfig[] = [];
+
+    // create the default config for each simulation
+    for (const simulationFilePath of simulationFilePaths) {
+        const defaultSimConfig: SimulationConfig = {
+            simulationGlob: simulationFilePath,
+            accessible,
+            reactStrictModeCompatible,
+            ssrCompatible,
+            a11yImpactLevel,
+        };
+
+        flattenedConfig.push(defaultSimConfig);
+    }
+
+    if (bumpyConfig?.simulationConfigs) {
+        for (const simConfig of bumpyConfig.simulationConfigs) {
+            const matchingSimConfig = flattenedConfig.find((c) =>
+                m(c.simulationGlob, simConfig.simulationGlob, { matchBase: true })
+            );
+
+            if (matchingSimConfig) {
+                matchingSimConfig.accessible = getBooleanValue(simConfig.accessible, matchingSimConfig.accessible);
+                matchingSimConfig.reactStrictModeCompatible = getBooleanValue(
+                    simConfig.reactStrictModeCompatible,
+                    matchingSimConfig.reactStrictModeCompatible
+                );
+                matchingSimConfig.ssrCompatible = getBooleanValue(
+                    simConfig.ssrCompatible,
+                    matchingSimConfig.ssrCompatible
+                );
+                matchingSimConfig.a11yImpactLevel = simConfig.a11yImpactLevel || matchingSimConfig.a11yImpactLevel;
+            } else {
+                throw new Error(
+                    `Simulation config for simulation path "${simConfig.simulationGlob}" does not have a matching simulation.`
+                );
+            }
+        }
+    }
+
+    return flattenedConfig;
+}

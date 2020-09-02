@@ -7,7 +7,7 @@ cli.program.description('run sanity tests on simulations');
 
 const { simulations, webpackConfigPath, projectPath, debug, windmillConfig } = cli.start();
 
-if (windmillConfig?.nonSSRCompatible) {
+if (!windmillConfig?.ssrCompatible) {
     printMessageAndExit(
         'Skipping sanity tests for project, due to "nonSSRCompatible" set as "true" in the config file.',
         debug
