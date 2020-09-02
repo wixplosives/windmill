@@ -1,6 +1,6 @@
 import { checkIfSimulationIsAccessible } from '../a11y-test';
 import type { Result } from '../server';
-import type { SimulationWithSSRComp, Simulation } from '@wixc3/windmill-utils/src';
+import type { Simulation } from '@wixc3/windmill-utils/src';
 
 export async function test(simulations: Simulation[]): Promise<void> {
     const results: Result[] = [];

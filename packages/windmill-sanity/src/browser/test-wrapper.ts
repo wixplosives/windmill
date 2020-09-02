@@ -1,12 +1,11 @@
 import { hydrationTest } from '@wixc3/windmill-sanity';
 import { eventListenerTest } from '@wixc3/windmill-sanity';
-import type { SimulationWithSSRComp, WindmillConfig, SimulationConfig } from '@wixc3/windmill-utils/src';
+import type { SimulationWithSSRComp, SimulationConfig } from '@wixc3/windmill-utils/src';
 
 export async function runTests(getSimulations: () => Promise<SimulationWithSSRComp[]>): Promise<void> {
     const simulationsData = await getSimulations();
 
     for (const simulationData of simulationsData) {
-        console.log('simulationData:', simulationData);
         const config: SimulationConfig = simulationData.config;
 
         // check for string 'undefined' because the values have been serialized

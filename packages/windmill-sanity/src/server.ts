@@ -9,7 +9,6 @@ import {
     getEntryCodeWithSSRComps,
     consoleError,
     ISimulationsToString,
-    WindmillConfig,
     SimulationConfig,
 } from '@wixc3/windmill-utils';
 import { createMemoryFs } from '@file-services/memory';
