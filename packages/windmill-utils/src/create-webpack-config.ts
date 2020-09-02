@@ -27,6 +27,7 @@ export type Simulation = ISimulation<Record<string, unknown>>;
 
 export interface SimulationWithSSRComp {
     simulation: Simulation;
+    config: SimulationConfig;
     simulationRenderedToString?: string;
 }
 
@@ -52,7 +53,7 @@ export function getEntryCode(simulationConfigs: SimulationConfig[]): string {
 }
 
 export function getEntryCodeWithSSRComps(
-    entryFiles: string[],
+    simulationConfigs: SimulationConfig[],
     simulationsRenderedToString: ISimulationsToString
 ): string {
     const entryCode = [
@@ -60,11 +61,13 @@ export function getEntryCodeWithSSRComps(
     export async function getSimulations() { 
         const simulations = [];`,
     ];
-    for (const [index, moduleFilePath] of entryFiles.entries()) {
-        entryCode.push(`const simulation${index} = await import(${JSON.stringify(moduleFilePath)});`);
+    for (const [index, config] of simulationConfigs.entries()) {
+        entryCode.push(`const simulation${index} = await import(${JSON.stringify(config.simulationGlob)});`);
         entryCode.push(
             // eslint-disable-next-line
-            `simulations.push({simulation: simulation${index}.default, simulationRenderedToString: '${simulationsRenderedToString[moduleFilePath]}'})`
+            `simulations.push({simulation: simulation${index}.default, simulationRenderedToString: '${
+                simulationsRenderedToString[config.simulationGlob]
+            }', config: ${JSON.stringify(config)}})`
         );
     }
 
