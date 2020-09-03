@@ -65,6 +65,7 @@ export const defaultConfig: WindmillConfig = {
     accessible: true,
     reactStrictModeCompatible: true,
     ssrCompatible: true,
+    errorOnConsole: true,
 };
 
 export function getBooleanValue(value: boolean | undefined, defaultValue = false): boolean {
@@ -82,6 +83,7 @@ export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: Windm
         defaultConfig.reactStrictModeCompatible
     );
     const ssrCompatible = getBooleanValue(bumpyConfig?.ssrCompatible, defaultConfig.ssrCompatible);
+    const errorOnConsole = getBooleanValue(bumpyConfig?.errorOnConsole, defaultConfig.errorOnConsole);
     const a11yImpactLevel = bumpyConfig?.a11yImpactLevel || defaultConfig.a11yImpactLevel;
 
     const flattenedConfig: SimulationConfig[] = [];
@@ -94,6 +96,7 @@ export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: Windm
             reactStrictModeCompatible,
             ssrCompatible,
             a11yImpactLevel,
+            errorOnConsole,
         };
 
         flattenedConfig.push(defaultSimConfig);
@@ -114,6 +117,10 @@ export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: Windm
                 matchingSimConfig.ssrCompatible = getBooleanValue(
                     simConfig.ssrCompatible,
                     matchingSimConfig.ssrCompatible
+                );
+                matchingSimConfig.errorOnConsole = getBooleanValue(
+                    simConfig.errorOnConsole,
+                    matchingSimConfig.errorOnConsole
                 );
                 matchingSimConfig.a11yImpactLevel = simConfig.a11yImpactLevel || matchingSimConfig.a11yImpactLevel;
             } else {

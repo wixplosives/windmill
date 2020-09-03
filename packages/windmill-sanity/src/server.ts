@@ -80,6 +80,8 @@ const renderSimulationsToString = (
                 // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                 errors.push(`\n${chalk.red('Error:')}`, e);
             }
+        } else {
+            consoleLog(`Skipping SSR test for simulation: ${simulationConfig.simulationGlob}.`);
         }
     }
 

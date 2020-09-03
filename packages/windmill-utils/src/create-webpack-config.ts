@@ -27,7 +27,7 @@ export type Simulation = ISimulation<Record<string, unknown>>;
 
 export interface SimulationWithSSRComp {
     simulation: Simulation;
-    config: SimulationConfig;
+    config: Required<SimulationConfig>;
     simulationRenderedToString?: string;
 }
 

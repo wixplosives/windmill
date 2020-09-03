@@ -22,9 +22,14 @@ export type WebpackConfigFile = webpack.Configuration | IWcsConfig;
 
 export interface BaseConfig {
     a11yImpactLevel: axe.ImpactValue;
+    /** Should a11y tests be run? Defaults to true */
     accessible: boolean;
+    /** Should windmill-sanity check for ssr compatibility? Defaults to true */
     ssrCompatible: boolean;
+    /** Should windmill-sanity render simulations in React strict mode? Defaults to true */
     reactStrictModeCompatible: boolean;
+    /** Should windmill-sanity error when simulations console log or console error? Defaults to true */
+    errorOnConsole: boolean;
 }
 
 // We don't expect users to supply everything
