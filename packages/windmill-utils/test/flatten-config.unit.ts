@@ -106,4 +106,26 @@ describe('Flatten config', () => {
         expect(flattenedConfig[2].simulationFilePath).to.equal(simPaths[2]);
         expect(flattenedConfig[2].accessible).to.equal(false);
     });
+
+    it('globs should override in order of appearance', () => {
+        const simPaths = ['some-sim-1', 'some-sim-2', 'not-matching-sim'];
+        const glob = 'some-sim-*';
+        const glob2 = 'some-sim-*';
+        const mockProjectConfig: WindmillConfig = {
+            simulationConfigs: [
+                { simulationGlob: glob, accessible: true },
+                { simulationGlob: glob2, accessible: false },
+            ],
+        };
+
+        const flattenedConfig = flattenConfig(simPaths, mockProjectConfig);
+
+        expect(flattenedConfig.length).to.equal(3);
+        expect(flattenedConfig[0].simulationFilePath).to.equal(simPaths[0]);
+        expect(flattenedConfig[0].accessible).to.equal(false);
+        expect(flattenedConfig[1].simulationFilePath).to.equal(simPaths[1]);
+        expect(flattenedConfig[1].accessible).to.equal(false);
+        expect(flattenedConfig[2].simulationFilePath).to.equal(simPaths[2]);
+        expect(flattenedConfig[2].accessible).to.equal(defaultConfig.accessible);
+    });
 });
