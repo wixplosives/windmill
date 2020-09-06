@@ -21,6 +21,7 @@ export interface IA11yTestResult {
 export type WebpackConfigFile = webpack.Configuration | IWcsConfig;
 
 export interface BaseConfig {
+    /** axe-core a11y violation impact level. Defaults to 'minor'. */
     a11yImpactLevel: axe.ImpactValue;
     /** Should a11y tests be run? Defaults to true */
     accessible: boolean;
@@ -36,11 +37,21 @@ export interface BaseConfig {
 export type WindmillConfig = Partial<BaseWindmillConfig>;
 
 export interface BaseWindmillConfig extends Partial<BaseConfig> {
+    /** The base path for the project. Default is process.cwd() */
     projectPath: string;
+    /** Path to a webpack config file. By default, windmill looks in the root
+     * of the project for a webpack.config.js file.
+     */
     webpackConfigPath: string;
+    /** functions that will be called before requiring your simulations in node.
+     * **You will probably need to configure this for your project**. */
     hooks: [() => void];
+    /** An array of file patterns to match against in case you've decided to
+     * follow a pattern other than the default `*.sim.ts` or `*.sim.tsx`. */
     simulationFilePattern: string[];
+    /** An array of globs for simulations that should be ignored completely from windmill tests.  */
     ignorePaths: string[];
+    /** Configuration at the component level.  */
     simulationConfigs: SimulationConfig[];
 }
 
