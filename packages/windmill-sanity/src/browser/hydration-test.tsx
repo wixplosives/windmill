@@ -58,9 +58,6 @@ export const hydrationTest = (
             if (config.errorOnConsole) {
                 expect(consoleSpy, `console was called with:\n ${consoleArgs}`).to.not.be.called;
                 expect(errorSpy, `console error was called with:\n ${errorArgs}`).to.not.be.called;
-            } else {
-                // eslint-disable-next-line no-console
-                console.log(`Skipping console test for simulation: ${config.simulationGlob}`);
             }
         });
     });

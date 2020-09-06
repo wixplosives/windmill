@@ -94,22 +94,18 @@ describe('The sanity cli', function () {
     it('should not error on a sim that console logs when "errorOnConsole" is set to false', () => {
         const configPath = join(mockRepoRoot, 'configs/non-console-log-config.ts');
         const simName = 'comp-with-console-log.sim.ts';
-        const simPath = join(mockRepoRoot, '_wcs/simulations/comp-with-console', simName);
 
-        const { stdout, status } = runSanity(['--config', `${configPath}`, simName]);
+        const { status } = runSanity(['--config', `${configPath}`, simName]);
 
-        expect(stdout).to.include(`Skipping console test for simulation: ${simPath}`);
         expect(status).to.equal(0);
     });
 
     it('should not error on a sim that console errors when "errorOnConsole" is set to false', () => {
         const configPath = join(mockRepoRoot, 'configs/non-console-error-config.ts');
         const simName = 'comp-with-console-error.sim.ts';
-        const simPath = join(mockRepoRoot, '_wcs/simulations/comp-with-console', simName);
 
-        const { stdout, status } = runSanity(['--config', `${configPath}`, simName]);
+        const { status } = runSanity(['--config', `${configPath}`, simName]);
 
-        expect(stdout).to.include(`Skipping console test for simulation: ${simPath}`);
         expect(status).to.equal(0);
     });
 });
