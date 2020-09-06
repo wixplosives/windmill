@@ -43,7 +43,7 @@ describe('The a11y cli', function () {
     it('should not error on the image-without-alt-sim when configured as non-a11y-compatible', () => {
         const configPath = join(mockRepoRoot, 'configs/non-a11y-sim-config.ts');
         const sim = 'image-without-alt.sim.ts';
-        const simPath = join(mockRepoRoot, '_wcs/simulations/Image', sim);
+        const simPath = join(mockRepoRoot, '_wcs', 'simulations', 'Image', sim);
 
         const { stdout, status } = runA11y(['--config', `${configPath}`, `${sim}`]);
 
