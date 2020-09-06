@@ -82,7 +82,7 @@ const renderSimulationsToString = (
                 errors.push(`\n${chalk.red('Error:')}`, e);
             }
         } else {
-            consoleLog(`Skipping SSR test for simulation: ${simulationConfig.simulationFilePath}.`);
+            consoleLog(`Skipping SSR test for simulation: ${path.normalize(simulationConfig.simulationFilePath)}.`);
         }
     }
 
