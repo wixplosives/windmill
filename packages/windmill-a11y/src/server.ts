@@ -9,6 +9,7 @@ import {
     consoleLog,
     getEntryCode,
     IA11yTestResult,
+    FlattenedSimulationConfig,
 } from '@wixc3/windmill-utils';
 import chalk from 'chalk';
 import type axe from 'axe-core';
@@ -60,7 +61,9 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
                         violation.nodes.forEach((node) => {
                             const selector = node.target.join(' > ');
                             const compName = `${res.simulation} - ${selector}`;
-                            msg[index] += `\n\n  ${chalk.red(compName)}: (Impact: ${violation.impact as string})\n\n  Violation description: ${violation.description} \n\n  ${
+                            msg[index] += `\n\n  ${chalk.red(compName)}: (Impact: ${
+                                violation.impact as string
+                            })\n\n  Violation description: ${violation.description} \n\n  ${
                                 node.failureSummary as string
                             } \n`;
                         });
@@ -78,7 +81,7 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
 }
 
 export async function a11yTest(
-    simulationFilePaths: string[],
+    simulationConfigs: FlattenedSimulationConfig[],
     impact: axe.ImpactValue,
     projectPath: string,
     webpackConfigPath: string,
@@ -87,11 +90,20 @@ export async function a11yTest(
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running a11y test...');
+    const accessibleSimConfigs = [];
+
+    for (const simConfig of simulationConfigs) {
+        if (!simConfig.accessible) {
+            consoleLog(`Skipping a11y test for simulation: ${path.normalize(simConfig.simulationFilePath)}.`);
+        } else {
+            accessibleSimConfigs.push(simConfig);
+        }
+    }
 
     try {
         const memFs = createMemoryFs({
             simulation: {
-                'simulations.js': getEntryCode(simulationFilePaths),
+                'simulations.js': getEntryCode(accessibleSimConfigs),
             },
             test: {
                 'test.js': `

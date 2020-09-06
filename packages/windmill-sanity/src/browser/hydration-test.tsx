@@ -4,6 +4,7 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { ISimulation, simulationToJsx } from '@wixc3/wcs-core';
+import type { SimulationConfig } from '@wixc3/windmill-utils/src';
 
 const hydrate = ReactDOM.hydrate || ReactDOM.render;
 
@@ -12,7 +13,7 @@ chai.use(sinonChai);
 export const hydrationTest = (
     simulation: ISimulation<Record<string, unknown>>,
     renderedComponentString: string,
-    nonReactStrictModeCompatible: boolean
+    config: Required<SimulationConfig>
 ): void => {
     describe(`${simulation.name} hydration test`, () => {
         let consoleSpy: sinon.SinonSpy<Parameters<Console['log']>, ReturnType<Console['log']>>;
@@ -37,10 +38,10 @@ export const hydrationTest = (
             // Set root's HTML to the SSR component
             root.innerHTML = renderedComponentString;
 
-            if (nonReactStrictModeCompatible) {
-                hydrate(simulationToJsx(simulation), root);
-            } else {
+            if (config.reactStrictModeCompatible) {
                 hydrate(<React.StrictMode>{simulationToJsx(simulation)}</React.StrictMode>, root);
+            } else {
+                hydrate(simulationToJsx(simulation), root);
             }
 
             ReactDOM.unmountComponentAtNode(root);
@@ -54,8 +55,10 @@ export const hydrationTest = (
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const errorArgs: string = errorSpy.getCall(0) ? errorSpy.getCall(0).args[0] : '';
 
-            expect(consoleSpy, `console was called with:\n ${consoleArgs}`).to.not.be.called;
-            expect(errorSpy, `console error was called with:\n ${errorArgs}`).to.not.be.called;
+            if (config.errorOnConsole) {
+                expect(consoleSpy, `console was called with:\n ${consoleArgs}`).to.not.be.called;
+                expect(errorSpy, `console error was called with:\n ${errorArgs}`).to.not.be.called;
+            }
         });
     });
 };

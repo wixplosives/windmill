@@ -50,22 +50,62 @@ describe('The sanity cli', function () {
         expect(status).to.equal(0);
     });
 
-    it('should not error when configured to be "nonSSRCompatible" in the windmill config', () => {
-        const configPath = join(mockRepoRoot, 'non-ssr-config.ts');
-        const { stdout, status } = runSanity(['--config', `${configPath}`]);
+    it('should not error on non-ssr-comp when configured to be "nonSSRCompatible" in the windmill config', () => {
+        const configPath = join(mockRepoRoot, 'configs/non-ssr-config.ts');
+        const simName = 'non-ssr-comp.sim.ts';
+        const simPath = join(mockRepoRoot, '_wcs/simulations/non-ssr-comp', simName);
 
-        expect(stdout).to.include(
-            'Skipping sanity tests for project, due to "nonSSRCompatible" set as "true" in the config file.'
-        );
-        expect(stdout).to.not.include('Running sanity tests...');
+        const { stdout, status } = runSanity(['--config', `${configPath}`, simName]);
+
+        expect(stdout).to.include(`Skipping SSR test for simulation: ${simPath}`);
         expect(status).to.equal(0);
     });
 
     it('should not error while running on a component using legacy API when "nonReactStrictModeCompliant" is set to "true"', () => {
-        const configPath = join(mockRepoRoot, 'non-strict-mode-config.ts');
+        const configPath = join(mockRepoRoot, 'configs/non-strict-mode-config.ts');
         const { stdout, status } = runSanity(['--config', `${configPath}`, 'comp-with-legacy-ref.sim.ts']);
 
         expect(stdout).to.include('Running sanity tests...');
+        expect(status).to.equal(0);
+    });
+
+    it('should not error while running on a component using legacy API when "nonReactStrictModeCompliant" is set to "true"', () => {
+        const configPath = join(mockRepoRoot, 'configs/non-strict-mode-config.ts');
+        const { stdout, status } = runSanity(['--config', `${configPath}`, 'comp-with-legacy-ref.sim.ts']);
+
+        expect(stdout).to.include('Running sanity tests...');
+        expect(status).to.equal(0);
+    });
+
+    it('should error while running on a sim that console logs', () => {
+        const { stdout, status } = runSanity(['comp-with-console-log.sim.ts']);
+
+        expect(stdout).to.include('Running sanity tests...');
+        expect(status).to.equal(1);
+    });
+
+    it('should error while running on a sim that console errors', () => {
+        const { stdout, status } = runSanity(['comp-with-console-error.sim.ts']);
+
+        expect(stdout).to.include('Running sanity tests...');
+        expect(status).to.equal(1);
+    });
+
+    it('should not error on a sim that console logs when "errorOnConsole" is set to false', () => {
+        const configPath = join(mockRepoRoot, 'configs/non-console-log-config.ts');
+        const simName = 'comp-with-console-log.sim.ts';
+
+        const { status } = runSanity(['--config', `${configPath}`, simName]);
+
+        expect(status).to.equal(0);
+    });
+
+    it('should not error on a sim that console errors when "errorOnConsole" is set to false', () => {
+        const configPath = join(mockRepoRoot, 'configs/non-console-error-config.ts');
+        const simName = 'comp-with-console-error.sim.ts';
+
+        const { status } = runSanity(['--config', `${configPath}`, simName]);
+
         expect(status).to.equal(0);
     });
 });

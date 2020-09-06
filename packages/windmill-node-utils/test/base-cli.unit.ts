@@ -16,7 +16,7 @@ describe('The base cli', function () {
     this.timeout(20_000);
 
     it('should load a config and call any hooks defined in the config', () => {
-        const configPath = join(mockRepoRoot, 'test-a11y-config.js');
+        const configPath = join(mockRepoRoot, 'configs/test-a11y-config.js');
         const { stdout, status } = runCli(['--config', `${configPath}`, 'non-ssr-comp.sim.ts']);
 
         expect(stdout).to.include('This is a hook that gets called before loading your simulations');

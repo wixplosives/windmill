@@ -1,5 +1,6 @@
 import { sanityTests } from './server';
-import { CLI, printErrorAndExit, printMessageAndExit } from '@wixc3/windmill-node-utils';
+import { CLI, printErrorAndExit } from '@wixc3/windmill-node-utils';
+import { flattenConfig } from '@wixc3/windmill-utils';
 
 const cli = new CLI();
 
@@ -7,13 +8,8 @@ cli.program.description('run sanity tests on simulations');
 
 const { simulations, webpackConfigPath, projectPath, debug, windmillConfig } = cli.start();
 
-if (windmillConfig?.nonSSRCompatible) {
-    printMessageAndExit(
-        'Skipping sanity tests for project, due to "nonSSRCompatible" set as "true" in the config file.',
-        debug
-    );
-}
+const flattenedConfig = flattenConfig(simulations, windmillConfig);
 
-sanityTests(simulations, projectPath, webpackConfigPath as string, debug, windmillConfig).catch((err) => {
+sanityTests(flattenedConfig, projectPath, webpackConfigPath as string, debug).catch((err) => {
     printErrorAndExit(err, debug);
 });

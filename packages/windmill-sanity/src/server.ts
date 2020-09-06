@@ -9,7 +9,7 @@ import {
     getEntryCodeWithSSRComps,
     consoleError,
     ISimulationsToString,
-    WindmillConfig,
+    FlattenedSimulationConfig,
 } from '@wixc3/windmill-utils';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
@@ -36,46 +36,52 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
 }
 
 const renderSimulationsToString = (
-    simulationFilePaths: string[]
+    simulationConfigs: FlattenedSimulationConfig[]
 ): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean; errors: unknown[] } => {
     const simulationsRenderedToString: ISimulationsToString = {};
     const errors = [];
     let failedSSR = false;
 
-    for (const simulationFilePath of simulationFilePaths) {
-        try {
-            // eslint-disable-next-line
-            const sim: ISimulation<Record<string, unknown>> = require(simulationFilePath).default;
+    for (const simulationConfig of simulationConfigs) {
+        if (simulationConfig.ssrCompatible) {
+            try {
+                // eslint-disable-next-line
+                const sim: ISimulation<Record<string, unknown>> = require(simulationConfig.simulationFilePath).default;
 
-            if (sim) {
-                try {
-                    simulationsRenderedToString[simulationFilePath] = renderToString(simulationToJsx(sim));
-                } catch (e) {
-                    failedSSR = true;
+                if (sim) {
+                    try {
+                        simulationsRenderedToString[simulationConfig.simulationFilePath] = renderToString(
+                            simulationToJsx(sim)
+                        );
+                    } catch (e) {
+                        failedSSR = true;
 
-                    errors.push(
-                        `\n${chalk.red("Couldn't render simulation")} "${chalk.underline(sim.name)}" ${chalk.yellow(
-                            'to string.'
-                        )} Windmill will continue, but will skip hydration tests for this component, as this error means that this component is not SSR-compatible. For debugging purposes, the error has been printed below.`
-                    );
-                    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                    errors.push(`\n${chalk.red('Error:')}`, e);
+                        errors.push(
+                            `\n${chalk.red("Couldn't render simulation")} "${chalk.underline(sim.name)}" ${chalk.yellow(
+                                'to string.'
+                            )} Windmill will continue, but will skip hydration tests for this component, as this error means that this component is not SSR-compatible. For debugging purposes, the error has been printed below.`
+                        );
+                        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                        errors.push(`\n${chalk.red('Error:')}`, e);
+                    }
                 }
+            } catch (e) {
+                errors.push(
+                    `\n${chalk.yellow("Couldn't require simulation")} "${chalk.underline(
+                        simulationConfig
+                    )}" ${chalk.yellow(
+                        'in node.'
+                    )} Windmill will continue, but will skip hydration tests for this component, as this error means that either: \n\t${chalk.cyan(
+                        'a)'
+                    )} this component is not SSR-compatible, or \n\t${chalk.cyan(
+                        'b)'
+                    )} require hooks haven't been configured for your project. \n\nPlease check the Windmill documentation for more information. For debugging purposes, the error has been printed below.`
+                );
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                errors.push(`\n${chalk.red('Error:')}`, e);
             }
-        } catch (e) {
-            errors.push(
-                `\n${chalk.yellow("Couldn't require simulation")} "${chalk.underline(
-                    simulationFilePath
-                )}" ${chalk.yellow(
-                    'in node.'
-                )} Windmill will continue, but will skip hydration tests for this component, as this error means that either: \n\t${chalk.cyan(
-                    'a)'
-                )} this component is not SSR-compatible, or \n\t${chalk.cyan(
-                    'b)'
-                )} require hooks haven't been configured for your project. \n\nPlease check the Windmill documentation for more information. For debugging purposes, the error has been printed below.`
-            );
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            errors.push(`\n${chalk.red('Error:')}`, e);
+        } else {
+            consoleLog(`Skipping SSR test for simulation: ${path.normalize(simulationConfig.simulationFilePath)}.`);
         }
     }
 
@@ -83,34 +89,28 @@ const renderSimulationsToString = (
 };
 
 export async function sanityTests(
-    simulationFilePaths: string[],
+    simulationConfigs: FlattenedSimulationConfig[],
     projectPath: string,
     webpackConfigPath: string,
-    debug: boolean,
-    windmillConfig?: WindmillConfig
+    debug: boolean
 ): Promise<void> {
     let server: IServer | null = null;
     let browser: puppeteer.Browser | null = null;
     consoleLog('Running sanity tests...');
 
-    const { simulationsRenderedToString, failedSSR, errors } = renderSimulationsToString(simulationFilePaths);
-    const windmillConfigString = windmillConfig ? JSON.stringify(windmillConfig) : JSON.stringify({});
+    const { simulationsRenderedToString, failedSSR, errors } = renderSimulationsToString(simulationConfigs);
 
     try {
         const memFs = createMemoryFs({
             simulation: {
-                'simulations.js': getEntryCodeWithSSRComps(simulationFilePaths, simulationsRenderedToString),
-            },
-            config: {
-                'config.js': `export const config = '${windmillConfigString}'`,
+                'simulations.js': getEntryCodeWithSSRComps(simulationConfigs, simulationsRenderedToString),
             },
             test: {
                 'test.js': `
                     import { runTests } from '@wixc3/windmill-sanity';
                     import { getSimulations } from '../simulation/simulations';
-                    import { config } from '../config/config';
                     
-                    runTests(getSimulations, config).catch((err) => {
+                    runTests(getSimulations).catch((err) => {
                         throw err;
                     });
                 `,

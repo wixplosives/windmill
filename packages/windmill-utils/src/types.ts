@@ -22,9 +22,14 @@ export type WebpackConfigFile = webpack.Configuration | IWcsConfig;
 
 export interface BaseConfig {
     a11yImpactLevel: axe.ImpactValue;
-    nonAccessible: boolean;
-    nonSSRCompatible: boolean;
-    nonReactStrictModeCompatible: boolean;
+    /** Should a11y tests be run? Defaults to true */
+    accessible: boolean;
+    /** Should windmill-sanity check for ssr compatibility? Defaults to true */
+    ssrCompatible: boolean;
+    /** Should windmill-sanity render simulations in React strict mode? Defaults to true */
+    reactStrictModeCompatible: boolean;
+    /** Should windmill-sanity error when simulations console log or console error? Defaults to true */
+    errorOnConsole: boolean;
 }
 
 // We don't expect users to supply everything
@@ -36,15 +41,19 @@ export interface BaseWindmillConfig extends Partial<BaseConfig> {
     hooks: [() => void];
     simulationFilePattern: string[];
     ignorePaths: string[];
-    componentConfig: ComponentConfig;
-    simulationConfig: SimulationConfig;
-}
-
-export interface ComponentConfig extends Partial<BaseConfig> {
-    componentPath: string;
-    exportName: string;
+    simulationConfigs: SimulationConfig[];
 }
 
 export interface SimulationConfig extends Partial<BaseConfig> {
-    simulationPath: string;
+    /**
+     * A glob for matching simulations. Can be specific, for matching a
+     * single simulation. i.e. '**\/_wcs/simulations/my-comp.sim.ts'. Or can be more
+     * general, for matching all simulations of a certain component i.e. '**\/Image/*.sim.ts'. */
+    simulationGlob: string;
+}
+
+export interface FlattenedSimulationConfig extends Partial<SimulationConfig> {
+    /**
+     * The resolved file path */
+    simulationFilePath: string;
 }

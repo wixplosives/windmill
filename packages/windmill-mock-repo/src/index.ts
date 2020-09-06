@@ -4,3 +4,4 @@ export * from './comp-with-hook/comp-with-hook';
 export * from './non-hydratable-comp/non-hydratable-comp';
 export * from './event-leak-comp/event-leak-comp';
 export * from './comp-with-legacy-ref/comp-with-legacy-ref';
+export * from './comp-with-console/comp-with-console';

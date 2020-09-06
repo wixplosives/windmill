@@ -7,7 +7,9 @@
     "clean": "rimraf ./cjs",
     "prebuild": "yarn clean",
     "build": "ts-build ./src --cjs",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "test": "yarn test:node",
+    "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\""
   },
   "peerDependencies": {
     "html-webpack-plugin": ">=4",
@@ -36,6 +38,7 @@
     "chalk": "^4.1.0",
     "koa": "^2.13.0",
     "koa-static": "^5.0.0",
-    "koa-webpack": "^6.0.0"
+    "koa-webpack": "^6.0.0",
+    "minimatch": "^3.0.4"
   }
 }
