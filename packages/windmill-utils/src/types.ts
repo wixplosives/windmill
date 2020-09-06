@@ -43,8 +43,7 @@ export interface BaseWindmillConfig extends Partial<BaseConfig> {
      * of the project for a webpack.config.js file.
      */
     webpackConfigPath: string;
-    /** functions that will be called before requiring your simulations in node.
-     * **You will probably need to configure this for your project**. */
+    /** functions that will be called before requiring your simulations in node. */
     hooks: [() => void];
     /** An array of file patterns to match against in case you've decided to
      * follow a pattern other than the default `*.sim.ts` or `*.sim.tsx`. */
