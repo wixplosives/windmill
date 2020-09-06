@@ -122,7 +122,7 @@ export function flattenConfig(
                 m(c.simulationFilePath, simConfig.simulationGlob, { matchBase: true })
             );
 
-            if (matchingSimConfigs) {
+            if (matchingSimConfigs.length) {
                 for (const matchingSimConfig of matchingSimConfigs) {
                     matchingSimConfig.accessible = getBooleanValue(simConfig.accessible, matchingSimConfig.accessible);
                     matchingSimConfig.reactStrictModeCompatible = getBooleanValue(

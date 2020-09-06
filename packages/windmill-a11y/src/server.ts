@@ -10,6 +10,7 @@ import {
     getEntryCode,
     IA11yTestResult,
     SimulationConfig,
+    FlattenedSimulationConfig,
 } from '@wixc3/windmill-utils';
 import chalk from 'chalk';
 import type axe from 'axe-core';
@@ -81,7 +82,7 @@ function formatResults(results: Result[], impact: axe.ImpactValue): { message: s
 }
 
 export async function a11yTest(
-    simulationConfigs: SimulationConfig[],
+    simulationConfigs: FlattenedSimulationConfig[],
     impact: axe.ImpactValue,
     projectPath: string,
     webpackConfigPath: string,
@@ -94,7 +95,7 @@ export async function a11yTest(
 
     for (const simConfig of simulationConfigs) {
         if (!simConfig.accessible) {
-            consoleLog(`Skipping a11y test for simulation: ${simConfig.simulationGlob}.`);
+            consoleLog(`Skipping a11y test for simulation: ${path.normalize(simConfig.simulationFilePath)}.`);
         } else {
             accessibleSimConfigs.push(simConfig);
         }

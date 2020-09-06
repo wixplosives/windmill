@@ -29,7 +29,7 @@ describe('Flatten config', () => {
             expect(simConfig.reactStrictModeCompatible).to.equal(mockProjectConfig.reactStrictModeCompatible);
             expect(simConfig.ssrCompatible).to.equal(mockProjectConfig.ssrCompatible);
             expect(simConfig.errorOnConsole).to.equal(mockProjectConfig.errorOnConsole);
-            expect(simConfig.simulationGlob).to.equal(mockSimulationFilePaths[index]);
+            expect(simConfig.simulationFilePath).to.equal(mockSimulationFilePaths[index]);
         }
     });
 
@@ -44,7 +44,7 @@ describe('Flatten config', () => {
             expect(simConfig.reactStrictModeCompatible).to.equal(defaultConfig.reactStrictModeCompatible);
             expect(simConfig.ssrCompatible).to.equal(defaultConfig.ssrCompatible);
             expect(simConfig.errorOnConsole).to.equal(defaultConfig.errorOnConsole);
-            expect(simConfig.simulationGlob).to.equal(mockSimulationFilePaths[index]);
+            expect(simConfig.simulationFilePath).to.equal(mockSimulationFilePaths[index]);
         }
     });
 
@@ -70,7 +70,7 @@ describe('Flatten config', () => {
         const flattenedConfig = flattenConfig(simPaths, mockProjectConfig);
 
         expect(flattenedConfig.length).to.equal(2);
-        expect(flattenedConfig[0].simulationGlob).to.equal(simPaths[0]);
+        expect(flattenedConfig[0].simulationFilePath).to.equal(simPaths[0]);
         expect(flattenedConfig[0].accessible).to.equal(true, `Simulation config did not apply over project config`);
         expect(flattenedConfig[1].accessible).to.equal(false); // project config
     });

@@ -1,7 +1,6 @@
 import { expect } from 'chai';
-import { dirname, resolve } from 'path';
+import { dirname, resolve, join } from 'path';
 import { spawnSync } from 'child_process';
-import { join } from '@file-services/path';
 
 const cliSrcPath = require.resolve('../bin/windmill-a11y.js');
 const mockRepoRoot = dirname(require.resolve('@wixc3/windmill-mock-repo/package.json'));

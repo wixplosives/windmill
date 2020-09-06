@@ -10,6 +10,7 @@ import {
     consoleError,
     ISimulationsToString,
     SimulationConfig,
+    FlattenedSimulationConfig,
 } from '@wixc3/windmill-utils';
 import { createMemoryFs } from '@file-services/memory';
 import nodeFs from '@file-services/node';
@@ -36,7 +37,7 @@ function getWebpackConfig(projectPath: string, webpackConfigPath: string): Webpa
 }
 
 const renderSimulationsToString = (
-    simulationConfigs: SimulationConfig[]
+    simulationConfigs: FlattenedSimulationConfig[]
 ): { simulationsRenderedToString: ISimulationsToString; failedSSR: boolean; errors: unknown[] } => {
     const simulationsRenderedToString: ISimulationsToString = {};
     const errors = [];
@@ -46,11 +47,11 @@ const renderSimulationsToString = (
         if (simulationConfig.ssrCompatible) {
             try {
                 // eslint-disable-next-line
-                const sim: ISimulation<Record<string, unknown>> = require(simulationConfig.simulationGlob).default;
+                const sim: ISimulation<Record<string, unknown>> = require(simulationConfig.simulationFilePath).default;
 
                 if (sim) {
                     try {
-                        simulationsRenderedToString[simulationConfig.simulationGlob] = renderToString(
+                        simulationsRenderedToString[simulationConfig.simulationFilePath] = renderToString(
                             simulationToJsx(sim)
                         );
                     } catch (e) {
@@ -81,7 +82,7 @@ const renderSimulationsToString = (
                 errors.push(`\n${chalk.red('Error:')}`, e);
             }
         } else {
-            consoleLog(`Skipping SSR test for simulation: ${simulationConfig.simulationGlob}.`);
+            consoleLog(`Skipping SSR test for simulation: ${simulationConfig.simulationFilePath}.`);
         }
     }
 
@@ -89,7 +90,7 @@ const renderSimulationsToString = (
 };
 
 export async function sanityTests(
-    simulationConfigs: SimulationConfig[],
+    simulationConfigs: FlattenedSimulationConfig[],
     projectPath: string,
     webpackConfigPath: string,
     debug: boolean
