@@ -1,12 +1,6 @@
 import { posix as posixPath, win32 as win32Path } from '@file-services/path';
 import { connect } from 'net';
-import type {
-    WebpackConfigFile,
-    IWcsConfig,
-    WindmillConfig,
-    SimulationConfig,
-    FlattenedSimulationConfig,
-} from './types';
+import type { WebpackConfigFile, IWcsConfig, WindmillConfig, FlattenedSimulationConfig } from './types';
 import type { ImpactValue } from 'axe-core';
 import m from 'minimatch';
 

@@ -9,7 +9,6 @@ import {
     consoleLog,
     getEntryCode,
     IA11yTestResult,
-    SimulationConfig,
     FlattenedSimulationConfig,
 } from '@wixc3/windmill-utils';
 import chalk from 'chalk';
