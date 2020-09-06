@@ -1,6 +1,12 @@
 import { posix as posixPath, win32 as win32Path } from '@file-services/path';
 import { connect } from 'net';
-import type { WebpackConfigFile, IWcsConfig, WindmillConfig, SimulationConfig } from './types';
+import type {
+    WebpackConfigFile,
+    IWcsConfig,
+    WindmillConfig,
+    SimulationConfig,
+    FlattenedSimulationConfig,
+} from './types';
 import type { ImpactValue } from 'axe-core';
 import m from 'minimatch';
 
@@ -76,7 +82,10 @@ export function matchWithGlob(file: string, /** glob or relative/absolute path *
     return m(file, fileToCheck, { matchBase: true });
 }
 
-export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: WindmillConfig): SimulationConfig[] {
+export function flattenConfig(
+    simulationFilePaths: string[],
+    bumpyConfig?: WindmillConfig
+): FlattenedSimulationConfig[] {
     const accessible = getBooleanValue(bumpyConfig?.accessible, defaultConfig.accessible);
     const reactStrictModeCompatible = getBooleanValue(
         bumpyConfig?.reactStrictModeCompatible,
@@ -86,12 +95,12 @@ export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: Windm
     const errorOnConsole = getBooleanValue(bumpyConfig?.errorOnConsole, defaultConfig.errorOnConsole);
     const a11yImpactLevel = bumpyConfig?.a11yImpactLevel || defaultConfig.a11yImpactLevel;
 
-    const flattenedConfig: SimulationConfig[] = [];
+    const flattenedConfig: FlattenedSimulationConfig[] = [];
 
     // create the default config for each simulation
     for (const simulationFilePath of simulationFilePaths) {
-        const defaultSimConfig: SimulationConfig = {
-            simulationGlob: simulationFilePath,
+        const defaultSimConfig: FlattenedSimulationConfig = {
+            simulationFilePath,
             accessible,
             reactStrictModeCompatible,
             ssrCompatible,
@@ -104,25 +113,32 @@ export function flattenConfig(simulationFilePaths: string[], bumpyConfig?: Windm
 
     if (bumpyConfig?.simulationConfigs) {
         for (const simConfig of bumpyConfig.simulationConfigs) {
-            const matchingSimConfig = flattenedConfig.find((c) =>
-                m(c.simulationGlob, simConfig.simulationGlob, { matchBase: true })
+            /**
+             * Filter returns a new array, but each item is added with intact references,
+             * meaning that we can simply set the values on `matchingSimConfigs` and the corresponding
+             * values are changed on `flattenedConfig`.
+             */
+            const matchingSimConfigs = flattenedConfig.filter((c) =>
+                m(c.simulationFilePath, simConfig.simulationGlob, { matchBase: true })
             );
 
-            if (matchingSimConfig) {
-                matchingSimConfig.accessible = getBooleanValue(simConfig.accessible, matchingSimConfig.accessible);
-                matchingSimConfig.reactStrictModeCompatible = getBooleanValue(
-                    simConfig.reactStrictModeCompatible,
-                    matchingSimConfig.reactStrictModeCompatible
-                );
-                matchingSimConfig.ssrCompatible = getBooleanValue(
-                    simConfig.ssrCompatible,
-                    matchingSimConfig.ssrCompatible
-                );
-                matchingSimConfig.errorOnConsole = getBooleanValue(
-                    simConfig.errorOnConsole,
-                    matchingSimConfig.errorOnConsole
-                );
-                matchingSimConfig.a11yImpactLevel = simConfig.a11yImpactLevel || matchingSimConfig.a11yImpactLevel;
+            if (matchingSimConfigs) {
+                for (const matchingSimConfig of matchingSimConfigs) {
+                    matchingSimConfig.accessible = getBooleanValue(simConfig.accessible, matchingSimConfig.accessible);
+                    matchingSimConfig.reactStrictModeCompatible = getBooleanValue(
+                        simConfig.reactStrictModeCompatible,
+                        matchingSimConfig.reactStrictModeCompatible
+                    );
+                    matchingSimConfig.ssrCompatible = getBooleanValue(
+                        simConfig.ssrCompatible,
+                        matchingSimConfig.ssrCompatible
+                    );
+                    matchingSimConfig.errorOnConsole = getBooleanValue(
+                        simConfig.errorOnConsole,
+                        matchingSimConfig.errorOnConsole
+                    );
+                    matchingSimConfig.a11yImpactLevel = simConfig.a11yImpactLevel || matchingSimConfig.a11yImpactLevel;
+                }
             } else {
                 throw new Error(
                     `Simulation config for simulation path "${simConfig.simulationGlob}" does not have a matching simulation.`

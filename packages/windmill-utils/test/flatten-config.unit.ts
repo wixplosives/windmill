@@ -87,4 +87,23 @@ describe('Flatten config', () => {
             `Simulation config for simulation path "${nonExistingPath}" does not have a matching simulation.`
         );
     });
+
+    it('should match with a supplied glob, and return configs with resolved file paths', () => {
+        const simPaths = ['some-sim-1', 'some-sim-2', 'not-matching-sim'];
+        const glob = 'some-sim-*';
+        const mockProjectConfig: WindmillConfig = {
+            accessible: false,
+            simulationConfigs: [{ simulationGlob: glob, accessible: true }],
+        };
+
+        const flattenedConfig = flattenConfig(simPaths, mockProjectConfig);
+
+        expect(flattenedConfig.length).to.equal(3);
+        expect(flattenedConfig[0].simulationFilePath).to.equal(simPaths[0]);
+        expect(flattenedConfig[0].accessible).to.equal(true);
+        expect(flattenedConfig[1].simulationFilePath).to.equal(simPaths[1]);
+        expect(flattenedConfig[1].accessible).to.equal(true);
+        expect(flattenedConfig[2].simulationFilePath).to.equal(simPaths[2]);
+        expect(flattenedConfig[2].accessible).to.equal(false);
+    });
 });

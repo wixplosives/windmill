@@ -51,3 +51,9 @@ export interface SimulationConfig extends Partial<BaseConfig> {
      * general, for matching all simulations of a certain component i.e. '**\/Image/*.sim.ts'. */
     simulationGlob: string;
 }
+
+export interface FlattenedSimulationConfig extends Partial<SimulationConfig> {
+    /**
+     * The resolved file path */
+    simulationFilePath: string;
+}
