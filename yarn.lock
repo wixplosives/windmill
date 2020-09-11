@@ -150,6 +150,11 @@
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-3.1.1.tgz#58431f309fc1a1b2354cf55ef06dc02d844b8062"
   integrity sha512-N2yMnmEsh3gvzCNmVPfM4f7MYwrbf1HBCjyCOqqjxn6FRVKs5RQlSO9e63M1Wq+mdO3rAZhUQlEIICFJpIPvNQ==
 
+"@file-services/types@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-4.0.0.tgz#68653f7dfa6aa47301009cc6e0ee2f40e31a9f6b"
+  integrity sha512-S6qgRbfIjN9M7PmJejbbrxSPFUAikOBKCwV0u1okfHrl5y6cpTjySxCLlL0nstmCdNDRXQb2KcuB8X2DclwRWQ==
+
 "@file-services/utils@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-3.1.1.tgz#07361b0723e0a4023f44056d9e1dc2f5ef61c23b"
@@ -157,12 +162,12 @@
   dependencies:
     "@file-services/types" "^3.1.1"
 
-"@file-services/webpack@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-3.1.1.tgz#73e0171af681bc238c72c7e3a0df503832218a78"
-  integrity sha512-xKsrwigS+cgFmzos6eEcw/u4dVjh5jRtvaoKGRZi4oc+W/AvT07HJypBg57/7EVEadJziCzdV55lJPoeSjwonw==
+"@file-services/webpack@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-4.0.0.tgz#cb593f9e46d89e7eb5e6616b93c51fc0193e63bb"
+  integrity sha512-0ntE7ZkOh/spywh+hWy9nexAMGguGrR0M2EhjJFkOu0lOvgyb/dUrjRWvYOGVBsJzpNOwa/z/XKzfIsmfOoW0Q==
   dependencies:
-    "@file-services/types" "^3.1.1"
+    "@file-services/types" "^4.0.0"
 
 "@hapi/address@^4.1.0":
   version "4.1.0"

@@ -20,7 +20,7 @@
     "@file-services/overlay": "^3.1.1",
     "@file-services/path": "^3.1.1",
     "@file-services/types": "^3.1.1",
-    "@file-services/webpack": "^3.1.1",
+    "@file-services/webpack": "^4.0.0",
     "@stylable/cli": "^3.10.0",
     "@stylable/core": "^3.10.0",
     "@stylable/dom-test-kit": "^3.10.0",
