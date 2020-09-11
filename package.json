@@ -18,7 +18,7 @@
     "@file-services/memory": "^3.1.2",
     "@file-services/node": "^3.1.1",
     "@file-services/overlay": "^3.1.1",
-    "@file-services/path": "^3.1.1",
+    "@file-services/path": "^4.0.0",
     "@file-services/types": "^3.1.1",
     "@file-services/webpack": "^3.1.1",
     "@stylable/cli": "^3.10.0",
