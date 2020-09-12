@@ -68,10 +68,6 @@ export const defaultConfig: WindmillConfig = {
     errorOnConsole: true,
 };
 
-export function getBooleanValue(value: boolean | undefined, defaultValue = false): boolean {
-    return value === false ? false : value === true ? true : defaultValue;
-}
-
 export function matchWithGlob(file: string, /** glob or relative/absolute path */ fileToCheck: string): boolean {
     return m(file, fileToCheck, { matchBase: true });
 }
@@ -80,13 +76,10 @@ export function flattenConfig(
     simulationFilePaths: string[],
     bumpyConfig?: WindmillConfig
 ): FlattenedSimulationConfig[] {
-    const accessible = getBooleanValue(bumpyConfig?.accessible, defaultConfig.accessible);
-    const reactStrictModeCompatible = getBooleanValue(
-        bumpyConfig?.reactStrictModeCompatible,
-        defaultConfig.reactStrictModeCompatible
-    );
-    const ssrCompatible = getBooleanValue(bumpyConfig?.ssrCompatible, defaultConfig.ssrCompatible);
-    const errorOnConsole = getBooleanValue(bumpyConfig?.errorOnConsole, defaultConfig.errorOnConsole);
+    const accessible = bumpyConfig?.accessible ?? defaultConfig.accessible;
+    const reactStrictModeCompatible = bumpyConfig?.reactStrictModeCompatible ?? defaultConfig.reactStrictModeCompatible;
+    const ssrCompatible = bumpyConfig?.ssrCompatible ?? defaultConfig.ssrCompatible;
+    const errorOnConsole = bumpyConfig?.errorOnConsole ?? defaultConfig.errorOnConsole;
     const a11yImpactLevel = bumpyConfig?.a11yImpactLevel || defaultConfig.a11yImpactLevel;
 
     const flattenedConfig: FlattenedSimulationConfig[] = [];
@@ -118,19 +111,11 @@ export function flattenConfig(
 
             if (matchingSimConfigs.length) {
                 for (const matchingSimConfig of matchingSimConfigs) {
-                    matchingSimConfig.accessible = getBooleanValue(simConfig.accessible, matchingSimConfig.accessible);
-                    matchingSimConfig.reactStrictModeCompatible = getBooleanValue(
-                        simConfig.reactStrictModeCompatible,
-                        matchingSimConfig.reactStrictModeCompatible
-                    );
-                    matchingSimConfig.ssrCompatible = getBooleanValue(
-                        simConfig.ssrCompatible,
-                        matchingSimConfig.ssrCompatible
-                    );
-                    matchingSimConfig.errorOnConsole = getBooleanValue(
-                        simConfig.errorOnConsole,
-                        matchingSimConfig.errorOnConsole
-                    );
+                    matchingSimConfig.accessible = simConfig.accessible ?? matchingSimConfig.accessible;
+                    matchingSimConfig.reactStrictModeCompatible =
+                        simConfig.reactStrictModeCompatible ?? matchingSimConfig.reactStrictModeCompatible;
+                    matchingSimConfig.ssrCompatible = simConfig.ssrCompatible ?? matchingSimConfig.ssrCompatible;
+                    matchingSimConfig.errorOnConsole = simConfig.errorOnConsole ?? matchingSimConfig.errorOnConsole;
                     matchingSimConfig.a11yImpactLevel = simConfig.a11yImpactLevel || matchingSimConfig.a11yImpactLevel;
                 }
             } else {
