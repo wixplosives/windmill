@@ -2,7 +2,7 @@
 
 <br />
 
-[![Build Status](https://travis-ci.com/wixplosives/windmill.svg?token=JxepjChyzQB66ehAYhtG&branch=master)](https://travis-ci.com/wixplosives/windmill)
+[![Build Status](https://github.com/wixplosives/windmill/workflows/tests/badge.svg)](https://github.com/wixplosives/windmill/actions)
 
 **Windmill** is a set of tools designed to automate how you test your components, by using **simulations**.
 
