@@ -19,10 +19,10 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@file-services/memory": "^3.1.2",
+    "@file-services/memory": "^4.0.2",
     "@wixc3/windmill-node-utils": "^2.0.0",
     "@wixc3/windmill-utils": "^2.0.0",
-    "axe-core": "^4.0.1",
+    "axe-core": "^4.0.2",
     "commander": "^6.1.0",
     "glob": "^7.1.6",
     "tsconfig-paths": "^3.9.0",
