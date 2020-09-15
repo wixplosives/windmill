@@ -49,19 +49,80 @@ By default windmill will search your project for simulation files which match th
 
 ### Configuration via config file
 
-Windmill configuration files can contain the following properties:
+Windmill configuration files can be written in Typescript or Javacript, must export a named export `windmillConfig`, and can contain the following properties:
 
 ```ts
-projectPath: string;
-webpackConfigPath: string;
+// Test-specific configuration
+/** axe-core a11y violation impact level. Defaults to 'minor'. */
 a11yImpactLevel: axe.ImpactValue;
-simulationFilePattern: string[];
+/** Should a11y tests be run? Defaults to true */
+accessible: boolean;
+/** Should windmill-sanity check for ssr compatibility? Defaults to true */
+ssrCompatible: boolean;
+/** Should windmill-sanity render simulations in React strict mode? Defaults to true */
+reactStrictModeCompatible: boolean;
+/** Should windmill-sanity error when simulations console log or console error? Defaults to true */
+errorOnConsole: boolean;
+
+// Windmill configuration
+/** The base path for the project. Default is process.cwd() */
+projectPath: string;
+/** Path to a webpack config file. By default, windmill looks in the root
+ * of the project for a webpack.config.js file.
+ */
+webpackConfigPath: string;
+/** functions that will be called before requiring your simulations in node.
+ * **You will probably need to configure this for your project**. */
 hooks: [() => void];
+/** An array of file patterns to match against in case you've decided to
+ * follow a pattern other than the default `*.sim.ts` or `*.sim.tsx`. */
+simulationFilePattern: string[];
+/** An array of globs for simulations that should be ignored completely from windmill tests.  */
+ignorePaths: string[];
+/** Configuration at the component level.  */
+simulationConfigs: SimulationConfig[];
 ```
 
-The first three are the same as the CLI parameters above, but the last two are new.
+Simulation configs contain all the test-specific configuration from above, along with a glob for matching simulation files.
 
-`simulationFilePattern` is an array of file patterns to match against in case you've decided to follow a pattern other than the default.
+```ts
+/**
+ * A glob for matching simulations. Can be specific, for matching a
+ * single simulation. i.e. '_wcs/simulations/my-comp.sim.ts'. Or can be more
+ * general, for matching all simulations of a certain component i.e. '**\/Image/*.sim.ts'. */
+simulationGlob: string;
+
+// Test-specific configuration
+/** axe-core a11y violation impact level */
+a11yImpactLevel: axe.ImpactValue;
+/** Should a11y tests be run? Defaults to true */
+accessible: boolean;
+/** Should windmill-sanity check for ssr compatibility? Defaults to true */
+ssrCompatible: boolean;
+/** Should windmill-sanity render simulations in React strict mode? Defaults to true */
+reactStrictModeCompatible: boolean;
+/** Should windmill-sanity error when simulations console log or console error? Defaults to true */
+errorOnConsole: boolean;
+```
+
+Simulation configs take priority based on their order in the array. i.e. if you have two simulation configs which both match a simulation, the config that comes later in the `simulationConfigs` array will override the first one.
+
+To give a small example, in the case when you'd like to skip a11y tests for a certain simulation, the config file would look like this:
+
+```ts
+import type { WindmillConfig } from '@wixc3/windmill-utils';
+
+export const windmillConfig: WindmillConfig = {
+  simulationConfigs: [
+    {
+      simulationGlob: '_wcs/simulations/Image/image-without-alt.ts',
+      accessible: false,
+    },
+  ],
+};
+```
+
+#### Hooks
 
 `hooks` let you specify functions that will be called before calling `require` on your simulations. **You will probably need to configure this for your project**.
 
