@@ -19,7 +19,7 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@file-services/memory": "^4.0.2",
+    "@file-services/memory": "^4.1.0",
     "@wixc3/windmill-node-utils": "^2.0.0",
     "@wixc3/windmill-utils": "^2.0.0",
     "axe-core": "^4.0.2",

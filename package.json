@@ -15,7 +15,7 @@
     "prettify": "npx prettier \"packages/**/*.{js,ts,tsx}\" --write"
   },
   "devDependencies": {
-    "@file-services/memory": "^4.0.2",
+    "@file-services/memory": "^4.1.0",
     "@file-services/node": "^4.0.0",
     "@file-services/overlay": "^4.0.0",
     "@file-services/path": "^4.0.0",
