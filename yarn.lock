@@ -1069,10 +1069,10 @@
     lodash.upperfirst "^4.3.1"
     yargs "^16.0.3"
 
-"@stylable/core@^3.11.1":
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-3.11.1.tgz#bd866f71cca84a101ee2ae23b38283b10c628b49"
-  integrity sha512-HF6SpDyPgQOaLPEoB0hrW7xOstLUJFfK8i4cFiCtzDk4Smt+ZQ/dfb0T7AqwlTlWoCONC4d6uXxldZEDA/tiIw==
+"@stylable/core@^3.11.1", "@stylable/core@^3.11.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-3.11.2.tgz#5be6458abecd3314456dfb1851ab811b34e24160"
+  integrity sha512-dfmc+XNu9o9oLa0j/Ua4OZptAslthPc9+lgEtLIon3unJ8HSz0VZMC727M2Tskdc+lUXpQFRABcyV9MriV8LyA==
   dependencies:
     css-selector-tokenizer "^0.7.3"
     deindent "^0.1.0"
@@ -1083,20 +1083,20 @@
     lodash.clonedeep "^4.5.0"
     lodash.clonedeepwith "^4.5.0"
     murmurhash "^1.0.0"
-    postcss "^8.0.8"
-    postcss-js "^3.0.0"
-    postcss-nested "^5.0.0"
-    postcss-safe-parser "^5.0.1"
+    postcss "^8.1.1"
+    postcss-js "^3.0.1"
+    postcss-nested "^5.0.1"
+    postcss-safe-parser "^5.0.2"
     postcss-selector-matches "^4.0.0"
     postcss-value-parser "^4.1.0"
 
-"@stylable/dom-test-kit@^3.11.1":
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.11.1.tgz#733484a17b3f3c358db2d16b273c35ba525cf191"
-  integrity sha512-Bt0HpF48riSyWUcerFrPbELi46hDU9fAJu7z3+tXCzS1DHnFk0pqUP684TjlpTZrJPwOiDrC4nPgpwYmuBbTzQ==
+"@stylable/dom-test-kit@^3.11.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.11.2.tgz#caebc96a7bd0863bba0a20666fc0d41281649102"
+  integrity sha512-ZWzGNji1EENtzR4DKH2tv+jLkzf3MVfKWHW+j1U1uv2f8fT1kicEQREjNMmzVgG7VuixY1RP5zV0alOMqXEOtQ==
   dependencies:
-    "@stylable/core" "^3.11.1"
-    "@stylable/runtime" "^3.11.1"
+    "@stylable/core" "^3.11.2"
+    "@stylable/runtime" "^3.11.2"
 
 "@stylable/module-utils@^3.11.1":
   version "3.11.1"
@@ -1123,10 +1123,10 @@
     csso "^4.0.3"
     postcss "^8.0.8"
 
-"@stylable/runtime@^3.11.1":
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-3.11.1.tgz#2e627d58f6cb25a3dd6be06e7540445a0d0f38ff"
-  integrity sha512-meiFozjj6DkdMuCRsFysIqVBRGSCww0R8Xxn8jgxIUXmsuzs2aris0YsRHaQqvKsEJ5JKsDj33hYp/vuhjxgkw==
+"@stylable/runtime@^3.11.1", "@stylable/runtime@^3.11.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-3.11.2.tgz#ac7559a18ec76ca311681831404a7323a57f0a19"
+  integrity sha512-bHI6Un38ar7rwr3J75q9X90vrOtVSPJZ1sfjHhhIr8bregkP17tGqdTEV2yMMMjToxxo4YYyw7n/vx+ddg57XA==
 
 "@stylable/webpack-plugin@^3.11.1":
   version "3.11.1"
@@ -7494,7 +7494,7 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
-postcss-js@^3.0.0:
+postcss-js@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/postcss-js/-/postcss-js-3.0.1.tgz#e467efdce80ca02e072c60b42e0b35ad2f950a94"
   integrity sha512-m1DgECmEbOK9JhGkdctaP9ZRVheJuEnkk2eb/d3K+5uN10C3S004Ng6Hat4Aha7PsLt824x0xwrT7rVwGRVLHg==
@@ -7535,14 +7535,14 @@ postcss-modules-values@^3.0.0:
     icss-utils "^4.0.0"
     postcss "^7.0.6"
 
-postcss-nested@^5.0.0:
+postcss-nested@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.1.tgz#e7a77f7a806a09c8de0f2c163d8e3d09f00f3139"
   integrity sha512-ZHNSAoHrMtbEzjq+Qs4R0gHijpXc6F1YUv4TGmGaz7rtfMvVJBbu5hMOH+CrhEaljQpEmx5N/P8i1pXTkbVAmg==
   dependencies:
     postcss-selector-parser "^6.0.4"
 
-postcss-safe-parser@^5.0.1:
+postcss-safe-parser@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/postcss-safe-parser/-/postcss-safe-parser-5.0.2.tgz#459dd27df6bc2ba64608824ba39e45dacf5e852d"
   integrity sha512-jDUfCPJbKOABhwpUKcqCVbbXiloe/QXMcbJ6Iipf3sDIihEzTqRCeMBfRaOHxhBuTYqtASrI1KJWxzztZU4qUQ==
@@ -7585,6 +7585,16 @@ postcss@^8.0.8, postcss@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.0.tgz#1be330c7f6971d49726059b9f51785f45273fa70"
   integrity sha512-d3RppIo1DI66oHxA1vdckr5qciQbMIrHvyzuvp2cLJHOLwJHg7X9ncrfw2Ri6Sgiwv/GoXtOwEHJ9E9VSRxXWQ==
+  dependencies:
+    colorette "^1.2.1"
+    line-column "^1.0.2"
+    nanoid "^3.1.12"
+    source-map "^0.6.1"
+
+postcss@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.1.tgz#c3a287dd10e4f6c84cb3791052b96a5d859c9389"
+  integrity sha512-9DGLSsjooH3kSNjTZUOt2eIj2ZTW0VI2PZ/3My+8TC7KIbH2OKwUlISfDsf63EP4aiRUt3XkEWMWvyJHvJelEg==
   dependencies:
     colorette "^1.2.1"
     line-column "^1.0.2"
