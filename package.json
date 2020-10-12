@@ -52,7 +52,7 @@
     "@wixc3/wcs-core": "^2.0.4",
     "chai": "^4.2.0",
     "css-loader": "^4.3.0",
-    "eslint": "^7.10.0",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-no-only-tests": "^2.4.0",
     "eslint-plugin-react": "^7.21.3",
