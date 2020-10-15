@@ -4,7 +4,7 @@ import SimulationForImageWithAlt from '@wixc3/windmill-mock-repo/_wcs/simulation
 import { checkIfSimulationIsAccessible } from '../src';
 
 describe('checkIfSimulationIsAccessible', function () {
-    this.timeout(5_000);
+    this.timeout(10_000);
 
     it('reports errors for an inaccessible component', async () => {
         const result = await checkIfSimulationIsAccessible(SimulationForImageWithoutAlt);
