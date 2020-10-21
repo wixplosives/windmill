@@ -4,7 +4,7 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { ISimulation, simulationToJsx } from '@wixc3/wcs-core';
-import type { SimulationConfig } from '@wixc3/windmill-utils/src';
+import type { SimulationConfig } from '@wixc3/windmill-utils';
 
 const hydrate = ReactDOM.hydrate || ReactDOM.render;
 

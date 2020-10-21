@@ -1,6 +1,6 @@
 import { hydrationTest } from '@wixc3/windmill-sanity';
 import { eventListenerTest } from '@wixc3/windmill-sanity';
-import type { SimulationWithSSRComp } from '@wixc3/windmill-utils/src';
+import type { SimulationWithSSRComp } from '@wixc3/windmill-utils';
 
 export async function runTests(getSimulations: () => Promise<SimulationWithSSRComp[]>): Promise<void> {
     const simulationsData = await getSimulations();

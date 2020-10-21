@@ -1,6 +1,6 @@
 import { ISimulation, renderSimulation } from '@wixc3/wcs-core';
 import { run } from 'axe-core';
-import type { IA11yTestResult } from '@wixc3/windmill-utils/src';
+import type { IA11yTestResult } from '@wixc3/windmill-utils';
 
 /*
  * Must be run in the browser, as axe-core depends on it.
