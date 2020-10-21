@@ -16,7 +16,8 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "webpack": ">=4"
   },
   "dependencies": {
     "@file-services/memory": "^4.1.2",
@@ -25,8 +26,7 @@
     "axe-core": "^4.0.2",
     "commander": "^6.1.0",
     "glob": "^7.1.6",
-    "tsconfig-paths": "^3.9.0",
-    "webpack": "^4.44.2"
+    "tsconfig-paths": "^3.9.0"
   },
   "files": [
     "src",

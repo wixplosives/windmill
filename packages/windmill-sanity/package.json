@@ -15,16 +15,16 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "mocha": ">=8.1.0",
-    "react": ">=16"
+    "mocha": ">=8",
+    "react": ">=16",
+    "webpack": ">=4"
   },
   "dependencies": {
     "@file-services/memory": "^4.1.2",
     "@wixc3/windmill-node-utils": "^2.0.0",
     "@wixc3/windmill-utils": "^2.0.0",
     "chalk": "^4.1.0",
-    "glob": "^7.1.6",
-    "webpack": "^4.44.2"
+    "glob": "^7.1.6"
   },
   "files": [
     "src",
