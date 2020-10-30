@@ -49,7 +49,7 @@
     "@types/webpack": "^4.41.24",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
-    "@wixc3/wcs-core": "^2.0.4",
+    "@wixc3/wcs-core": "^2.0.5",
     "chai": "^4.2.0",
     "css-loader": "^5.0.0",
     "eslint": "^7.12.1",
