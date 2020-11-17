@@ -34,7 +34,7 @@
     "@file-services/overlay": "^4.1.0",
     "@file-services/path": "^4.1.0",
     "@file-services/webpack": "^4.1.0",
-    "axe-core": "^4.0.2",
+    "axe-core": "^4.1.0",
     "chalk": "^4.1.0",
     "koa": "^2.13.0",
     "koa-static": "^5.0.0",
