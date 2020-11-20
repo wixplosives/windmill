@@ -51,7 +51,7 @@ function createCompiler({ webpackConfig, log, watch }: ICompilerOptions) {
 
     const compiler = webpack(webpackConfig);
 
-    const compilerPromise = new Promise((resolve, reject) => {
+    const compilerPromise = new Promise<void>((resolve, reject) => {
         // When an error occurs either `hooks.failed` or `hooks.done` runs depending
         // on the bail mode and the type of the error. `hooks.failed` seems to be
         // specific to missing entry points.
@@ -106,7 +106,7 @@ function createServer({
         server.close();
     };
 
-    const serverPromise = new Promise((resolve, reject) => {
+    const serverPromise = new Promise<void>((resolve, reject) => {
         server.on('listening', () => {
             log.serverListening(getUrl());
             resolve();

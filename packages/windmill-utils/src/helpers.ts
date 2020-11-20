@@ -24,7 +24,7 @@ export async function findPort(preferredPort = 8080, numOfRetries = 10): Promise
     let currentPort = preferredPort;
     do {
         try {
-            await new Promise((resolve, reject) => {
+            await new Promise<void>((resolve, reject) => {
                 const connection = connect(currentPort);
                 const onConnect = () => {
                     connection.removeListener('connect', onConnect);
