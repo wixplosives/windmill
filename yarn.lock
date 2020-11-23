@@ -150,6 +150,11 @@
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-4.1.0.tgz#aa01881aa6b839ca7d94c0f8a7f18b4841f78b36"
   integrity sha512-kx/DHfkNK7cd3ubkU/89T4HpmWPuNHYrhzlhoQb49y3vz/e+mkKecwMOWxEcs2frySlH/hxWNKGfDh6FFn7C/g==
 
+"@file-services/types@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.0.0.tgz#089dc86f34da198a5eebaf5fc15dbfb1c324b572"
+  integrity sha512-0q1dZnXPgC6ph1aRmKx2BGqfCWIgwyhIph+jjUpzHzIH4b+jHV+uPHqucPs3HpjwcGNLWibkMeZAI/gj+/+DTw==
+
 "@file-services/utils@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-4.1.0.tgz#7719eb90513f8aa8d3999ef2d02f69c2101cc35d"
