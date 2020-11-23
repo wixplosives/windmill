@@ -130,13 +130,13 @@
     "@file-services/types" "^4.1.0"
     "@file-services/utils" "^4.1.0"
 
-"@file-services/overlay@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-4.1.0.tgz#574d2217199a8a234f29a2b99a4255a102cb5bca"
-  integrity sha512-r3t00fmf+TPmiA0e1sk+YxZxGvrRm87r0z/6+aFId4P7CfcpS70O8bSFYfLFB2V+5n2uJODZ8FfLDPTvQySM/A==
+"@file-services/overlay@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.0.0.tgz#1998b14a7197dcceed79717f84064448c516b17a"
+  integrity sha512-eIoZv1J61Ixcnrh0YnXJXxHvYnnBoAt3roWIERRuq25PYj+4fmwJujQpS0S585NYoP2MMw7y4xjvubkU6AzcqQ==
   dependencies:
-    "@file-services/types" "^4.1.0"
-    "@file-services/utils" "^4.1.0"
+    "@file-services/types" "^5.0.0"
+    "@file-services/utils" "^5.0.0"
 
 "@file-services/path@^4.1.0":
   version "4.1.0"
@@ -150,12 +150,24 @@
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-4.1.0.tgz#aa01881aa6b839ca7d94c0f8a7f18b4841f78b36"
   integrity sha512-kx/DHfkNK7cd3ubkU/89T4HpmWPuNHYrhzlhoQb49y3vz/e+mkKecwMOWxEcs2frySlH/hxWNKGfDh6FFn7C/g==
 
+"@file-services/types@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.0.0.tgz#089dc86f34da198a5eebaf5fc15dbfb1c324b572"
+  integrity sha512-0q1dZnXPgC6ph1aRmKx2BGqfCWIgwyhIph+jjUpzHzIH4b+jHV+uPHqucPs3HpjwcGNLWibkMeZAI/gj+/+DTw==
+
 "@file-services/utils@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-4.1.0.tgz#7719eb90513f8aa8d3999ef2d02f69c2101cc35d"
   integrity sha512-1mKlC6GjWFo+ywsnvmqt1I6ykrQATyv6l6D8lrQ/lTbRUf6F7WZxx1sk4smm7z25EBN8vlyxWlbByBLBq9Cj/w==
   dependencies:
     "@file-services/types" "^4.1.0"
+
+"@file-services/utils@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.0.0.tgz#cb764a4a29610130e5e7e984e426c04f0e86dd02"
+  integrity sha512-DZSmZzTvz/BVVagvAkBlZozHGfgp8QozySIubtxkKl+pQNuTr16TCzN3dNq16kNpeqrVEbucMsM6fYk1FrvYKA==
+  dependencies:
+    "@file-services/types" "^5.0.0"
 
 "@file-services/webpack@^4.1.0":
   version "4.1.0"
