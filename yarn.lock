@@ -113,14 +113,14 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@file-services/memory@^4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@file-services/memory/-/memory-4.1.2.tgz#07d0a2e307fceb84e4c6920dee8be71da4bd763e"
-  integrity sha512-9AX9vfx9ttyFE8KKE04Qe3wqcUPFogdTU+/XBzVC7pOFLEkPB5KlTnYGUDXyQfRgxhba9QdxobjOTnDNOvL75g==
+"@file-services/memory@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/memory/-/memory-5.0.0.tgz#47a014c256945130e5ba2c5056f9def432e98408"
+  integrity sha512-Fp5o9d4o2x5x0wkgY0c0T9o/8qsymQasQzjyL6e9JQHsjyGr9G0cmqXKyRNdYCeFCggqG3ApUo1yBWKkKAX0HA==
   dependencies:
-    "@file-services/path" "^4.1.0"
-    "@file-services/types" "^4.1.0"
-    "@file-services/utils" "^4.1.0"
+    "@file-services/path" "^5.0.0"
+    "@file-services/types" "^5.0.0"
+    "@file-services/utils" "^5.0.0"
 
 "@file-services/node@^4.1.2":
   version "4.1.2"
@@ -145,10 +145,22 @@
   dependencies:
     "@file-services/types" "^4.1.0"
 
+"@file-services/path@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/path/-/path-5.0.0.tgz#3c2b5695045c282a00c62cb8c3e0ecb85f3790c1"
+  integrity sha512-RdGs8sFy9dDSGdXDIlSD5lWHcfpFyYJswvPi08oUeH064f7OwrtosNvHduAH4ewx+hdoGTAZgWTa+NNNUNHfZg==
+  dependencies:
+    "@file-services/types" "^5.0.0"
+
 "@file-services/types@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-4.1.0.tgz#aa01881aa6b839ca7d94c0f8a7f18b4841f78b36"
   integrity sha512-kx/DHfkNK7cd3ubkU/89T4HpmWPuNHYrhzlhoQb49y3vz/e+mkKecwMOWxEcs2frySlH/hxWNKGfDh6FFn7C/g==
+
+"@file-services/types@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.0.0.tgz#089dc86f34da198a5eebaf5fc15dbfb1c324b572"
+  integrity sha512-0q1dZnXPgC6ph1aRmKx2BGqfCWIgwyhIph+jjUpzHzIH4b+jHV+uPHqucPs3HpjwcGNLWibkMeZAI/gj+/+DTw==
 
 "@file-services/utils@^4.1.0":
   version "4.1.0"
@@ -156,6 +168,13 @@
   integrity sha512-1mKlC6GjWFo+ywsnvmqt1I6ykrQATyv6l6D8lrQ/lTbRUf6F7WZxx1sk4smm7z25EBN8vlyxWlbByBLBq9Cj/w==
   dependencies:
     "@file-services/types" "^4.1.0"
+
+"@file-services/utils@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.0.0.tgz#cb764a4a29610130e5e7e984e426c04f0e86dd02"
+  integrity sha512-DZSmZzTvz/BVVagvAkBlZozHGfgp8QozySIubtxkKl+pQNuTr16TCzN3dNq16kNpeqrVEbucMsM6fYk1FrvYKA==
+  dependencies:
+    "@file-services/types" "^5.0.0"
 
 "@file-services/webpack@^4.1.0":
   version "4.1.0"
