@@ -1,7 +1,6 @@
 import glob from 'glob';
 import fs from '@file-services/node';
 import { Command } from 'commander';
-import { getWebpackConfigPath } from './cli-utils';
 import { consoleError, WindmillConfig, consoleLog } from '@wixc3/windmill-utils';
 
 export function printErrorAndExit(message: unknown, debug: boolean): void {
@@ -63,7 +62,9 @@ export class CLI {
         }
 
         const webpackConfigPath =
-            (webpack as string) || windmillConfig?.webpackConfigPath || getWebpackConfigPath(projectPath);
+            (webpack as string) ||
+            windmillConfig?.webpackConfigPath ||
+            fs.findClosestFileSync(projectPath, 'webpack.config.js');
 
         if (!webpackConfigPath) {
             printErrorAndExit('Could not find a webpack config.', debug);
