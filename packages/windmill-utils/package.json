@@ -30,11 +30,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@file-services/node": "^4.1.2",
-    "@file-services/overlay": "^4.1.0",
-    "@file-services/path": "^4.1.0",
-    "@file-services/webpack": "^4.1.0",
-    "axe-core": "^4.1.0",
+    "@file-services/node": "^5.0.0",
+    "@file-services/overlay": "^5.0.0",
+    "@file-services/path": "^5.0.0",
+    "@file-services/webpack": "^5.0.0",
+    "axe-core": "^4.1.1",
     "chalk": "^4.1.0",
     "koa": "^2.13.0",
     "koa-static": "^5.0.0",
