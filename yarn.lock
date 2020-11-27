@@ -1069,7 +1069,7 @@
     lodash.upperfirst "^4.3.1"
     yargs "^16.1.1"
 
-"@stylable/core@^3.11.7", "@stylable/core@^3.11.8":
+"@stylable/core@^3.11.8":
   version "3.11.8"
   resolved "https://registry.yarnpkg.com/@stylable/core/-/core-3.11.8.tgz#7ff458a33af23bf60bd5f0a59ba1821bf9b565f1"
   integrity sha512-PWOa0EJgA9ksqA1rmtcY4Rf5nN/C1SQfNKkH6ipsOMIiBUdZcMRboO05d87OUA3cmxJ+xpUZc+rfdUVkYBiaMg==
@@ -1090,13 +1090,13 @@
     postcss-selector-matches "^4.0.0"
     postcss-value-parser "^4.1.0"
 
-"@stylable/dom-test-kit@^3.11.7":
-  version "3.11.7"
-  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.11.7.tgz#b8334e4cf8551e1cab01f1e8fb45753861de9d73"
-  integrity sha512-Nc6znYQGsHA+yywe+TUOeppUy1MBcI1j0gQvcq/75CMpjJGlp4KNfXxH/K/0ewyO3KqrsNUscmJClIRn0Rn3dA==
+"@stylable/dom-test-kit@^3.11.8":
+  version "3.11.8"
+  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.11.8.tgz#0d2c8cbcfb407f5ee5565469c947750d33b71ab6"
+  integrity sha512-gn+eFZ91fqKbbf7/avwrMsqZ2S/CCsl+Z/EKbIIM/hwMxaTF16wrg5BYHhryOQhJ+MT6+mQTdS3llprBH0NB9A==
   dependencies:
-    "@stylable/core" "^3.11.7"
-    "@stylable/runtime" "^3.11.7"
+    "@stylable/core" "^3.11.8"
+    "@stylable/runtime" "^3.11.8"
 
 "@stylable/module-utils@^3.11.8":
   version "3.11.8"
@@ -1105,7 +1105,7 @@
   dependencies:
     "@stylable/core" "^3.11.8"
 
-"@stylable/node@^3.11.7", "@stylable/node@^3.11.8":
+"@stylable/node@^3.11.8":
   version "3.11.8"
   resolved "https://registry.yarnpkg.com/@stylable/node/-/node-3.11.8.tgz#d51afe92ebda39c40afffecee6f9e0403b34bce2"
   integrity sha512-5Dclc3ovm9e/cb6URn+WajoysB2dnbr2P83TMvTTHr9yUmqjAOTIXxCevXnP09OcjzjyWls95EDYPDn9rhCD/g==
@@ -1114,7 +1114,7 @@
     "@stylable/module-utils" "^3.11.8"
     find-config "^1.0.0"
 
-"@stylable/optimizer@^3.11.7", "@stylable/optimizer@^3.11.8":
+"@stylable/optimizer@^3.11.8":
   version "3.11.8"
   resolved "https://registry.yarnpkg.com/@stylable/optimizer/-/optimizer-3.11.8.tgz#3c91c43b797f49c2cec464425bd0ba095a8d2287"
   integrity sha512-ezIRzK3/swyAqFuRUsVoFbDQxJ30egmr0hqBJWyg582sbhs+irgTFiNKz2Q8FZ5w1eRU8i7J1Zvzo2a+hDYAOw==
@@ -1123,7 +1123,7 @@
     csso "^4.1.1"
     postcss "^8.1.10"
 
-"@stylable/runtime@^3.11.7", "@stylable/runtime@^3.11.8":
+"@stylable/runtime@^3.11.8":
   version "3.11.8"
   resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-3.11.8.tgz#9c0cc5ac159f6b325fdc7c1b99ce04cce29d3008"
   integrity sha512-594quA3LGVdz2IdChRwzHSfFPKzFzWMGRMmrukOE+LKxljpbVXZllQ6j8ojyPGn+dqX9S3kqmzbme9QvvH60IA==
