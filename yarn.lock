@@ -1057,14 +1057,14 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
 
-"@stylable/cli@^3.11.7":
-  version "3.11.7"
-  resolved "https://registry.yarnpkg.com/@stylable/cli/-/cli-3.11.7.tgz#a968f9506fbc716285ff4b75cb76c21a7934ae5e"
-  integrity sha512-O1mrFQLuFmjQTmEL1MvgAMrDXeU0v9WX7v+tOYDpjKR6bEbClowY79Dk0veCZ4uuPZfipPycMYAAQbxBbsp77A==
+"@stylable/cli@^3.11.8":
+  version "3.11.8"
+  resolved "https://registry.yarnpkg.com/@stylable/cli/-/cli-3.11.8.tgz#045eaeb52031141a4abe7258c02b80ce0b272148"
+  integrity sha512-RQJLboE2iZxNFb1l57cV5Am7lsKQeiA6/Ua1M70bcenJo9t6YgsJD181uyGUEaXPDWV8UyV7aXsz6z02B3iexQ==
   dependencies:
-    "@stylable/core" "^3.11.7"
-    "@stylable/node" "^3.11.7"
-    "@stylable/optimizer" "^3.11.7"
+    "@stylable/core" "^3.11.8"
+    "@stylable/node" "^3.11.8"
+    "@stylable/optimizer" "^3.11.8"
     lodash.camelcase "^4.3.0"
     lodash.upperfirst "^4.3.1"
     yargs "^16.1.1"
