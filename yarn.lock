@@ -130,10 +130,10 @@
     "@file-services/types" "^5.0.0"
     "@file-services/utils" "^5.0.0"
 
-"@file-services/overlay@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.0.0.tgz#1998b14a7197dcceed79717f84064448c516b17a"
-  integrity sha512-eIoZv1J61Ixcnrh0YnXJXxHvYnnBoAt3roWIERRuq25PYj+4fmwJujQpS0S585NYoP2MMw7y4xjvubkU6AzcqQ==
+"@file-services/overlay@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.1.0.tgz#84928c2c476ef3234d2df56f1e0c9cc877c74827"
+  integrity sha512-otlDm6Di6EiF64p/T2hTCgpNN3i8nFHbtEFmUL6EhXN7gBFGDJr61ipzhINV3AK+ssBTllXdBNiXMjsmBGQhaQ==
   dependencies:
     "@file-services/types" "^5.0.0"
     "@file-services/utils" "^5.0.0"
