@@ -157,10 +157,10 @@
   dependencies:
     "@file-services/types" "^5.0.0"
 
-"@file-services/webpack@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.0.0.tgz#a1a0f0e595cb64ab311053df32fdb730a6b7fe69"
-  integrity sha512-XcXqJC13s/i9a1QtwtA87/XcGeHMsEpWCiM9k08L8BT8Va8UceT1z8kBuTzGi2ZlJwEJzPvti7FkrTjQlcwJPQ==
+"@file-services/webpack@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.1.0.tgz#cc74b2b2dec188ee01ab40e898e81cf291cea2e2"
+  integrity sha512-3VCIo9jnFQNq2+X7/IWg+3vbmx1Ls05bgx6gkARi36sCSYswKquebMSSYt36iF/WZKtywgpADNKKH8ROjOaCzA==
   dependencies:
     "@file-services/types" "^5.0.0"
 
