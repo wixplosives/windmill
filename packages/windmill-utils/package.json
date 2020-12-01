@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@file-services/node": "^5.0.0",
+    "@file-services/node": "^5.1.0",
     "@file-services/overlay": "^5.1.0",
     "@file-services/path": "^5.0.0",
     "@file-services/webpack": "^5.1.0",
