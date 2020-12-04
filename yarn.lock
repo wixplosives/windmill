@@ -1090,13 +1090,13 @@
     postcss-selector-matches "^4.0.0"
     postcss-value-parser "^4.1.0"
 
-"@stylable/dom-test-kit@^3.11.8":
-  version "3.11.8"
-  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.11.8.tgz#0d2c8cbcfb407f5ee5565469c947750d33b71ab6"
-  integrity sha512-gn+eFZ91fqKbbf7/avwrMsqZ2S/CCsl+Z/EKbIIM/hwMxaTF16wrg5BYHhryOQhJ+MT6+mQTdS3llprBH0NB9A==
+"@stylable/dom-test-kit@^3.11.9":
+  version "3.11.9"
+  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-3.11.9.tgz#f1112b8970495239759a49aa7f703ea9fb296205"
+  integrity sha512-lOlxi+8ndwJO1+xViY161vx7nijiMRAqHyks89SrfdECUCR0nnAz3tPFw5TIuxRs+Q72o9xagfAz7lF50nfwXQ==
   dependencies:
-    "@stylable/core" "^3.11.8"
-    "@stylable/runtime" "^3.11.8"
+    "@stylable/core" "^3.11.9"
+    "@stylable/runtime" "^3.11.9"
 
 "@stylable/module-utils@^3.11.8":
   version "3.11.8"
