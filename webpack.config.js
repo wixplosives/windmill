@@ -44,7 +44,7 @@ module.exports = {
         noParse: [require.resolve('typescript/lib/typescript.js')]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.mjs', '.js', '.json'],
+        extensions: ['.ts', '.tsx', '.js', '.json'],
         plugins: [new TsconfigPathsPlugin({ configFile: rootTsconfigPath })]
     },
     plugins
