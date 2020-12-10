@@ -145,10 +145,10 @@
   dependencies:
     "@file-services/types" "^5.0.0"
 
-"@file-services/types@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.0.0.tgz#089dc86f34da198a5eebaf5fc15dbfb1c324b572"
-  integrity sha512-0q1dZnXPgC6ph1aRmKx2BGqfCWIgwyhIph+jjUpzHzIH4b+jHV+uPHqucPs3HpjwcGNLWibkMeZAI/gj+/+DTw==
+"@file-services/types@^5.0.0", "@file-services/types@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.2.0.tgz#af0602e8deb060bfce55ded5aec441b1ac6c04ff"
+  integrity sha512-EWVOIXN8lIUHsDN870+Xmx74xXdPuAZ6X9gL7n9DpDqNVPzQLj7XzwVWhk91wCmcrJvu3OLbQhEQOTv77q7LAA==
 
 "@file-services/utils@^5.0.0":
   version "5.0.0"
@@ -157,12 +157,12 @@
   dependencies:
     "@file-services/types" "^5.0.0"
 
-"@file-services/webpack@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.1.0.tgz#cc74b2b2dec188ee01ab40e898e81cf291cea2e2"
-  integrity sha512-3VCIo9jnFQNq2+X7/IWg+3vbmx1Ls05bgx6gkARi36sCSYswKquebMSSYt36iF/WZKtywgpADNKKH8ROjOaCzA==
+"@file-services/webpack@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.2.0.tgz#41d17a0b10a0f125d25c07629534a782d07e89ad"
+  integrity sha512-o5MQc1q62eEmLdjkLuChq2mKVcdYQKR9zCOKSmOJL34LR2oEXET59oAHlXOgVUc0+nNPoLNiizm6efiQbLAlXw==
   dependencies:
-    "@file-services/types" "^5.0.0"
+    "@file-services/types" "^5.2.0"
 
 "@hapi/hoek@^9.0.0":
   version "9.1.0"
