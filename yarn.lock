@@ -130,13 +130,13 @@
     "@file-services/types" "^5.0.0"
     "@file-services/utils" "^5.0.0"
 
-"@file-services/overlay@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.1.0.tgz#84928c2c476ef3234d2df56f1e0c9cc877c74827"
-  integrity sha512-otlDm6Di6EiF64p/T2hTCgpNN3i8nFHbtEFmUL6EhXN7gBFGDJr61ipzhINV3AK+ssBTllXdBNiXMjsmBGQhaQ==
+"@file-services/overlay@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.2.0.tgz#05ce4f9c03701d7e4ee2404ab9bc4f7dc8f0aa5f"
+  integrity sha512-sXaW+BEWGBqz296RN/EJBewCD/+ye2M3NJC6kcAPorUJiM3lxl+nrwyDpYtCC4SyII9Pq9yhbOalM1ZXDAOOpw==
   dependencies:
-    "@file-services/types" "^5.0.0"
-    "@file-services/utils" "^5.0.0"
+    "@file-services/types" "^5.2.0"
+    "@file-services/utils" "^5.2.0"
 
 "@file-services/path@^5.0.0":
   version "5.0.0"
@@ -145,17 +145,17 @@
   dependencies:
     "@file-services/types" "^5.0.0"
 
-"@file-services/types@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.0.0.tgz#089dc86f34da198a5eebaf5fc15dbfb1c324b572"
-  integrity sha512-0q1dZnXPgC6ph1aRmKx2BGqfCWIgwyhIph+jjUpzHzIH4b+jHV+uPHqucPs3HpjwcGNLWibkMeZAI/gj+/+DTw==
+"@file-services/types@^5.0.0", "@file-services/types@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.2.0.tgz#af0602e8deb060bfce55ded5aec441b1ac6c04ff"
+  integrity sha512-EWVOIXN8lIUHsDN870+Xmx74xXdPuAZ6X9gL7n9DpDqNVPzQLj7XzwVWhk91wCmcrJvu3OLbQhEQOTv77q7LAA==
 
-"@file-services/utils@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.0.0.tgz#cb764a4a29610130e5e7e984e426c04f0e86dd02"
-  integrity sha512-DZSmZzTvz/BVVagvAkBlZozHGfgp8QozySIubtxkKl+pQNuTr16TCzN3dNq16kNpeqrVEbucMsM6fYk1FrvYKA==
+"@file-services/utils@^5.0.0", "@file-services/utils@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.2.0.tgz#cecee28b552431c662e7023d80362f2fc7a31d03"
+  integrity sha512-IwXS6/LP84D6AurO/clyDuE/gDvfaBJqq96sfp/Y6F0f/qdmP/FgzR6xQ85C+T98RduwqRj6V1aDrGL+w9joTg==
   dependencies:
-    "@file-services/types" "^5.0.0"
+    "@file-services/types" "^5.2.0"
 
 "@file-services/webpack@^5.1.0":
   version "5.1.0"
