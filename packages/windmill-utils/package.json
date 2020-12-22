@@ -32,7 +32,7 @@
   "dependencies": {
     "@file-services/node": "^5.2.0",
     "@file-services/overlay": "^5.2.0",
-    "@file-services/path": "^5.2.0",
+    "@file-services/path": "^5.2.1",
     "@file-services/webpack": "^5.2.0",
     "axe-core": "^4.1.1",
     "chalk": "^4.1.0",
