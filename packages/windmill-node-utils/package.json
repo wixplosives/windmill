@@ -14,7 +14,7 @@
     "webpack": ">=4"
   },
   "dependencies": {
-    "@file-services/node": "^5.2.0",
+    "@file-services/node": "^5.2.1",
     "@wixc3/windmill-utils": "^2.0.0",
     "commander": "^6.2.1",
     "glob": "^7.1.6"
