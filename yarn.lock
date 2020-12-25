@@ -130,13 +130,13 @@
     "@file-services/types" "^5.3.0"
     "@file-services/utils" "^5.3.0"
 
-"@file-services/overlay@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.2.1.tgz#684c527176976c6a75daf74db37e9036e5dfd714"
-  integrity sha512-Ehdn6PCN1pZW8+zIEzjKRvYapRZrlMUBv6wuR3TWyqv8ue4LDdRdIPqNwAw/gKm9T5ml6tOnECry0uRhkkoTrg==
+"@file-services/overlay@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@file-services/overlay/-/overlay-5.3.0.tgz#c96e0bcf0143937bb774a893c18b88c25dcf5cea"
+  integrity sha512-+ZVVvACeWmLRog2T+SRruQJawwKG+aFxneckRGOGlOrGh4+DiqD2H1ce3lreJTWZ/cge9S4SpSEoSDcbCoY+nw==
   dependencies:
-    "@file-services/types" "^5.2.1"
-    "@file-services/utils" "^5.2.1"
+    "@file-services/types" "^5.3.0"
+    "@file-services/utils" "^5.3.0"
 
 "@file-services/path@^5.3.0":
   version "5.3.0"
@@ -145,12 +145,12 @@
   dependencies:
     "@file-services/types" "^5.3.0"
 
-"@file-services/types@^5.2.1", "@file-services/types@^5.3.0":
+"@file-services/types@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.3.0.tgz#1ab6a36d8c3f49e7e371a33156d5f579fe5500a4"
   integrity sha512-VnufBuTMRHFLALYPpje5QcV8bnQT4S/TCIK2LT5x3w0t9AHbq/Dpkkfxk2OS6/zGCiOXqRGqVmCEYPvSCHQMDw==
 
-"@file-services/utils@^5.2.1", "@file-services/utils@^5.3.0":
+"@file-services/utils@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.3.0.tgz#4aa7792b2c0c04091e876bdf561868446ffd6ce8"
   integrity sha512-MsSH7ol0ipIDdjAX03yevdwjVZSWhAG7Ko+kKOQqPBkWeTfLsV2XCvoQzoltB/JeVtxlMVLkrbqwjf175oHjNw==
