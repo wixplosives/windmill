@@ -122,13 +122,13 @@
     "@file-services/types" "^5.2.1"
     "@file-services/utils" "^5.2.1"
 
-"@file-services/node@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@file-services/node/-/node-5.2.1.tgz#15aba82ae4027f9731e775d843f519b17b0e0d84"
-  integrity sha512-dMAvZVi7eDIh0BBSH6xG+Lwi73rxUOMn8/eWRsd6ZMsYrydylDTaz6kUhhPXUDyFlupBeheYNFhhO4oEkWRbqA==
+"@file-services/node@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@file-services/node/-/node-5.3.0.tgz#dfb8f435ceb53f30938f94ed232a8a9d93228568"
+  integrity sha512-obU7zvuHv7jNKGSNrS6gNbgVN+U6ehx33spgTBAUNJknOkcgA0QJqBLCJJb1Cosxnj8qEno4M7Ai1G5C2LbpSA==
   dependencies:
-    "@file-services/types" "^5.2.1"
-    "@file-services/utils" "^5.2.1"
+    "@file-services/types" "^5.3.0"
+    "@file-services/utils" "^5.3.0"
 
 "@file-services/overlay@^5.2.1":
   version "5.2.1"
@@ -150,12 +150,12 @@
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.3.0.tgz#1ab6a36d8c3f49e7e371a33156d5f579fe5500a4"
   integrity sha512-VnufBuTMRHFLALYPpje5QcV8bnQT4S/TCIK2LT5x3w0t9AHbq/Dpkkfxk2OS6/zGCiOXqRGqVmCEYPvSCHQMDw==
 
-"@file-services/utils@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.2.1.tgz#39280b98b040b6f347a342c7f330b167c4cdba2f"
-  integrity sha512-ZjcU5Ja3JWZ4y48bGyUipPJHc2IdNcPL7OLjOSCuOiRuV9qmBzNmBxJp6ynb+JVT3eLwhrih7h2aYCUT4D4Urg==
+"@file-services/utils@^5.2.1", "@file-services/utils@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.3.0.tgz#4aa7792b2c0c04091e876bdf561868446ffd6ce8"
+  integrity sha512-MsSH7ol0ipIDdjAX03yevdwjVZSWhAG7Ko+kKOQqPBkWeTfLsV2XCvoQzoltB/JeVtxlMVLkrbqwjf175oHjNw==
   dependencies:
-    "@file-services/types" "^5.2.1"
+    "@file-services/types" "^5.3.0"
 
 "@file-services/webpack@^5.2.1":
   version "5.2.1"
