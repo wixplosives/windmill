@@ -113,14 +113,14 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@file-services/memory@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@file-services/memory/-/memory-5.2.1.tgz#e76febd25701155394419ad58aaecb1b5cf7d041"
-  integrity sha512-Z5mLf+g5uX+gcRAXodcQHlXZgUo1wjscw9o3iihWnIyg8phxC6yAxBWsOtnmfPOQKruYfpOFj7mSXXm8SXGmiQ==
+"@file-services/memory@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@file-services/memory/-/memory-5.3.0.tgz#86006f2cf89aedf0ac917f726df184e626880698"
+  integrity sha512-JruAfESvBnh/UVd65jZrNoRkUanBhb9RpHHM8/qjDx7Qsr6Bv+nz/4Pp0BD0C2+Nqa1rG83NYCiBVl0b/QlEHw==
   dependencies:
-    "@file-services/path" "^5.2.1"
-    "@file-services/types" "^5.2.1"
-    "@file-services/utils" "^5.2.1"
+    "@file-services/path" "^5.3.0"
+    "@file-services/types" "^5.3.0"
+    "@file-services/utils" "^5.3.0"
 
 "@file-services/node@^5.3.0":
   version "5.3.0"
@@ -138,7 +138,7 @@
     "@file-services/types" "^5.2.1"
     "@file-services/utils" "^5.2.1"
 
-"@file-services/path@^5.2.1", "@file-services/path@^5.3.0":
+"@file-services/path@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@file-services/path/-/path-5.3.0.tgz#2d8b0fca81602153a30c0a1009e76430de9c8c1d"
   integrity sha512-3iXzrCTfF+MXywcYUBvAVbv7uONK/hZO4Xw3LILJdRNkEM1kA9NsZ4KtZqS1FqcJQ8yD2KyoY/I3wG2YEvpIng==
