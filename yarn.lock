@@ -157,12 +157,12 @@
   dependencies:
     "@file-services/types" "^5.3.0"
 
-"@file-services/webpack@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.2.1.tgz#58d5889d56dead6496340146e5dffbc3767b4d2f"
-  integrity sha512-wPq/NmpgflIZ2sPBlLWIX4Y9Sj/LCIYGMmTCW8dC4lrsPO0hKZ8Kpwyeno18f8niMXLeF+6vEhjjqDktpFgYBA==
+"@file-services/webpack@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.3.0.tgz#0164fc3023327b6e1067892952e476458ceeb20b"
+  integrity sha512-9EmcHzh6Z6qMSOwpnjlxc9q1wsGHMu9Isq1VBp7qVyqVcJYouQJMMmd5DFW8T1WzXU2rkcDKJ8q6uciQevb+gw==
   dependencies:
-    "@file-services/types" "^5.2.1"
+    "@file-services/types" "^5.3.0"
 
 "@hapi/hoek@^9.0.0":
   version "9.1.0"
