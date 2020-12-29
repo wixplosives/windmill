@@ -14,7 +14,7 @@
   "peerDependencies": {
     "html-webpack-plugin": ">=4",
     "puppeteer": ">=1",
-    "webpack": ">=4"
+    "webpack": "^4.0.0"
   },
   "files": [
     "cjs",

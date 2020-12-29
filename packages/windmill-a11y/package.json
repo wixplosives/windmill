@@ -17,7 +17,7 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "webpack": ">=4"
+    "webpack": "^4.0.0"
   },
   "dependencies": {
     "@file-services/memory": "^5.3.0",

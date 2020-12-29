@@ -11,7 +11,7 @@
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "webpack": ">=4"
+    "webpack": "^4.0.0"
   },
   "dependencies": {
     "@file-services/node": "^5.3.0",
