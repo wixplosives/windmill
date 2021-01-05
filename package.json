@@ -47,7 +47,7 @@
     "@types/sinon-chai": "^3.2.5",
     "@types/temp": "^0.8.34",
     "@types/webpack": "^4.41.25",
-    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@typescript-eslint/parser": "^4.12.0",
     "@wixc3/wcs-core": "^2.0.5",
     "chai": "^4.2.0",
