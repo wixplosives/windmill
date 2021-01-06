@@ -23,7 +23,7 @@
     "@file-services/webpack": "^5.3.0",
     "@stylable/cli": "^3.11.10",
     "@stylable/core": "^3.11.10",
-    "@stylable/dom-test-kit": "^3.11.10",
+    "@stylable/dom-test-kit": "^3.11.13",
     "@stylable/node": "^3.11.10",
     "@stylable/runtime": "^3.11.10",
     "@stylable/webpack-plugin": "^3.11.10",
