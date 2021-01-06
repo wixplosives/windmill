@@ -24,7 +24,7 @@
     "@stylable/cli": "^3.11.10",
     "@stylable/core": "^3.11.10",
     "@stylable/dom-test-kit": "^3.11.10",
-    "@stylable/node": "^3.11.10",
+    "@stylable/node": "^3.11.13",
     "@stylable/runtime": "^3.11.10",
     "@stylable/webpack-plugin": "^3.11.10",
     "@ts-tools/build": "^2.1.1",
