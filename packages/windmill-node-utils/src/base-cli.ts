@@ -18,11 +18,11 @@ export function printMessageAndExit(message: unknown, debug: boolean): void {
 }
 
 export class CLI {
-    public program: Command;
+    public program;
     public simulations: string[];
 
     constructor() {
-        this.program = new Command() as Command;
+        this.program = new Command();
         this.simulations = [];
 
         process.on('unhandledRejection', (err) => printErrorAndExit(err, false));
@@ -43,9 +43,9 @@ export class CLI {
         projectPath: string;
         debug: boolean;
     } {
-        this.program.parse(process.argv);
-
-        const { args, project, webpack, debug, config, exclude } = this.program;
+        this.program.parse();
+        const { project, webpack, debug, config, exclude } = this.program.opts();
+        const { args } = this.program;
         const projectPath = (project as string) || process.cwd();
         const windmillConfigPath = (config as string) || fs.findClosestFileSync(projectPath, 'windmill.config.js');
 
