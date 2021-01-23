@@ -911,10 +911,10 @@
     is-plain-object "^5.0.0"
     universal-user-agent "^6.0.0"
 
-"@octokit/openapi-types@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-3.0.0.tgz#f73d48af2d21bf4f97fbf38fae43b54699e0dbba"
-  integrity sha512-jOp1CVRw+OBJaZtG9QzZggvJXvyzgDXuW948SWsDiwmyDuCjeYCiF3TDD/qvhpF580RfP7iBIos4AVU6yhgMlA==
+"@octokit/openapi-types@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-3.2.0.tgz#d62d0ff7147dbf4d218616b2484ee2a5d023055d"
+  integrity sha512-X7yW/fpzF3uTAE+LbPD3HEeeU+/49o0V4kNA/yv8jQ3BDpFayv/osTOhY1y1mLXljW2bOJcOCSGZo4jFKPJ6Vw==
 
 "@octokit/plugin-enterprise-rest@^6.0.1":
   version "6.0.1"
@@ -1003,11 +1003,11 @@
     "@types/node" ">= 8"
 
 "@octokit/types@^6.0.0", "@octokit/types@^6.0.3":
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.4.0.tgz#f3f47be70bcdb3c26f2c2619f3dd0ced466a265c"
-  integrity sha512-1FEmuVppZE2zG0rBdQlviRz5cp0udyI63zyhBVPrm0FRNAsQkAXU7IYWQg1XvhChFut8YbFYN1usQpk54D6/4w==
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.5.0.tgz#8f27c52d57eb4096fb05a290f4afc90194e08b19"
+  integrity sha512-mzCy7lkYQv+kM58W37uTg/mWoJ4nvRDRCkjSdqlrgA28hJEYNJTMYiGTvmq39cdtnMPJd0hshysBEAaH4D5C7w==
   dependencies:
-    "@octokit/openapi-types" "^3.0.0"
+    "@octokit/openapi-types" "^3.2.0"
     "@types/node" ">= 8"
 
 "@sideway/address@^4.1.0":
@@ -1041,7 +1041,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/samsam@^5.3.0":
+"@sinonjs/samsam@^5.3.1":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-5.3.1.tgz#375a45fe6ed4e92fca2fb920e007c48232a6507f"
   integrity sha512-1Hc0b1TtyfBu8ixF/tpfSHTVWKwCBLY4QJbkgnE7HcwyvT2xArDxb4K7dMgqRm3szI+LJbzmW/s4xxEhv6hwDg==
@@ -8052,14 +8052,14 @@ sinon-chai@^3.5.0:
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-3.5.0.tgz#c9a78304b0e15befe57ef68e8a85a00553f5c60e"
   integrity sha512-IifbusYiQBpUxxFJkR3wTU68xzBN0+bxCScEaKMjBvAQERg6FnTTc1F17rseLb1tjmkJ23730AXpFI0c47FgAg==
 
-sinon@^9.2.3:
-  version "9.2.3"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-9.2.3.tgz#f68ce414e843e2fd638703043c97f260697caa52"
-  integrity sha512-m+DyAWvqVHZtjnjX/nuShasykFeiZ+nPuEfD4G3gpvKGkXRhkF/6NSt2qN2FjZhfrcHXFzUzI+NLnk+42fnLEw==
+sinon@^9.2.4:
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-9.2.4.tgz#e55af4d3b174a4443a8762fa8421c2976683752b"
+  integrity sha512-zljcULZQsJxVra28qIAL6ow1Z9tpattkCTEJR4RBP3TGc00FcttsP5pK284Nas5WjMZU5Yzy3kAIp3B3KRf5Yg==
   dependencies:
     "@sinonjs/commons" "^1.8.1"
     "@sinonjs/fake-timers" "^6.0.1"
-    "@sinonjs/samsam" "^5.3.0"
+    "@sinonjs/samsam" "^5.3.1"
     diff "^4.0.2"
     nise "^4.0.4"
     supports-color "^7.1.0"
