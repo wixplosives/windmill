@@ -13,13 +13,11 @@
   },
   "peerDependencies": {
     "html-webpack-plugin": ">=4",
-    "puppeteer": ">=1",
     "webpack": "^4.0.0"
   },
   "files": [
     "cjs",
     "src",
-    "patch-console.js",
     "static"
   ],
   "license": "MIT",
@@ -39,6 +37,7 @@
     "koa": "^2.13.1",
     "koa-static": "^5.0.0",
     "koa-webpack": "^6.0.0",
-    "minimatch": "^3.0.4"
+    "minimatch": "^3.0.4",
+    "playwright-core": "^1.8.0"
   }
 }

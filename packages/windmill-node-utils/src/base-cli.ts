@@ -1,19 +1,12 @@
 import glob from 'glob';
 import fs from '@file-services/node';
 import { Command } from 'commander';
-import { consoleError, WindmillConfig, consoleLog } from '@wixc3/windmill-utils';
+import { consoleError, WindmillConfig } from '@wixc3/windmill-utils';
 
 export function printErrorAndExit(message: unknown, debug: boolean): void {
     consoleError(message);
     if (!debug) {
         process.exit(1);
-    }
-}
-
-export function printMessageAndExit(message: unknown, debug: boolean): void {
-    consoleLog(message);
-    if (!debug) {
-        process.exit(0);
     }
 }
 

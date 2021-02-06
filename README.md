@@ -34,7 +34,7 @@ The common CLI parameters are listed below:
 - `-p, --project <p>` The root project path. Absolute. Defaults to `process.cwd()`.
 - `-w, --webpack <w>` The path to a webpack config file (`js`). Absolute. Windmill will search for a `webpack.config.js` file in the root of your project by default.
 - `-c, --config <c>` The path to a windmill config file. Windmill will search for a `windmill.config.js` file in the root by default.
-- `-d, --debug` - true/false (default: false). Windmill will open puppeteer in non-headless mode, with devtools open, and will not close the browser when the tests are finished running.
+- `-d, --debug` - true/false (default: false). Windmill will open chromium in non-headless mode, with devtools open, and will not close the browser when the tests are finished running.
 - (just for `windmill-a11y`) `-i, --impact <i>` Lets you specify the impact level of `windmill-a11y`, which changes which violations `windmill-a11y` will fail for. There are four levels to choose from: `'minor' | 'moderate' | 'serious' | 'critical'`.
 
 Windmill's tools will also accept a list of simulation files passed as arguments.

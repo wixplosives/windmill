@@ -1,11 +1,10 @@
 import path from 'path';
-import puppeteer from 'puppeteer';
 import {
     WebpackConfigurator,
     serve,
     IServer,
     consoleLog,
-    runTestsInPuppeteer,
+    runTestsInBrowser,
     getEntryCodeWithSSRComps,
     consoleError,
     ISimulationsToString,
@@ -95,7 +94,6 @@ export async function sanityTests(
     debug: boolean
 ): Promise<void> {
     let server: IServer | null = null;
-    let browser: puppeteer.Browser | null = null;
     consoleLog('Running sanity tests...');
 
     const { simulationsRenderedToString, failedSSR, errors } = renderSimulationsToString(simulationConfigs);
@@ -142,20 +140,9 @@ export async function sanityTests(
             projectPath,
         });
 
-        // We want to have devtools open if debug is true
-        browser = await puppeteer.launch({ devtools: debug });
-        const page = await browser.newPage();
-
-        page.on('dialog', (dialog) => {
-            dialog.dismiss().catch((err) => {
-                throw err;
-            });
-        });
-
-        await page.goto(server.getUrl());
-
-        const numFailedTests = await runTestsInPuppeteer({
+        const numFailedTests = await runTestsInBrowser({
             testPageUrl: server.getUrl(),
+            launchOptions: { devtools: debug },
         });
 
         consoleError(...errors);
@@ -169,20 +156,11 @@ export async function sanityTests(
             process.stderr.write((error as Error).toString() + '\n');
         }
     } finally {
-        if (browser) {
-            try {
-                if (!debug) {
-                    await browser?.close();
-                }
-            } catch (_) {
-                // Ignore the error since we're already handling an exception.
-            }
-        }
         if (server && !debug) {
             server.close();
         }
-
         if (!debug) {
+            // this forced exit should be investigated and removed. we should close/cleanup stuff properly
             process.exit();
         }
     }
