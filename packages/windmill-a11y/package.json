@@ -12,7 +12,7 @@
     "build": "ts-build ./src --cjs",
     "test": "yarn test:node && yarn test:browser",
     "test:node": "mocha -r @ts-tools/node/r -r @stylable/node/register \"test/**/*.unit.ts?(x)\"",
-    "test:browser": "mocha-pup \"test/**/*.spec.ts?(x)\"",
+    "test:browser": "mocha-play \"test/**/*.spec.ts?(x)\"",
     "prepack": "yarn build"
   },
   "peerDependencies": {
@@ -25,6 +25,7 @@
     "@wixc3/windmill-utils": "^2.0.0",
     "axe-core": "^4.1.1",
     "glob": "^7.1.6",
+    "playwright-core": "^1.8.0",
     "tsconfig-paths": "^3.9.0"
   },
   "files": [

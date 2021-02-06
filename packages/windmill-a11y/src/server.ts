@@ -1,5 +1,5 @@
 import path from 'path';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright-core';
 import {
     WebpackConfigurator,
     serve,
@@ -88,7 +88,7 @@ export async function a11yTest(
     debug: boolean
 ): Promise<void> {
     let server: IServer | null = null;
-    let browser: puppeteer.Browser | null = null;
+    let browser: playwright.Browser | null = null;
     consoleLog('Running a11y test...');
     const accessibleSimConfigs = [];
 
@@ -130,18 +130,16 @@ export async function a11yTest(
         });
 
         // We want to have devtools open if debug is true
-        browser = await puppeteer.launch({ devtools: debug });
+        browser = await playwright.chromium.launch({ devtools: debug });
         const page = await browser.newPage();
         const getResults = new Promise<Result[]>((resolve) => {
-            page.exposeFunction('puppeteerReportResults', resolve).catch((err) => {
+            page.exposeFunction('testReportResults', resolve).catch((err) => {
                 throw err;
             });
         });
 
         page.on('dialog', (dialog) => {
-            dialog.dismiss().catch((err) => {
-                throw err;
-            });
+            dialog.dismiss().catch(consoleError);
         });
 
         await page.goto(server.getUrl());
@@ -173,6 +171,7 @@ export async function a11yTest(
         }
 
         if (!debug) {
+            // this forced exit should be investigated and removed. we should close/cleanup stuff properly
             process.exit();
         }
     }

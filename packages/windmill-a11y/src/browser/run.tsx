@@ -15,5 +15,5 @@ export async function test(simulations: Simulation[]): Promise<void> {
     }
 
     // eslint-disable-next-line
-    (window as any).puppeteerReportResults(results);
+    (window as any).testReportResults(results);
 }
