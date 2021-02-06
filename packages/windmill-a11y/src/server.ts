@@ -133,7 +133,7 @@ export async function a11yTest(
         browser = await playwright.chromium.launch({ devtools: debug });
         const page = await browser.newPage();
         const getResults = new Promise<Result[]>((resolve) => {
-            page.exposeFunction('testReportResults', resolve).catch((err) => {
+            page.exposeFunction('reportTestResults', resolve).catch((err) => {
                 throw err;
             });
         });
