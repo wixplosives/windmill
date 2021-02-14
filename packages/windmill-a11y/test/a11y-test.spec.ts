@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import SimulationForImageWithoutAlt from '@wixc3/windmill-mock-repo/_wcs/simulations/Image/image-without-alt.sim';
 import SimulationForImageWithAlt from '@wixc3/windmill-mock-repo/_wcs/simulations/Image/image-with-alt.sim';
-import { checkIfSimulationIsAccessible } from '../src';
+import { checkIfSimulationIsAccessible } from '@wixc3/windmill-a11y';
 
 describe('checkIfSimulationIsAccessible', function () {
     this.timeout(10_000);

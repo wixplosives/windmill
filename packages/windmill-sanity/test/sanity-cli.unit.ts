@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { dirname, resolve, join } from 'path';
 import { spawnSync } from 'child_process';
 
-const cliSrcPath = require.resolve('../bin/windmill-sanity.js');
+const cliSrcPath = require.resolve('@wixc3/windmill-sanity/bin/windmill-sanity.js');
 const mockRepoRoot = dirname(require.resolve('@wixc3/windmill-mock-repo/package.json'));
 
 const runSanity = (args: string[] = []) =>

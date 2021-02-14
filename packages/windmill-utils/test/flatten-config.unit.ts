@@ -1,6 +1,5 @@
-import { flattenConfig, defaultConfig } from '../src';
-import type { WindmillConfig } from '../src';
 import { expect } from 'chai';
+import { WindmillConfig, flattenConfig, defaultConfig } from '@wixc3/windmill-utils';
 
 const mockSimulationFilePaths = [
     'simulations/sim-1.sim.ts',
