@@ -55,13 +55,13 @@
     "@file-services/types" "^5.3.0"
     "@file-services/utils" "^5.3.0"
 
-"@file-services/node@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@file-services/node/-/node-5.3.0.tgz#dfb8f435ceb53f30938f94ed232a8a9d93228568"
-  integrity sha512-obU7zvuHv7jNKGSNrS6gNbgVN+U6ehx33spgTBAUNJknOkcgA0QJqBLCJJb1Cosxnj8qEno4M7Ai1G5C2LbpSA==
+"@file-services/node@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@file-services/node/-/node-5.3.1.tgz#2b79a1f98ae080e9a6a3043ede7ad8643f5b2fd6"
+  integrity sha512-Yoj+QkI6tg7GL2/fs5TY9VAMqQb/0jtU3PA5BQSB4elF5qCyg5Nvz/fIRegm46epl8DxOEJcJZKgnJsk3JePZw==
   dependencies:
-    "@file-services/types" "^5.3.0"
-    "@file-services/utils" "^5.3.0"
+    "@file-services/types" "^5.3.1"
+    "@file-services/utils" "^5.3.1"
 
 "@file-services/overlay@^5.3.0":
   version "5.3.0"
@@ -78,17 +78,17 @@
   dependencies:
     "@file-services/types" "^5.3.0"
 
-"@file-services/types@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.3.0.tgz#1ab6a36d8c3f49e7e371a33156d5f579fe5500a4"
-  integrity sha512-VnufBuTMRHFLALYPpje5QcV8bnQT4S/TCIK2LT5x3w0t9AHbq/Dpkkfxk2OS6/zGCiOXqRGqVmCEYPvSCHQMDw==
+"@file-services/types@^5.3.0", "@file-services/types@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.3.1.tgz#5d350f20f99e9fdf08ece470ecbfacd8e11c5844"
+  integrity sha512-aosWw8NFPWNuY9p/yZVLXwM9OYG3NRahG432IhgpulcmbJkGlA+odj3zj6DPq+/FTyqOFf5vldIg25jBTEm+CA==
 
-"@file-services/utils@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.3.0.tgz#4aa7792b2c0c04091e876bdf561868446ffd6ce8"
-  integrity sha512-MsSH7ol0ipIDdjAX03yevdwjVZSWhAG7Ko+kKOQqPBkWeTfLsV2XCvoQzoltB/JeVtxlMVLkrbqwjf175oHjNw==
+"@file-services/utils@^5.3.0", "@file-services/utils@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.3.1.tgz#545802e0326f0c4cf966a545029c697919227c5e"
+  integrity sha512-VgOR5TDITkCFnFnXV7NqY0Q+5cjtAUyCfl3J0Ud+itewghM4TX+VK1MmFCFaKy4l4g8fWt+q5tMldL5bMONjZw==
   dependencies:
-    "@file-services/types" "^5.3.0"
+    "@file-services/types" "^5.3.1"
 
 "@file-services/webpack@^5.3.0":
   version "5.3.0"
