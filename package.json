@@ -12,7 +12,7 @@
     "test:browser": "mocha-play \"packages/**/test/**/*.spec.ts?(x)\"",
     "test:node": "mocha \"packages/**/test/**/*.unit.ts?(x)\"",
     "typecheck": "tsc --noEmit",
-    "prettify": "npx prettier \"packages/**/*.{js,ts,tsx}\" --write"
+    "prettify": "npx prettier . --write"
   },
   "devDependencies": {
     "@file-services/memory": "^5.3.1",

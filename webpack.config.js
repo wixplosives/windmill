@@ -15,7 +15,7 @@ module.exports = {
     devtool: 'source-map',
 
     output: {
-        path: join(__dirname, 'umd')
+        path: join(__dirname, 'umd'),
     },
 
     module: {
@@ -25,27 +25,27 @@ module.exports = {
                 exclude: /\.d\.ts$/,
                 loader: '@ts-tools/webpack-loader',
                 options: {
-                    configFilePath: require.resolve('./tsconfig.json')
-                }
+                    configFilePath: require.resolve('./tsconfig.json'),
+                },
             },
             {
                 test: /\.css$/,
                 exclude: /\.st\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(png|jpg|gif|svg|woff2|ttf)$/i,
                 loader: 'url-loader',
                 options: {
-                    limit: 2048
-                }
-            }
+                    limit: 2048,
+                },
+            },
         ],
-        noParse: [require.resolve('typescript/lib/typescript.js')]
+        noParse: [require.resolve('typescript/lib/typescript.js')],
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
-        plugins: [new TsconfigPathsPlugin({ configFile: rootTsconfigPath })]
+        plugins: [new TsconfigPathsPlugin({ configFile: rootTsconfigPath })],
     },
-    plugins
+    plugins,
 };
