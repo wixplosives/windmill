@@ -62,7 +62,7 @@
     "mocha": "^8.3.1",
     "mocha-play": "^1.0.1",
     "npm-run-all": "^4.1.5",
-    "playwright-chromium": "^1.9.1",
+    "playwright-chromium": "^1.9.2",
     "playwright-core": "^1.9.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
