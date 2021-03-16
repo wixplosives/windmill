@@ -70,7 +70,7 @@
     "sinon": "^9.2.4",
     "sinon-chai": "^3.5.0",
     "tsconfig-paths": "^3.9.0",
-    "tsconfig-paths-webpack-plugin": "^3.4.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.0",
     "typescript": "~4.2.3",
     "webpack": "^4.46.0"
   },
