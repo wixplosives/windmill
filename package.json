@@ -43,7 +43,7 @@
     "@types/sinon": "^9.0.11",
     "@types/sinon-chai": "^3.2.5",
     "@types/temp": "^0.8.34",
-    "@types/webpack": "^4.41.26",
+    "@types/webpack": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "@wixc3/wcs-core": "^2.0.5",
