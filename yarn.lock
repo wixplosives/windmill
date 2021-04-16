@@ -1038,6 +1038,27 @@
     postcss-value-parser "^4.1.0"
     toky "^0.1.0"
 
+"@stylable/core@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-4.0.6.tgz#a1c951fb46d00d7103aa97d8f5ca220155ecaadd"
+  integrity sha512-QwxqHlizdLAT+aCKiNemhlMGDndv/UeGZuxGSZW/YHw0DE+WAqW2rDDYCJcSNl8M/artpNexj6mOQz0PwmlcLQ==
+  dependencies:
+    css-selector-tokenizer "^0.7.3"
+    deindent "^0.1.0"
+    enhanced-resolve "^5.7.0"
+    is-url-superb "^5.0.0"
+    is-vendor-prefixed "^4.0.0"
+    jest-docblock "^26.0.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.clonedeepwith "^4.5.0"
+    postcss "^8.2.10"
+    postcss-js "^3.0.3"
+    postcss-nested "^5.0.5"
+    postcss-safe-parser "^5.0.2"
+    postcss-selector-matches "^4.0.0"
+    postcss-value-parser "^4.1.0"
+    toky "^0.1.0"
+
 "@stylable/module-utils@^3.12.4":
   version "3.12.4"
   resolved "https://registry.yarnpkg.com/@stylable/module-utils/-/module-utils-3.12.4.tgz#9bdd941a6c47384d3d57621bca7a92f7e2670491"
@@ -7133,7 +7154,7 @@ postcss-modules-values@^4.0.0:
   dependencies:
     icss-utils "^5.0.0"
 
-postcss-nested@^5.0.3:
+postcss-nested@^5.0.3, postcss-nested@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.5.tgz#f0a107d33a9fab11d7637205f5321e27223e3603"
   integrity sha512-GSRXYz5bccobpTzLQZXOnSOfKl6TwVr5CyAQJUPub4nuRJSOECK5AqurxVgmtxP48p0Kc/ndY/YyS1yqldX0Ew==
