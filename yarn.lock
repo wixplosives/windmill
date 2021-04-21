@@ -1688,10 +1688,10 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wixc3/wcs-core@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@wixc3/wcs-core/-/wcs-core-2.0.5.tgz#d2584612b641c1a77d1976f1f97e13a1a5373759"
-  integrity sha512-P6yxl7eAgHIB6N1su/SBA/qQCpqMEoGZTQlTqrZhMKx2E6+TYcl8mrXDyd8fjNjOe5u5H/zBXk52fe/aVQWvAw==
+"@wixc3/wcs-core@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@wixc3/wcs-core/-/wcs-core-2.3.0.tgz#c54944db95f08ee7bb53e89097f81e5bec14aff5"
+  integrity sha512-pQ4WRA5Q7q88UlJtO0crNw0V5P6qp+AEhjB4B8WcS8OkU4Y3I6uaXD7OvT51xhBoJiMecvT+Y4cs/N/RuTJZmg==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
