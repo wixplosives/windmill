@@ -1038,6 +1038,26 @@
     postcss-value-parser "^4.1.0"
     toky "^0.1.0"
 
+"@stylable/core@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-4.1.1.tgz#be0230778d07db4eea612dd3d9748a59ea51b0af"
+  integrity sha512-8G2sZB74s4ukWaDuFzHWqI0kmGETmMjC3el+eZoFgC6/7E9uLibLjFfdhncvUQoQ+sD7OguOhjL3G2vN3bW+VQ==
+  dependencies:
+    css-selector-tokenizer "^0.7.3"
+    deindent "^0.1.0"
+    enhanced-resolve "^5.8.0"
+    is-vendor-prefixed "^4.0.0"
+    jest-docblock "^26.0.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.clonedeepwith "^4.5.0"
+    postcss "^8.2.10"
+    postcss-js "^3.0.3"
+    postcss-nested "^5.0.5"
+    postcss-safe-parser "^5.0.2"
+    postcss-selector-matches "^4.0.0"
+    postcss-value-parser "^4.1.0"
+    toky "^0.1.0"
+
 "@stylable/module-utils@^3.12.4":
   version "3.12.4"
   resolved "https://registry.yarnpkg.com/@stylable/module-utils/-/module-utils-3.12.4.tgz#9bdd941a6c47384d3d57621bca7a92f7e2670491"
@@ -3442,10 +3462,10 @@ enhanced-resolve@^4.5.0:
     memory-fs "^0.5.0"
     tapable "^1.0.0"
 
-enhanced-resolve@^5.7.0:
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.7.0.tgz#525c5d856680fbd5052de453ac83e32049958b5c"
-  integrity sha512-6njwt/NsZFUKhM6j9U8hzVyD4E4r0x7NQzhTCbcWOJ0IQjNSAoalWmb0AE51Wn+fwan5qVESWi7t2ToBxs9vrw==
+enhanced-resolve@^5.7.0, enhanced-resolve@^5.8.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.0.tgz#d9deae58f9d3773b6a111a5a46831da5be5c9ac0"
+  integrity sha512-Sl3KRpJA8OpprrtaIswVki3cWPiPKxXuFxJXBp+zNb6s6VwNWwFRUdtmzd2ReUut8n+sCPx7QCtQ7w5wfJhSgQ==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
@@ -7133,7 +7153,7 @@ postcss-modules-values@^4.0.0:
   dependencies:
     icss-utils "^5.0.0"
 
-postcss-nested@^5.0.3:
+postcss-nested@^5.0.3, postcss-nested@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.5.tgz#f0a107d33a9fab11d7637205f5321e27223e3603"
   integrity sha512-GSRXYz5bccobpTzLQZXOnSOfKl6TwVr5CyAQJUPub4nuRJSOECK5AqurxVgmtxP48p0Kc/ndY/YyS1yqldX0Ew==
