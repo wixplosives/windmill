@@ -57,7 +57,7 @@
     "html-webpack-plugin": "^4.5.2",
     "koa-static": "^5.0.0",
     "lerna": "^4.0.0",
-    "mini-css-extract-plugin": "^1.5.0",
+    "mini-css-extract-plugin": "^1.5.1",
     "minimatch": "^3.0.4",
     "mocha": "^8.3.2",
     "mocha-play": "^1.0.1",
