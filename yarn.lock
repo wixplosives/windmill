@@ -1087,18 +1087,23 @@
     chalk "^4.1.0"
     commander "^6.1.0"
 
-"@ts-tools/node@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-2.1.1.tgz#2923b4386e543bd20d534824429440b46ac87e95"
-  integrity sha512-+pcRdNZIz32c8lxZrKJAoXxD/X9UgdioV7ccqfXL0h1Yyt+VeGdSUknxJ3WyKWiDKiS4RacL4LqHztaSUmBiLA==
+"@ts-tools/node@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-3.0.1.tgz#9d8bd35bc3a29d23db28b50dce335045b1846a16"
+  integrity sha512-8SQNZomZYs03AP9LR2jxuZanpviBgJRglIh5OB7tS4Dt4TkgzxmgtciMSaKuDac7Q+ptyiq0GcUDvmXaXRle6A==
   dependencies:
-    "@ts-tools/transpile" "^2.1.1"
+    "@ts-tools/transpile" "^3.0.1"
     source-map-support "^0.5.19"
 
 "@ts-tools/transpile@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@ts-tools/transpile/-/transpile-2.1.1.tgz#f2448013cdfc2944055d0446a568da97b93c6a3e"
   integrity sha512-kuhuOlvexcF2UBkmnr+Ir8yhInzJtItiuUxLEgYKQ6odVsD1w7N1n9B0Eqxj9ZT53rhYWUzZEzMWalh9l34EPQ==
+
+"@ts-tools/transpile@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ts-tools/transpile/-/transpile-3.0.1.tgz#b9e7462a8e42685c5852640faf51de4b0e6a1b41"
+  integrity sha512-PxM/8aIPN9IEJxu0RI9F7M1lUGVRC+ZW/TBnL73U3oQiGeyNsk6EfvzDP4bvCPSUUVByXYCpaofFQAHvlLRwAQ==
 
 "@ts-tools/webpack-loader@^2.1.1":
   version "2.1.1"
