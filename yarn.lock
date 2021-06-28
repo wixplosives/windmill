@@ -1105,13 +1105,12 @@
   resolved "https://registry.yarnpkg.com/@ts-tools/transpile/-/transpile-3.0.1.tgz#b9e7462a8e42685c5852640faf51de4b0e6a1b41"
   integrity sha512-PxM/8aIPN9IEJxu0RI9F7M1lUGVRC+ZW/TBnL73U3oQiGeyNsk6EfvzDP4bvCPSUUVByXYCpaofFQAHvlLRwAQ==
 
-"@ts-tools/webpack-loader@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@ts-tools/webpack-loader/-/webpack-loader-2.1.1.tgz#29971073f4650935f075e747883b8f9342cec340"
-  integrity sha512-lHYxSZCajnPcaODE0VKYizsq6qmrd8UAESJfNWfQHKZVvIScH64HRdLfBRKQXYSfmELa/6Lg6s0fqg6KJlfieA==
+"@ts-tools/webpack-loader@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ts-tools/webpack-loader/-/webpack-loader-3.0.1.tgz#50ca1ad93d17aca026c7174d3f4a3962e3cdf9fa"
+  integrity sha512-480l9EACEOdgAsoMkEY+KzKBBQapevfyzaeXu1ms951OeFLCIw3/GUXN2UqCx7ToGXalget2V1n1yQDXYFA3nQ==
   dependencies:
-    "@ts-tools/transpile" "^2.1.1"
-    loader-utils "^2.0.0"
+    "@ts-tools/transpile" "^3.0.1"
 
 "@types/accepts@*":
   version "1.3.5"
