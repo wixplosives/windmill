@@ -1061,6 +1061,11 @@
   resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-3.12.4.tgz#6a7b9315d9414d657ac1cd10d83027ee95947365"
   integrity sha512-XIVJ548M/9MugIvO49eyp5JhNdHLx1/FIsT7yWkvMSMfCb7VH8kaP9I1OeDODAYqjicyYV/lA/Xi06OLsKdLsQ==
 
+"@stylable/runtime@^4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-4.3.3.tgz#daa415c9c269570150ff7fccb7d3cd1975f9d93e"
+  integrity sha512-pbehZJo4jyXffQ7b5teuJ6nw/spwwd5byJA5EASwYmkhMZLADh8g5jK3i2ouzvUwKC27iWSPrsgnIarzXgv8+Q==
+
 "@stylable/webpack-plugin@^3.12.4":
   version "3.12.4"
   resolved "https://registry.yarnpkg.com/@stylable/webpack-plugin/-/webpack-plugin-3.12.4.tgz#16386490ce88c90dfab089bc9bd8a110f38bee52"
