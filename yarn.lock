@@ -1255,10 +1255,10 @@
     "@types/koa" "*"
     "@types/koa-send" "*"
 
-"@types/koa-webpack@^6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@types/koa-webpack/-/koa-webpack-6.0.3.tgz#b595925fcaf1679cfc5daeb95285d51393d2230c"
-  integrity sha512-zUFnS3y8YGOu7T/13BphQzFpQiOMkgccEaknV4Uq04rYK7ncVsTWNTFrJA0LRHOyh/iKv+XB584BKrDoaX2gzg==
+"@types/koa-webpack@^6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@types/koa-webpack/-/koa-webpack-6.0.4.tgz#f3ea577cc91a0915d86aa982fdbfcca384722227"
+  integrity sha512-HoIx5mhWZhxk/xV9sYXCX7zmuTltdSJM/AC3jUsO/n0FpVcsh1Y9n8Mqywo4rYWBFLPZ4Jk1PZ+AHD6GCKkWoQ==
   dependencies:
     "@types/koa" "*"
     "@types/webpack" "^4"
