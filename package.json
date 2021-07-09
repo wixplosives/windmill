@@ -34,7 +34,7 @@
     "@types/glob": "^7.1.4",
     "@types/koa": "^2.13.4",
     "@types/koa-static": "^4.0.2",
-    "@types/koa-webpack": "^6.0.3",
+    "@types/koa-webpack": "^6.0.4",
     "@types/minimatch": "^3.0.5",
     "@types/mocha": "^8.2.3",
     "@types/node": "12",
