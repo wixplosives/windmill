@@ -25,7 +25,7 @@
     "@wixc3/windmill-utils": "^2.0.0",
     "axe-core": "^4.3.2",
     "glob": "^7.1.7",
-    "playwright-core": "^1.13.0",
+    "playwright-core": "^1.13.1",
     "tsconfig-paths": "^3.10.1"
   },
   "files": [
