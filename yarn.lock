@@ -6991,10 +6991,10 @@ playwright-chromium@^1.13.0:
     ws "^7.4.6"
     yazl "^2.5.1"
 
-playwright-core@^1.13.0, playwright-core@^1.8.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.13.0.tgz#faf1584564aeeb933d94d84203d330c3f50a9c74"
-  integrity sha512-4XquXr064AkVREZjl1IbQ66WAgUirOJKAutTP123M3Eg2n7HyIkz09QIq1itfmAdfavMXAM4Q5/kAdvv/xReKw==
+playwright-core@^1.13.1, playwright-core@^1.8.0:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.13.1.tgz#d2b5677f7f274126c9ec0efa388f12cc31c71873"
+  integrity sha512-z5MR16KXvcSULfQ+UubbAQpwzoCo+pPmhsHehLT2nduJyx32jkV/78zN0Vhy0wSISoEwcoC0WBdPW7B/aF98PQ==
   dependencies:
     commander "^6.1.0"
     debug "^4.1.1"
