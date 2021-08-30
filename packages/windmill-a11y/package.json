@@ -20,7 +20,7 @@
     "webpack": "^4.0.0"
   },
   "dependencies": {
-    "@file-services/memory": "^5.3.1",
+    "@file-services/memory": "^5.4.1",
     "@wixc3/windmill-node-utils": "^2.0.0",
     "@wixc3/windmill-utils": "^2.0.0",
     "axe-core": "^4.3.3",
