@@ -45,14 +45,14 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@file-services/memory@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@file-services/memory/-/memory-5.3.1.tgz#b95210ced08b57d13c683e19bb762234c42bdc17"
-  integrity sha512-5JEmOjW13+HqeN0IbDMshUhepDn3l6BESwJQWKxPHyBoq1dhlw9FtM+Bin7xYPa3IBXzw7Lw1c3g7XnBef8mJA==
+"@file-services/memory@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@file-services/memory/-/memory-5.4.1.tgz#888e716ac047bf8995335e9f4ea68f0a4a939f29"
+  integrity sha512-zr844e6PO4E8l05R9xSuCFEU0LeUVfjSp1P0WM6oG+ijW8BBpADbrn7yFExlW9uQ/D4kw6MYinecZeYYNh9Fig==
   dependencies:
-    "@file-services/path" "^5.3.1"
-    "@file-services/types" "^5.3.1"
-    "@file-services/utils" "^5.3.1"
+    "@file-services/path" "^5.4.1"
+    "@file-services/types" "^5.4.0"
+    "@file-services/utils" "^5.4.0"
 
 "@file-services/node@^5.3.1":
   version "5.3.1"
@@ -70,24 +70,24 @@
     "@file-services/types" "^5.3.1"
     "@file-services/utils" "^5.3.1"
 
-"@file-services/path@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@file-services/path/-/path-5.3.1.tgz#43ce89f24a601f877cfa8fcc61fb45a2b2198e49"
-  integrity sha512-buzM3b6OXeMMiwa3i+JipBvav99euMh2G4YmgMmXOmaOc3R7qXrdkd9Fu3XOpIQOqVJxFLA5zoy5SfPHQx3znw==
+"@file-services/path@^5.3.1", "@file-services/path@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@file-services/path/-/path-5.4.1.tgz#bf27dc0a02df7e91e0f5d9dbd3ac32128ed12221"
+  integrity sha512-/nV3e2GHMZBYzGqyxle5XMu9cRD48scOKKOkrlaBS/v+5sZFEU82Ny2qfKTDGQACLs4QeFpecQqA7fF2G3GT6g==
   dependencies:
-    "@file-services/types" "^5.3.1"
+    "@file-services/types" "^5.4.0"
 
 "@file-services/types@^5.3.1", "@file-services/types@^5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@file-services/types/-/types-5.4.0.tgz#26bd7485ad22de1572fa045ca3f739eef851c99c"
   integrity sha512-yDYnnEJ8jK/OjJzRUcSOeNsJ/4KgKizbu2sm3waCL6r1vGXztmATN287FL0hdGsRsxOpUpHemDoLOjVMRfyd2Q==
 
-"@file-services/utils@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.3.1.tgz#545802e0326f0c4cf966a545029c697919227c5e"
-  integrity sha512-VgOR5TDITkCFnFnXV7NqY0Q+5cjtAUyCfl3J0Ud+itewghM4TX+VK1MmFCFaKy4l4g8fWt+q5tMldL5bMONjZw==
+"@file-services/utils@^5.3.1", "@file-services/utils@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@file-services/utils/-/utils-5.4.0.tgz#bc9d028c7a8153de90843068ddf8e3a943fa4b1d"
+  integrity sha512-FQlffqciIpKQmwUE97ObtSGLG2k4PYLiKlouLLhWu+nnNt0MU9zPHZlLslT59bsB3CagYQ+jfqN/u3lZeXt+cw==
   dependencies:
-    "@file-services/types" "^5.3.1"
+    "@file-services/types" "^5.4.0"
 
 "@file-services/webpack@^5.3.1":
   version "5.3.1"
