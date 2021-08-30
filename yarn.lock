@@ -89,12 +89,12 @@
   dependencies:
     "@file-services/types" "^5.4.0"
 
-"@file-services/webpack@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.3.1.tgz#d519db635ecb9a96eb7f63c125fbfeaef3e7a090"
-  integrity sha512-aifU20R74HxdGuMOxUz6FhctyUEjYh7CCcqw0ka0UQveD/rU43d7YuF801BZ/zxE9/DEuSqfbONuOX1YO0Xy7Q==
+"@file-services/webpack@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.4.0.tgz#fac9ff2a34eb2f59e9ed8c20ef641ef9450f9484"
+  integrity sha512-vaOP33jovK+t1hvyAIVIurUIYcf7qyIlNaKpqJ9GOVauxbl52CujKW9K+Atgt+5F1/dhVBXy9GSXCqsKWll/QA==
   dependencies:
-    "@file-services/types" "^5.3.1"
+    "@file-services/types" "^5.4.0"
 
 "@hapi/hoek@^9.0.0":
   version "9.2.0"
