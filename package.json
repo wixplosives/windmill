@@ -20,7 +20,7 @@
     "@file-services/overlay": "^5.4.0",
     "@file-services/path": "^5.3.1",
     "@file-services/types": "^5.4.0",
-    "@file-services/webpack": "^5.3.1",
+    "@file-services/webpack": "^5.4.0",
     "@stylable/core": "^3.12.4",
     "@stylable/node": "^3.12.4",
     "@stylable/runtime": "^3.12.4",
