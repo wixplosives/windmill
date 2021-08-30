@@ -28,7 +28,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@file-services/node": "^5.3.1",
+    "@file-services/node": "^5.4.0",
     "@file-services/overlay": "^5.4.0",
     "@file-services/path": "^5.3.1",
     "@file-services/webpack": "^5.3.1",
