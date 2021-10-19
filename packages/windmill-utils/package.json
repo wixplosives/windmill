@@ -34,7 +34,7 @@
     "@file-services/webpack": "^5.4.0",
     "axe-core": "^4.3.3",
     "chalk": "^4.1.2",
-    "koa": "^2.13.3",
+    "koa": "^2.13.4",
     "koa-static": "^5.0.0",
     "koa-webpack": "^6.0.0",
     "minimatch": "^3.0.4",
