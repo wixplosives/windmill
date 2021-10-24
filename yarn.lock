@@ -7037,10 +7037,32 @@ playwright-chromium@^1.16.0:
   dependencies:
     playwright-core "=1.16.0"
 
-playwright-core@=1.16.0, playwright-core@^1.15.2, playwright-core@^1.8.0:
+playwright-core@=1.16.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.16.0.tgz#c23fca9a0086c00f3e684b1dcaffd2f0d2d55ec6"
   integrity sha512-bJBIceYaNvdGKUreCltfBgsQbvwnWdWd8u+9Ncx9aSHzWUNFDh9cQGTQxqOI2egbMw+ovSG0YU/0lJIzm/Uj/w==
+  dependencies:
+    commander "^8.2.0"
+    debug "^4.1.1"
+    extract-zip "^2.0.1"
+    https-proxy-agent "^5.0.0"
+    jpeg-js "^0.4.2"
+    mime "^2.4.6"
+    pngjs "^5.0.0"
+    progress "^2.0.3"
+    proper-lockfile "^4.1.1"
+    proxy-from-env "^1.1.0"
+    rimraf "^3.0.2"
+    socks-proxy-agent "^6.1.0"
+    stack-utils "^2.0.3"
+    ws "^7.4.6"
+    yauzl "^2.10.0"
+    yazl "^2.5.1"
+
+playwright-core@^1.16.1, playwright-core@^1.8.0:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.16.1.tgz#f8564359c9b0881eab1de55ca7723b21539eb585"
+  integrity sha512-SdThyChaLkvFkVEPZ/pfhiaaD4pnBTts2MYZzRMS+fYeyHzPy/FI+NUTj5Rgs+ZN9BCIrbJhfzvfYBxco/4X4A==
   dependencies:
     commander "^8.2.0"
     debug "^4.1.1"
