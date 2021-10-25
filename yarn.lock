@@ -1712,25 +1712,25 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wixc3/react-simulation@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@wixc3/react-simulation/-/react-simulation-2.0.0.tgz#24008fa884a65e2c853ee376b42cba10638474ef"
-  integrity sha512-rusD7FPYNi15kJdCIq5n+bFlLRjrU5xOun5dsp81xMeWgFaGvGxKi46yZ08/cQ1IS/RhWrzOXsFalMSgoBF12g==
-  dependencies:
-    "@wixc3/simulation-core" "^6.0.0"
-
-"@wixc3/simulation-core@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@wixc3/simulation-core/-/simulation-core-6.0.0.tgz#60553582fc9ab60fe398f0e08abb03337b5e6c66"
-  integrity sha512-Hg9C2comwJOqxTFcSRC0+dkbmVvS5a+Hyv+4uQQ4L3j3y39VukJ1CKrtI6CVoWuzkHKs/n3urv0BtpYcOAmsyQ==
-
-"@wixc3/wcs-core@^3.0.0":
+"@wixc3/react-simulation@^3.0.0":
   version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@wixc3/wcs-core/-/wcs-core-3.0.0.tgz#fa479923a7c25a7ffac3f23a9468e68b1080d38e"
-  integrity sha512-Sd9bmowZRF1vjl8PPkMiu4LCYSkyn0aeMk/IKzYmkrMQL446ikncxwheagJgKwKgw8UUKifXATjmxENbp2HXsA==
+  resolved "https://registry.yarnpkg.com/@wixc3/react-simulation/-/react-simulation-3.0.0.tgz#75b0731ccbec88c441d265e8c7c5d5cb5f6dcaaf"
+  integrity sha512-4P34IefORIExG9G7jf5OsrrXr0HYeF9yMZYIuiig9pXAehO9IE4lCUc6x1Ch6bvosX2QatzN43aWm7t9znQjYQ==
   dependencies:
-    "@wixc3/react-simulation" "^2.0.0"
-    "@wixc3/simulation-core" "^6.0.0"
+    "@wixc3/simulation-core" "^7.0.0"
+
+"@wixc3/simulation-core@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@wixc3/simulation-core/-/simulation-core-7.0.0.tgz#fc29a0c882717c00b6989e67a674fbadba8bed2e"
+  integrity sha512-JBBhR8s0P19Upusz9zQavp+wK75fHhBmTlBz6Ena99mkTdJjQljUL3v/ZWuhGZcPQ7AV2pP8VvW0bnT2s6fy8Q==
+
+"@wixc3/wcs-core@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@wixc3/wcs-core/-/wcs-core-4.0.0.tgz#f840b64be6932f340d2b910590b1d47f543a53b1"
+  integrity sha512-63FeRAwU8Yf24tOXIvNBU9+wvuE3JEm9bxFyZBow0QzLsWoIsSiFzpsSkHhLu+1rISO/25NxKXy5yGIQ+J+E/A==
+  dependencies:
+    "@wixc3/react-simulation" "^3.0.0"
+    "@wixc3/simulation-core" "^7.0.0"
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
