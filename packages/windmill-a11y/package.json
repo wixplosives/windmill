@@ -23,7 +23,7 @@
     "@file-services/memory": "^5.4.1",
     "@wixc3/windmill-node-utils": "^2.0.0",
     "@wixc3/windmill-utils": "^2.0.0",
-    "axe-core": "^4.3.4",
+    "axe-core": "^4.3.5",
     "glob": "^7.2.0",
     "playwright-core": "^1.16.2",
     "tsconfig-paths": "^3.11.0"
