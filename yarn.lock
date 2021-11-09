@@ -89,10 +89,10 @@
   dependencies:
     "@file-services/types" "^5.4.0"
 
-"@file-services/webpack@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.4.0.tgz#fac9ff2a34eb2f59e9ed8c20ef641ef9450f9484"
-  integrity sha512-vaOP33jovK+t1hvyAIVIurUIYcf7qyIlNaKpqJ9GOVauxbl52CujKW9K+Atgt+5F1/dhVBXy9GSXCqsKWll/QA==
+"@file-services/webpack@^5.4.3":
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/@file-services/webpack/-/webpack-5.4.3.tgz#9f9fcda03c5d2c685e906989a94635081695cbac"
+  integrity sha512-h3zNexaNnF8nxPN0xly8d32DfdwyIjjHbNn+m9qVBRt63eO9I1/glZyTsID848ISYatYPux6IlptkHd+R8ivtQ==
   dependencies:
     "@file-services/types" "^5.4.0"
 
